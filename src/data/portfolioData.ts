@@ -98,12 +98,19 @@ export const STUDIO_INFO = {
   phone: '+972 58-587-7708',
   phoneRaw: '972585877708',
   whatsappUrl: 'https://wa.me/972585877708',
-  email: 'Hutzahav@gmail.com',
+  email: 'galahvost74@gmail.com',
+  telegramUrl: 'https://t.me/+972585877708',
   instagram: 'https://www.instagram.com/hutzahav.atelier/',
   facebook: 'https://www.facebook.com/hutzahav',
   experienceYears: 15,
   foundedYear: 2019,
-  addressRu: 'Израиль (доставка по всему миру)',
+  address: 'Shavei Tzion 2, Ashdod, Israel',
+  addressRu: 'г. Ашдод, ул. Шавей Цион 2 (Shavei Tzion 2)',
+  addressHe: 'שבי ציון 2, אשדוד',
+  googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Shavei+Tzion+2,+Ashdod',
+  googleMapsEmbed: 'https://maps.google.com/maps?q=Shavei%20Tzion%202,%20Ashdod,%20Israel&t=&z=16&ie=UTF8&iwloc=&output=embed',
+  wazeUrl: 'https://waze.com/ul?q=Shavei+Tzion+2+Ashdod',
+  easyUrl: 'https://easy.co.il/en/page/10090491',
   addressEn: 'Israel (Worldwide shipping available)'
 };
 

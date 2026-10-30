@@ -1,7 +1,7 @@
 import React from 'react';
 import { STUDIO_INFO } from '../data/portfolioData';
-import { Phone, Mail, ArrowUp } from 'lucide-react';
-import { Instagram, Facebook } from './Icons';
+import { Phone, Mail, ArrowUp, MapPin, Navigation, ExternalLink, MessageCircle } from 'lucide-react';
+import { Instagram, Facebook, Telegram } from './Icons';
 import { Logo } from './Logo';
 
 export const AtelierFooter: React.FC = () => {
@@ -25,7 +25,7 @@ export const AtelierFooter: React.FC = () => {
             </p>
 
             <div className="font-cinzel text-xs text-gold-400/80 tracking-widest pt-1">
-              חוט זהב • АТЕЛЬЕ «ЗОЛОТАЯ НИТЬ»
+              חוט זהב • АТЕЛЬЕ «ЗОЛОТАЯ НИТЬ» • АШДОД
             </div>
           </div>
 
@@ -86,39 +86,94 @@ export const AtelierFooter: React.FC = () => {
                   {STUDIO_INFO.email}
                 </a>
               </li>
-              <li className="text-slate-400 pt-1 leading-relaxed">
-                Студия в Израиле.<br />Примерки по предварительной записи.<br />Доставка изделий по всему миру.
+              <li className="flex items-start gap-2.5">
+                <MapPin size={15} className="text-gold-400 shrink-0 mt-0.5" />
+                <div className="text-slate-300 leading-relaxed">
+                  <strong>{STUDIO_INFO.addressRu}</strong><br />
+                  <span className="text-[11px] text-slate-400">{STUDIO_INFO.addressHe}</span>
+                </div>
+              </li>
+              <li className="flex items-center gap-2 pt-1 text-[11px]">
+                <a
+                  href={STUDIO_INFO.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold-400 hover:underline flex items-center gap-1"
+                >
+                  <MapPin size={11} /> Google Maps
+                </a>
+                <span>•</span>
+                <a
+                  href={STUDIO_INFO.wazeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold-400 hover:underline flex items-center gap-1"
+                >
+                  <Navigation size={11} /> Waze
+                </a>
+                <span>•</span>
+                <a
+                  href={STUDIO_INFO.easyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold-400 hover:underline"
+                >
+                  Easy.co.il
+                </a>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Socials */}
+          {/* Col 4: Socials & Messengers */}
           <div className="space-y-3">
             <div className="font-cinzel text-xs font-bold text-white uppercase tracking-[0.2em]">
-              Социальные сети
+              Мессенджеры & Соцсети
             </div>
             <p className="text-xs text-slate-400 font-light leading-relaxed">
-              Следите за закулисьем ателье, процессами ручной росписи и новыми коллекциями:
+              Напишите нам для мгновенной консультации или следите за закулисьем ателье:
             </p>
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center gap-2.5 pt-2">
+              <a
+                href={STUDIO_INFO.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-noir-850 hover:bg-[#25D366] hover:text-black text-slate-200 border border-white/10 text-xs transition-all"
+                title="WhatsApp"
+              >
+                <MessageCircle size={14} className="text-[#25D366]" />
+                <span>WhatsApp</span>
+              </a>
+
+              <a
+                href={STUDIO_INFO.telegramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-noir-850 hover:bg-[#229ED9] hover:text-white text-slate-200 border border-white/10 text-xs transition-all"
+                title="Telegram"
+              >
+                <Telegram size={14} className="text-[#229ED9]" />
+                <span>Telegram</span>
+              </a>
+
               <a
                 href={STUDIO_INFO.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-noir-850 hover:bg-gold-500 hover:text-black text-slate-200 border border-white/10 text-xs font-cinzel uppercase tracking-wider transition-all"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-noir-850 hover:bg-gold-500 hover:text-black text-slate-200 border border-white/10 text-xs transition-all"
                 title="Instagram"
               >
-                <Instagram size={16} />
+                <Instagram size={14} />
                 <span>Instagram</span>
               </a>
+
               <a
                 href={STUDIO_INFO.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-noir-850 hover:bg-gold-500 hover:text-black text-slate-200 border border-white/10 text-xs font-cinzel uppercase tracking-wider transition-all"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-noir-850 hover:bg-gold-500 hover:text-black text-slate-200 border border-white/10 text-xs transition-all"
                 title="Facebook"
               >
-                <Facebook size={16} />
+                <Facebook size={14} />
                 <span>Facebook</span>
               </a>
             </div>
@@ -129,7 +184,7 @@ export const AtelierFooter: React.FC = () => {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-light text-center sm:text-left">
           <div>
-            © {new Date().getFullYear()} HUTZAHAV ATELIER by Galina Khvostenko. Все права защищены.
+            © {new Date().getFullYear()} HUTZAHAV ATELIER by Galina Khvostenko • Shavei Tzion 2, Ashdod. Все права защищены.
           </div>
 
           <button

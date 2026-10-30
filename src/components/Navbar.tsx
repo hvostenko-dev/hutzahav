@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { STUDIO_INFO } from '../data/portfolioData';
-import { Menu, X, Phone, MessageCircle, Scissors, Sparkles } from 'lucide-react';
-import { Instagram, Facebook } from './Icons';
+import { Menu, X, Phone, MessageCircle, Scissors, Mail } from 'lucide-react';
+import { Instagram, Facebook, Telegram } from './Icons';
 import { Logo } from './Logo';
 
 interface NavbarProps {
@@ -40,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
     { label: 'Процесс пошива', href: '#journey', sub: 'Кутюрный путь' },
     { label: 'Коллекция', href: '#gallery', sub: 'Lookbook' },
     { label: 'О мастере', href: '#about', sub: 'Галина Хвостенко' },
-    { label: 'Контакты', href: '#contact', sub: 'Запись на примерку' },
+    { label: 'Контакты & Карта', href: '#contact', sub: 'Ашдод, Shavei Tzion 2' },
   ];
 
   return (
@@ -75,43 +75,39 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
             </nav>
 
             {/* Desktop Actions */}
-            <div className="hidden sm:flex items-center gap-4">
-              {/* Phone */}
-              <a
-                href={`tel:${STUDIO_INFO.phoneRaw}`}
-                className="hidden xl:flex items-center gap-2 text-xs text-slate-300 hover:text-gold-300 transition-colors"
-              >
-                <Phone size={14} className="text-gold-400" />
-                <span>{STUDIO_INFO.phone}</span>
-              </a>
-
-              {/* Socials */}
-              <div className="flex items-center gap-1.5 text-slate-400">
+            <div className="hidden sm:flex items-center gap-3.5">
+              {/* Telegram & WhatsApp & Email Icons */}
+              <div className="flex items-center gap-1 text-slate-400">
                 <a
-                  href={STUDIO_INFO.instagram}
+                  href={STUDIO_INFO.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="Instagram"
-                  className="p-2 rounded-full hover:text-gold-300 hover:bg-white/5 transition-colors"
+                  title="WhatsApp"
+                  className="p-2 rounded-full hover:text-[#25D366] hover:bg-white/5 transition-colors"
                 >
-                  <Instagram size={16} />
+                  <MessageCircle size={16} />
                 </a>
                 <a
-                  href={STUDIO_INFO.facebook}
+                  href={STUDIO_INFO.telegramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="Facebook"
+                  title="Telegram"
+                  className="p-2 rounded-full hover:text-[#229ED9] hover:bg-white/5 transition-colors"
+                >
+                  <Telegram size={16} />
+                </a>
+                <a
+                  href={`mailto:${STUDIO_INFO.email}`}
+                  title={`Написать на почту: ${STUDIO_INFO.email}`}
                   className="p-2 rounded-full hover:text-gold-300 hover:bg-white/5 transition-colors"
                 >
-                  <Facebook size={16} />
+                  <Mail size={16} />
                 </a>
               </div>
 
               {/* Primary Action Button */}
               <a
-                href={`https://wa.me/${STUDIO_INFO.phoneRaw}?text=${encodeURIComponent(
-                  'Здравствуйте, Галина! Хочу записаться на примерку и консультацию в ателье Hutzahav.'
-                )}`}
+                href={STUDIO_INFO.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase tracking-[0.15em] transition-transform hover:scale-105 shadow-lg shadow-gold-500/10 active:scale-95"
@@ -122,7 +118,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
             </div>
 
             {/* Mobile Actions: WhatsApp + Burger button */}
-            <div className="flex items-center gap-2.5 lg:hidden">
+            <div className="flex items-center gap-2 lg:hidden">
               <a
                 href={STUDIO_INFO.whatsappUrl}
                 target="_blank"
@@ -131,6 +127,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
                 title="WhatsApp"
               >
                 <MessageCircle size={18} />
+              </a>
+
+              <a
+                href={STUDIO_INFO.telegramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-[#229ED9] text-white shadow-md active:scale-95 transition-transform"
+                title="Telegram"
+              >
+                <Telegram size={17} />
               </a>
 
               <button
@@ -187,16 +193,35 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
           </div>
 
           {/* Bottom Actions inside Mobile Drawer */}
-          <div className="p-6 border-t border-gold-400/20 bg-noir-900/90 space-y-4">
+          <div className="p-6 border-t border-gold-400/20 bg-noir-900/90 space-y-3.5">
             
-            {/* Phone Button */}
-            <a
-              href={`tel:${STUDIO_INFO.phoneRaw}`}
-              className="flex items-center justify-center gap-2.5 py-3 rounded-2xl bg-noir-800 border border-white/10 text-slate-200 text-sm font-medium"
-            >
-              <Phone size={16} className="text-gold-400" />
-              <span>{STUDIO_INFO.phone}</span>
-            </a>
+            {/* Quick Contact Bar */}
+            <div className="grid grid-cols-3 gap-2">
+              <a
+                href={STUDIO_INFO.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-[#25D366]/15 border border-[#25D366]/40 text-[#25D366] text-xs font-semibold"
+              >
+                <MessageCircle size={15} /> WhatsApp
+              </a>
+
+              <a
+                href={STUDIO_INFO.telegramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-[#229ED9]/15 border border-[#229ED9]/40 text-[#229ED9] text-xs font-semibold"
+              >
+                <Telegram size={15} /> Telegram
+              </a>
+
+              <a
+                href={`mailto:${STUDIO_INFO.email}`}
+                className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-gold-400/10 border border-gold-400/30 text-gold-300 text-xs font-semibold"
+              >
+                <Mail size={15} /> Email
+              </a>
+            </div>
 
             {/* Direct Booking CTA */}
             <a
@@ -207,30 +232,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
               className="w-full flex items-center justify-center gap-2.5 py-3.5 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase tracking-[0.18em] shadow-xl"
             >
               <Scissors size={16} />
-              <span>Записаться на примерку</span>
+              <span>Записаться на примерку в Ашдоде</span>
             </a>
 
-            {/* Socials Row */}
-            <div className="flex items-center justify-center gap-6 pt-1 text-slate-400">
-              <a
-                href={STUDIO_INFO.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs text-slate-300 hover:text-gold-300"
-              >
-                <Instagram size={17} />
-                <span>Instagram</span>
-              </a>
-              <span className="text-white/20">•</span>
-              <a
-                href={STUDIO_INFO.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs text-slate-300 hover:text-gold-300"
-              >
-                <Facebook size={17} />
-                <span>Facebook</span>
-              </a>
+            {/* Address */}
+            <div className="text-center text-[11px] text-slate-400 pt-1">
+              {STUDIO_INFO.addressRu}
             </div>
 
           </div>
