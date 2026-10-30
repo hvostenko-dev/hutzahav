@@ -1,6 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { PortfolioItem, STUDIO_INFO } from '../data/portfolioData';
-import { X, ChevronLeft, ChevronRight, MessageCircle, Phone, Tag, Sparkles, Check, Scissors } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  MessageCircle,
+  Phone,
+  Tag,
+  Sparkles,
+  Check,
+  Scissors,
+  ShoppingBag,
+  Heart,
+  Ruler,
+  Share2,
+  MapPin,
+} from 'lucide-react';
+import { WhatsApp } from './Icons';
 
 interface LightboxModalProps {
   item: PortfolioItem | null;
@@ -17,11 +34,16 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
   onNextItem,
   onPrevItem,
 }) => {
+  const { addToCart, toggleWishlist, isInWishlist, setIsSizeGuideOpen } = useCart();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [selectedSize, setSelectedSize] = useState<string>('Индивидуальный пошив');
   const [copied, setCopied] = useState(false);
+
+  const availableSizes = ['XS (34-36)', 'S (36-38)', 'M (38-40)', 'L (40-42)', 'XL (42-44)', 'Индивидуальный пошив'];
 
   useEffect(() => {
     setActiveImageIndex(0);
+    setSelectedSize('Индивидуальный пошив');
   }, [item?.id]);
 
   useEffect(() => {
@@ -49,8 +71,15 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
   if (!item) return null;
 
   const currentImage = item.images[activeImageIndex] || item.images[0];
+  const isFav = isInWishlist(item.id);
+
+  const handleAddToCart = () => {
+    addToCart(item, selectedSize);
+    onClose();
+  };
+
   const whatsappOrderText = encodeURIComponent(
-    `Здравствуйте, Галина! Меня заинтересовало изделие в ателье Hutzahav: "${item.nameRu}". Хочу примерить или заказать похожее по моим меркам.`
+    `Здравствуйте, Галина! Меня заинтересовало изделие в ателье Hutzahav:\n«${item.nameRu}»\nРазмер: ${selectedSize}\nХочу согласовать примерку в ателье (Ашдод, Шавей Цион 2) или оформить заказ с доставкой.`
   );
 
   return (
@@ -141,8 +170,8 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
           </div>
         </div>
 
-        {/* RIGHT: Bespoke Order Details Panel */}
-        <div className="w-full lg:w-[420px] p-6 sm:p-8 bg-noir-850 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-gold-400/20 overflow-y-auto">
+        {/* RIGHT: Bespoke Boutique Order Details Panel */}
+        <div className="w-full lg:w-[440px] p-6 sm:p-7 bg-noir-850 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-gold-400/20 overflow-y-auto max-h-[85vh]">
           <div className="space-y-5">
             
             {/* Header category badge & price */}
@@ -164,7 +193,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
 
             {/* Title */}
             <div>
-              <h2 className="font-cormorant text-3xl font-bold text-white leading-snug">
+              <h2 className="font-cormorant text-2xl sm:text-3xl font-bold text-white leading-snug">
                 {item.nameRu}
               </h2>
               <div className="text-xs text-slate-500 font-cinzel uppercase tracking-wider mt-1">
@@ -173,28 +202,63 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
             </div>
 
             {/* Description */}
-            <div className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light space-y-2 border-y border-white/10 py-4">
+            <div className="text-xs text-slate-300 leading-relaxed font-light space-y-2 border-y border-white/10 py-3.5">
               <p>
                 {item.descriptionRu ||
                   'Авторское кутюрное изделие ателье Hutzahav. Создано по индивидуальным меркам с использованием премиальных натуральных тканей.'}
               </p>
-              <div className="text-xs text-gold-300/90 pt-1 flex items-center gap-1.5 font-cinzel tracking-wide">
-                <Scissors size={13} className="text-gold-400" />
-                <span>Возможен пошив в вашем размере, цвете и фасоне</span>
+            </div>
+
+            {/* Size Selector with Size Guide Button */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <label className="font-cinzel text-[11px] font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
+                  <Scissors size={12} className="text-gold-400" />
+                  <span>Размер / Посадка:</span>
+                </label>
+
+                <button
+                  type="button"
+                  onClick={() => setIsSizeGuideOpen(true)}
+                  className="text-[11px] text-gold-400 hover:text-gold-300 underline font-cinzel flex items-center gap-1"
+                >
+                  <Ruler size={11} />
+                  <span>Гид по размерам</span>
+                </button>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2">
+                {availableSizes.map((sz) => {
+                  const isSelected = selectedSize === sz;
+                  return (
+                    <button
+                      key={sz}
+                      type="button"
+                      onClick={() => setSelectedSize(sz)}
+                      className={`py-2 px-2 rounded-xl text-[11px] font-cinzel tracking-wider text-center transition-all ${
+                        isSelected
+                          ? 'gold-gradient-bg text-black font-bold shadow-md'
+                          : 'bg-noir-900 text-slate-300 hover:text-white border border-white/10'
+                      }`}
+                    >
+                      {sz}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
             {/* Tags / Materials */}
             {item.tags.length > 0 && (
               <div>
-                <div className="font-cinzel text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                  <Tag size={12} className="text-gold-400" /> Ткань и особенности:
+                <div className="font-cinzel text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <Tag size={11} className="text-gold-400" /> Ткань и ручная работа:
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {item.tags.map((tag, idx) => (
                     <span
                       key={idx}
-                      className="text-xs bg-noir-800 text-slate-300 border border-gold-400/20 px-2.5 py-1 rounded-md"
+                      className="text-[11px] bg-noir-800 text-slate-300 border border-gold-400/20 px-2 py-0.5 rounded-md"
                     >
                       {tag}
                     </span>
@@ -203,48 +267,77 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
               </div>
             )}
 
-            {/* Master Box */}
-            <div className="p-4 rounded-2xl bg-noir-800/80 border border-white/5 space-y-1">
-              <div className="text-xs font-semibold text-white font-cinzel uppercase tracking-wider">
-                Кутюрье: {STUDIO_INFO.masterNameRu}
+            {/* Atelier Location Notice */}
+            <div className="p-3.5 rounded-2xl bg-noir-800/80 border border-white/5 space-y-1 text-xs">
+              <div className="font-semibold text-gold-300 font-cinzel uppercase tracking-wider flex items-center gap-1.5">
+                <MapPin size={13} className="text-gold-400" />
+                <span>Примерка в ателье:</span>
               </div>
-              <div className="text-[11px] text-slate-400">
-                Ателье «HUTZAHAV» (חוט זהב) • Израиль • Доставка по миру
+              <div className="text-slate-400 text-[11px]">
+                г. Ашдод, ул. Шавей Цион 2 • Доставка с примеркой по Израилю
               </div>
             </div>
 
           </div>
 
           {/* Action CTAs */}
-          <div className="pt-6 space-y-3">
+          <div className="pt-5 space-y-2.5">
+            {/* Add to Order Cart Button */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleAddToCart}
+                className="flex-1 flex items-center justify-center gap-2 py-3.5 px-5 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase tracking-[0.15em] shadow-xl hover:scale-[1.02] active:scale-95 transition-transform"
+              >
+                <ShoppingBag size={16} />
+                <span>В корзину заказа</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => toggleWishlist(item.id)}
+                className={`p-3.5 rounded-full border transition-all ${
+                  isFav
+                    ? 'bg-gold-500 text-black border-gold-400 shadow-md'
+                    : 'bg-noir-800 text-slate-300 hover:text-white border-white/10'
+                }`}
+                title={isFav ? 'В избранном' : 'В список желаний'}
+              >
+                <Heart size={16} className={isFav ? 'fill-black' : ''} />
+              </button>
+            </div>
+
+            {/* Direct WhatsApp Instant Consultation */}
             <a
               href={`https://wa.me/${STUDIO_INFO.phoneRaw}?text=${whatsappOrderText}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase tracking-[0.15em] shadow-xl hover:scale-[1.02] transition-transform"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] font-cinzel text-xs font-semibold uppercase tracking-wider transition-colors"
             >
-              <MessageCircle size={17} />
-              <span>Записаться на примерку / Заказать</span>
+              <WhatsApp size={15} />
+              <span>Заказать сразу в WhatsApp</span>
             </a>
 
-            <div className="flex items-center gap-2">
+            {/* Secondary: Phone & Share */}
+            <div className="flex items-center gap-2 pt-1">
               <a
                 href={`tel:${STUDIO_INFO.phoneRaw}`}
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-full bg-noir-800 hover:bg-noir-700 text-slate-200 border border-white/10 text-xs font-cinzel uppercase tracking-wider transition-colors"
+                className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-full bg-noir-800 hover:bg-noir-750 text-slate-300 border border-white/10 text-[11px] font-cinzel uppercase tracking-wider transition-colors"
               >
-                <Phone size={13} className="text-gold-400" />
+                <Phone size={12} className="text-gold-400" />
                 <span>Позвонить</span>
               </a>
 
               <button
+                type="button"
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href);
                   setCopied(true);
                   setTimeout(() => setCopied(false), 2000);
                 }}
-                className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-full bg-noir-800 hover:bg-noir-700 text-slate-300 border border-white/10 text-xs font-cinzel uppercase tracking-wider transition-colors"
+                className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-full bg-noir-800 hover:bg-noir-750 text-slate-300 border border-white/10 text-[11px] font-cinzel uppercase tracking-wider transition-colors"
               >
-                {copied ? <Check size={14} className="text-emerald-400" /> : null}
+                {copied ? <Check size={12} className="text-emerald-400" /> : <Share2 size={12} />}
                 <span>{copied ? 'Скопировано' : 'Поделиться'}</span>
               </button>
             </div>

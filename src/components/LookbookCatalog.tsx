@@ -1,19 +1,44 @@
 import React, { useState, useMemo } from 'react';
 import { CATEGORIES, PortfolioItem, STUDIO_INFO } from '../data/portfolioData';
-import { Search, Sparkles, Scissors, Shirt, Home, Feather, MessageCircle, Maximize2, Grid, LayoutList } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import {
+  Search,
+  Sparkles,
+  Scissors,
+  Shirt,
+  Home,
+  Feather,
+  MessageCircle,
+  Maximize2,
+  Grid,
+  LayoutList,
+  Heart,
+  ShoppingBag,
+  SlidersHorizontal,
+  Ruler,
+  HelpCircle,
+  Droplets,
+} from 'lucide-react';
 
 interface LookbookCatalogProps {
   items: PortfolioItem[];
   onItemSelect: (item: PortfolioItem) => void;
+  onOpenFabricGuide?: () => void;
 }
 
-export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemSelect }) => {
+export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
+  items,
+  onItemSelect,
+  onOpenFabricGuide,
+}) => {
+  const { addToCart, toggleWishlist, isInWishlist, setIsSizeGuideOpen } = useCart();
   const [category, setCategory] = useState<string>('all');
   const [search, setSearch] = useState<string>('');
+  const [sortBy, setSortBy] = useState<'featured' | 'price_asc' | 'price_desc' | 'name'>('featured');
   const [viewMode, setViewMode] = useState<'grid' | 'editorial'>('grid');
 
-  const filtered = useMemo(() => {
-    return items.filter((item) => {
+  const filteredAndSorted = useMemo(() => {
+    const list = items.filter((item) => {
       const matchCat = category === 'all' || item.category === category;
       const q = search.toLowerCase().trim();
       if (!q) return matchCat;
@@ -26,7 +51,24 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
 
       return matchCat && matchSearch;
     });
-  }, [items, category, search]);
+
+    const getPriceNumber = (priceStr?: string) => {
+      if (!priceStr) return 0;
+      return parseFloat(priceStr.replace(/[^\d.]/g, '')) || 0;
+    };
+
+    if (sortBy === 'price_asc') {
+      return [...list].sort((a, b) => getPriceNumber(a.price) - getPriceNumber(b.price));
+    }
+    if (sortBy === 'price_desc') {
+      return [...list].sort((a, b) => getPriceNumber(b.price) - getPriceNumber(a.price));
+    }
+    if (sortBy === 'name') {
+      return [...list].sort((a, b) => a.nameRu.localeCompare(b.nameRu));
+    }
+
+    return list;
+  }, [items, category, search, sortBy]);
 
   const counts = useMemo(() => {
     const res: Record<string, number> = { all: items.length };
@@ -86,14 +128,35 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
           </h2>
 
           <p className="text-slate-400 text-sm sm:text-base font-light">
-            Эксклюзивные платья, жакеты в технике нуно-войлока, вечерний пошив и домашний текстиль. Нажмите на любое изделие для просмотра ракурсов и заказа.
+            Эксклюзивные платья, жакеты в технике нуно-войлока, вечерний пошив и домашний текстиль. Заказывайте примерку в ателье или онлайн с доставкой.
           </p>
+
+          {/* Assistant Quick Links */}
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+            <button
+              onClick={() => setIsSizeGuideOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-noir-900 hover:bg-noir-850 border border-gold-400/25 text-gold-300 text-xs font-cinzel tracking-wider transition-colors"
+            >
+              <Ruler size={13} />
+              <span>Таблица размеров</span>
+            </button>
+
+            {onOpenFabricGuide && (
+              <button
+                onClick={onOpenFabricGuide}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-noir-900 hover:bg-noir-850 border border-gold-400/25 text-gold-300 text-xs font-cinzel tracking-wider transition-colors"
+              >
+                <Droplets size={13} />
+                <span>Гид по тканям & уходу</span>
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Filter Navigation Bar */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-5 mb-8 sm:mb-12 pb-6 border-b border-white/10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-5 mb-8 sm:mb-10 pb-6 border-b border-white/10">
           
-          {/* Category Pills (Touch friendly, horizontally scrollable on mobile) */}
+          {/* Category Pills */}
           <div className="w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0 scrollbar-none flex items-center gap-2 justify-start lg:justify-center">
             {CATEGORIES.map((cat) => {
               const active = category === cat.id;
@@ -122,16 +185,17 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
             })}
           </div>
 
-          {/* Search & Layout toggle */}
-          <div className="flex items-center gap-3 w-full lg:w-auto justify-between lg:justify-end">
+          {/* Search, Sort & Layout toggle */}
+          <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto justify-between lg:justify-end">
+            
             {/* Search */}
-            <div className="relative flex-1 lg:w-64">
+            <div className="relative flex-1 sm:w-56">
               <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Поиск: шелк, лен, вечернее..."
+                placeholder="Поиск: шелк, лен, платье..."
                 className="w-full bg-noir-850 border border-white/10 rounded-full pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors"
               />
               {search && (
@@ -142,6 +206,20 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
                   ✕
                 </button>
               )}
+            </div>
+
+            {/* Sorting Dropdown */}
+            <div className="relative shrink-0">
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as any)}
+                className="bg-noir-850 border border-white/10 rounded-full px-3.5 py-2 text-xs text-slate-300 focus:outline-none focus:border-gold-400 transition-colors cursor-pointer font-cinzel"
+              >
+                <option value="featured">Сортировка: По умолчанию</option>
+                <option value="price_asc">Цена: Сначала доступнее</option>
+                <option value="price_desc">Цена: Сначала эксклюзив</option>
+                <option value="name">По алфавиту</option>
+              </select>
             </div>
 
             {/* View Mode Toggle */}
@@ -165,12 +243,13 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
                 <LayoutList size={15} />
               </button>
             </div>
+
           </div>
 
         </div>
 
         {/* Gallery Content */}
-        {filtered.length === 0 ? (
+        {filteredAndSorted.length === 0 ? (
           <div className="text-center py-20 rounded-3xl luxury-card bg-noir-900 border border-white/10">
             <p className="text-slate-400 text-base font-light">
               Ничего не найдено по данному запросу.
@@ -186,17 +265,136 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
             </button>
           </div>
         ) : viewMode === 'grid' ? (
-          /* Grid View (1 col on mobile, 2 on tablet, 3-4 on desktop) */
+          /* Grid View */
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
-            {filtered.map((item) => (
-              <div
-                key={item.id}
-                onClick={() => onItemSelect(item)}
-                className="group relative rounded-3xl overflow-hidden luxury-card bg-noir-850 border border-white/5 hover:border-gold-400/40 transition-all duration-300 hover:-translate-y-1.5 shadow-xl hover:shadow-2xl cursor-pointer flex flex-col justify-between"
-              >
-                <div>
-                  {/* Photo with zoom effect */}
-                  <div className="relative aspect-[3/4] overflow-hidden bg-black">
+            {filteredAndSorted.map((item) => {
+              const favorite = isInWishlist(item.id);
+              return (
+                <div
+                  key={item.id}
+                  onClick={() => onItemSelect(item)}
+                  className="group relative rounded-3xl overflow-hidden luxury-card bg-noir-850 border border-white/5 hover:border-gold-400/40 transition-all duration-300 hover:-translate-y-1.5 shadow-xl hover:shadow-2xl cursor-pointer flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Photo with zoom effect */}
+                    <div className="relative aspect-[3/4] overflow-hidden bg-black">
+                      <img
+                        src={item.coverImage}
+                        alt={item.nameRu}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+                      />
+                      
+                      <div className="absolute inset-0 bg-gradient-to-t from-noir-900 via-transparent to-black/25 opacity-70 group-hover:opacity-40 transition-opacity"></div>
+
+                      {/* Top Action Buttons: Wishlist Heart & Category Pill */}
+                      <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                        <span className="font-cinzel text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-gold-300 border border-gold-400/30 pointer-events-auto">
+                          {getCategoryLabel(item.category)}
+                        </span>
+
+                        <div className="flex items-center gap-1.5 pointer-events-auto">
+                          {item.images.length > 1 && (
+                            <span className="bg-black/75 backdrop-blur-md text-[11px] font-medium text-slate-200 px-2 py-0.5 rounded-full border border-white/10 flex items-center gap-1 shadow-sm">
+                              📷 {item.images.length}
+                            </span>
+                          )}
+
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleWishlist(item.id);
+                            }}
+                            className={`p-2 rounded-full backdrop-blur-md transition-all ${
+                              favorite
+                                ? 'bg-gold-500 text-black shadow-lg shadow-gold-500/30 scale-105'
+                                : 'bg-black/70 text-white hover:text-gold-300 hover:bg-black/90 border border-white/15'
+                            }`}
+                            title={favorite ? 'Удалить из списка желаний' : 'Сохранить в список желаний'}
+                          >
+                            <Heart size={14} className={favorite ? 'fill-black' : ''} />
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Hover Inspect Icon */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
+                        <div className="w-12 h-12 rounded-full gold-gradient-bg text-black flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform shadow-2xl">
+                          <Maximize2 size={18} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Body Details */}
+                    <div className="p-4 sm:p-5 space-y-1.5 sm:space-y-2">
+                      <div className="flex items-center justify-between gap-2">
+                        {item.price && (
+                          <div className="font-cormorant text-xl font-bold text-gold-400">
+                            {item.price}
+                          </div>
+                        )}
+                        <span className="text-[10px] text-slate-400 font-cinzel uppercase tracking-wider">
+                          В наличии / Пошив
+                        </span>
+                      </div>
+
+                      <h3 className="font-cormorant text-xl font-bold text-white group-hover:text-gold-200 transition-colors line-clamp-2 leading-snug">
+                        {item.nameRu}
+                      </h3>
+                      <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed font-light">
+                        {item.descriptionRu}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Footer action bar */}
+                  <div className="p-4 sm:p-5 pt-0">
+                    <div className="pt-3 border-t border-white/5 flex items-center justify-between gap-2">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          addToCart(item, 'Индивидуальный пошив');
+                        }}
+                        className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-full bg-gold-400/10 hover:bg-gold-400 text-gold-300 hover:text-black border border-gold-400/30 transition-all font-cinzel text-[11px] font-bold uppercase tracking-wider"
+                      >
+                        <ShoppingBag size={13} />
+                        <span>В заказ</span>
+                      </button>
+
+                      <a
+                        href={`https://wa.me/${STUDIO_INFO.phoneRaw}?text=${encodeURIComponent(
+                          `Здравствуйте, Галина! Меня заинтересовала работа из каталога: "${item.nameRu}". Хочу примерить или заказать похожее.`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        title="Заказать в WhatsApp"
+                        className="p-2 rounded-full bg-noir-800 hover:bg-gold-500 hover:text-black text-gold-400 border border-gold-400/20 transition-colors shrink-0"
+                      >
+                        <MessageCircle size={15} />
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          /* Editorial Lookbook View */
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            {filteredAndSorted.map((item) => {
+              const favorite = isInWishlist(item.id);
+              return (
+                <div
+                  key={item.id}
+                  onClick={() => onItemSelect(item)}
+                  className="group rounded-3xl overflow-hidden luxury-card bg-noir-850 border border-white/10 hover:border-gold-400/40 transition-all duration-300 cursor-pointer grid grid-cols-1 sm:grid-cols-12"
+                >
+                  {/* Photo (5 cols) */}
+                  <div className="sm:col-span-5 relative aspect-[3/4] sm:aspect-auto overflow-hidden bg-black">
                     <img
                       src={item.coverImage}
                       alt={item.nameRu}
@@ -204,152 +402,90 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
                     />
                     
-                    <div className="absolute inset-0 bg-gradient-to-t from-noir-900 via-transparent to-black/25 opacity-70 group-hover:opacity-40 transition-opacity"></div>
-
-                    {/* Multi-angle indicator */}
-                    {item.images.length > 1 && (
-                      <div className="absolute top-3 right-3 bg-black/75 backdrop-blur-md text-[11px] font-medium text-slate-200 px-2.5 py-1 rounded-full border border-white/10 flex items-center gap-1.5 shadow-sm">
-                        <span>📷</span>
-                        <span>{item.images.length}</span>
-                      </div>
-                    )}
-
-                    {/* Category pill */}
-                    <div className="absolute top-3 left-3">
-                      <span className="font-cinzel text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-gold-300 border border-gold-400/30">
+                    <div className="absolute top-3 left-3 flex items-center gap-2">
+                      <span className="font-cinzel text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-gold-300 border border-gold-400/30">
                         {getCategoryLabel(item.category)}
                       </span>
                     </div>
 
-                    {/* Hover Inspect Icon */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
-                      <div className="w-12 h-12 rounded-full gold-gradient-bg text-black flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform shadow-2xl">
-                        <Maximize2 size={18} />
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleWishlist(item.id);
+                      }}
+                      className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md transition-all ${
+                        favorite
+                          ? 'bg-gold-500 text-black shadow-lg shadow-gold-500/30'
+                          : 'bg-black/70 text-white hover:text-gold-300 border border-white/15'
+                      }`}
+                      title={favorite ? 'В избранном' : 'В список желаний'}
+                    >
+                      <Heart size={14} className={favorite ? 'fill-black' : ''} />
+                    </button>
+                  </div>
+
+                  {/* Details (7 cols) */}
+                  <div className="sm:col-span-7 p-5 sm:p-7 flex flex-col justify-between space-y-4">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] text-slate-400 font-cinzel uppercase tracking-wider">
+                          Ручная работа мастерской
+                        </span>
+                        {item.price && (
+                          <span className="font-cormorant text-2xl font-bold text-gold-300">
+                            {item.price}
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="font-cormorant text-2xl font-bold text-white group-hover:text-gold-200 transition-colors leading-snug">
+                        {item.nameRu}
+                      </h3>
+
+                      <p className="text-xs text-slate-300 font-light leading-relaxed">
+                        {item.descriptionRu}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {item.tags.map((tg, idx) => (
+                          <span key={idx} className="text-[10px] bg-noir-800 text-slate-400 px-2 py-0.5 rounded-md border border-white/5">
+                            {tg}
+                          </span>
+                        ))}
                       </div>
                     </div>
-                  </div>
 
-                  {/* Body Details */}
-                  <div className="p-4 sm:p-5 space-y-1.5 sm:space-y-2">
-                    {item.price && (
-                      <div className="font-cormorant text-xl font-bold text-gold-400">
-                        {item.price}
-                      </div>
-                    )}
-                    <h3 className="font-cormorant text-xl font-bold text-white group-hover:text-gold-200 transition-colors line-clamp-2 leading-snug">
-                      {item.nameRu}
-                    </h3>
-                    <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed font-light">
-                      {item.descriptionRu}
-                    </p>
-                  </div>
-                </div>
+                    <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-3">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          addToCart(item, 'Индивидуальный пошив');
+                        }}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase tracking-wider shadow-md hover:scale-105 transition-transform"
+                      >
+                        <ShoppingBag size={14} />
+                        <span>В заказ</span>
+                      </button>
 
-                {/* Footer action bar */}
-                <div className="p-4 sm:p-5 pt-0">
-                  <div className="pt-3 border-t border-white/5 flex items-center justify-between">
-                    <div className="flex flex-wrap gap-1 max-w-[70%]">
-                      {item.tags.slice(0, 2).map((tg, idx) => (
-                        <span key={idx} className="text-[10px] bg-noir-800 text-slate-400 px-2 py-0.5 rounded-full border border-white/5">
-                          #{tg}
-                        </span>
-                      ))}
-                    </div>
-
-                    <a
-                      href={`https://wa.me/${STUDIO_INFO.phoneRaw}?text=${encodeURIComponent(
-                        `Здравствуйте, Галина! Меня заинтересовала работа из каталога: "${item.nameRu}". Хочу примерить или заказать похожее.`
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      title="Заказать в WhatsApp"
-                      className="p-2 rounded-full bg-noir-800 hover:bg-gold-500 hover:text-black text-gold-400 border border-gold-400/20 transition-colors"
-                    >
-                      <MessageCircle size={15} />
-                    </a>
-                  </div>
-                </div>
-
-              </div>
-            ))}
-          </div>
-        ) : (
-          /* Editorial Lookbook View (Large cards) */
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-            {filtered.map((item) => (
-              <div
-                key={item.id}
-                onClick={() => onItemSelect(item)}
-                className="group rounded-3xl overflow-hidden luxury-card bg-noir-850 border border-white/10 hover:border-gold-400/40 transition-all duration-300 cursor-pointer grid grid-cols-1 sm:grid-cols-12"
-              >
-                {/* Photo (5 cols) */}
-                <div className="sm:col-span-5 relative aspect-[3/4] sm:aspect-auto overflow-hidden bg-black">
-                  <img
-                    src={item.coverImage}
-                    alt={item.nameRu}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
-                  />
-                  {item.images.length > 1 && (
-                    <div className="absolute top-3 left-3 bg-black/75 backdrop-blur-md text-[11px] text-slate-200 px-2.5 py-1 rounded-full border border-white/10">
-                      📷 {item.images.length} фото
-                    </div>
-                  )}
-                </div>
-
-                {/* Details (7 cols) */}
-                <div className="sm:col-span-7 p-5 sm:p-7 flex flex-col justify-between space-y-4">
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="font-cinzel text-[10px] uppercase tracking-widest text-gold-400">
-                        {getCategoryLabel(item.category)}
-                      </span>
-                      {item.price && (
-                        <span className="font-cormorant text-2xl font-bold text-gold-300">
-                          {item.price}
-                        </span>
-                      )}
-                    </div>
-
-                    <h3 className="font-cormorant text-2xl font-bold text-white group-hover:text-gold-200 transition-colors leading-snug">
-                      {item.nameRu}
-                    </h3>
-
-                    <p className="text-xs text-slate-300 font-light leading-relaxed">
-                      {item.descriptionRu}
-                    </p>
-
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {item.tags.map((tg, idx) => (
-                        <span key={idx} className="text-[10px] bg-noir-800 text-slate-400 px-2 py-0.5 rounded-md border border-white/5">
-                          {tg}
-                        </span>
-                      ))}
+                      <a
+                        href={`https://wa.me/${STUDIO_INFO.phoneRaw}?text=${encodeURIComponent(
+                          `Здравствуйте, Галина! Хочу заказать работу из каталога: "${item.nameRu}".`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-noir-800 hover:bg-noir-750 text-gold-300 border border-gold-400/20 font-cinzel text-xs uppercase tracking-wider"
+                      >
+                        <MessageCircle size={14} />
+                        <span>Консультация</span>
+                      </a>
                     </div>
                   </div>
-
-                  <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                    <span className="font-cinzel text-xs text-gold-400 uppercase tracking-wider group-hover:translate-x-1 transition-transform">
-                      Рассмотреть детали →
-                    </span>
-
-                    <a
-                      href={`https://wa.me/${STUDIO_INFO.phoneRaw}?text=${encodeURIComponent(
-                        `Здравствуйте, Галина! Хочу заказать работу из каталога: "${item.nameRu}".`
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase tracking-wider"
-                    >
-                      <MessageCircle size={14} />
-                      <span>Заказать</span>
-                    </a>
-                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 
