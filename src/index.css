@@ -92,3 +92,44 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #C59E47;
 }
+
+/* =========================================
+   ACCESSIBILITY MODES (נגישות)
+   ========================================= */
+
+/* High Contrast Mode */
+.a11y-high-contrast {
+  filter: contrast(135%);
+}
+.a11y-high-contrast * {
+  border-color: #D5B46D !important;
+}
+
+/* Monochrome Mode */
+.a11y-monochrome {
+  filter: grayscale(100%);
+}
+
+/* Readable System Font (No Serifs / Dyslexia-friendly) */
+.a11y-readable-font,
+.a11y-readable-font * {
+  font-family: Arial, Helvetica, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  letter-spacing: 0.04em !important;
+  word-spacing: 0.08em !important;
+}
+
+/* Highlight Links */
+.a11y-highlight-links a,
+.a11y-highlight-links button {
+  text-decoration: underline 2px #E5C578 !important;
+  outline: 2px dashed #E5C578 !important;
+  outline-offset: 2px !important;
+}
+
+/* Stop Animations */
+.a11y-stop-animations,
+.a11y-stop-animations * {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import { STUDIO_INFO } from '../data/portfolioData';
 import { Phone, Mail, ArrowUp } from 'lucide-react';
 import { Instagram, Facebook } from './Icons';
+import { Logo } from './Logo';
 
 export const AtelierFooter: React.FC = () => {
   const scrollToTop = () => {
@@ -9,36 +10,22 @@ export const AtelierFooter: React.FC = () => {
   };
 
   return (
-    <footer className="bg-noir-950 border-t border-gold-400/20 pt-20 pb-12 text-slate-400">
+    <footer className="bg-noir-950 border-t border-gold-400/20 pt-16 sm:pt-20 pb-12 text-slate-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 pb-12 sm:pb-16 border-b border-white/10">
           
           {/* Col 1: Brand Atelier */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3.5">
-              <img
-                src="/images/logo.jpg"
-                alt="Hutzahav"
-                className="w-12 h-12 rounded-full border border-gold-400/60 object-cover shadow-lg"
-              />
-              <div>
-                <span className="font-cinzel text-2xl font-bold tracking-[0.2em] text-white">
-                  HUTZAHAV
-                </span>
-                <div className="font-cinzel text-[9px] uppercase tracking-[0.3em] text-gold-400">
-                  Atelier Haute Couture
-                </div>
-              </div>
-            </div>
+            <Logo size={48} showText={true} />
 
-            <p className="text-xs text-slate-400 font-light leading-relaxed">
-              Авторская мастерская высокого пошива Галины Хвостенко. Вечерние и дизайнерские платья, ручная живопись по ткани, нуно-войлок, безупречная подгонка брендовой одежды и интерьерный текстиль.
+            <p className="text-xs text-slate-400 font-light leading-relaxed pt-1">
+              Авторское ателье высокого пошива Галины Хвостенко. Вечерние платья, ручная художественная роспись по ткани, нуно-войлок, премиум-подгонка брендовой одежды и интерьерный текстиль.
             </p>
 
             <div className="font-cinzel text-xs text-gold-400/80 tracking-widest pt-1">
-              חוט זהב • СТУДИЯ «ЗОЛОТАЯ НИТЬ»
+              חוט זהב • АТЕЛЬЕ «ЗОЛОТАЯ НИТЬ»
             </div>
           </div>
 
@@ -111,9 +98,9 @@ export const AtelierFooter: React.FC = () => {
               Социальные сети
             </div>
             <p className="text-xs text-slate-400 font-light leading-relaxed">
-              Следите за закулисьем ателье, новыми процессами росписи и коллекциями:
+              Следите за закулисьем ателье, процессами ручной росписи и новыми коллекциями:
             </p>
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <a
                 href={STUDIO_INFO.instagram}
                 target="_blank"
@@ -140,7 +127,7 @@ export const AtelierFooter: React.FC = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-light">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-light text-center sm:text-left">
           <div>
             © {new Date().getFullYear()} HUTZAHAV ATELIER by Galina Khvostenko. Все права защищены.
           </div>

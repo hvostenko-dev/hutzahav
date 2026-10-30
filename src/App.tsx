@@ -12,6 +12,7 @@ import { TestimonialsSection } from './components/TestimonialsSection';
 import { BookingSection } from './components/BookingSection';
 import { AtelierFooter } from './components/AtelierFooter';
 import { FloatingConcierge } from './components/FloatingConcierge';
+import { AccessibilityWidget } from './components/AccessibilityWidget';
 import { LightboxModal } from './components/LightboxModal';
 
 export const App: React.FC = () => {
@@ -41,7 +42,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-noir-950 text-[#E8E6DF] selection:bg-gold-500 selection:text-black">
-      {/* Haute Couture Navbar */}
+      {/* Haute Couture Navbar with Mobile Burger Menu & Vector Logo */}
       <Navbar
         activeLang={activeLang}
         onLangChange={setActiveLang}
@@ -49,11 +50,11 @@ export const App: React.FC = () => {
       />
 
       <main>
-        {/* Vogue/Editorial Hero */}
+        {/* Editorial Hero with the specified single Model Photo */}
         <HeroAtelier
           onExploreClick={() => scrollToSection('gallery')}
           onCalculatorClick={() => scrollToSection('calculator')}
-          onItemSelect={setSelectedItem}
+          onBookClick={() => scrollToSection('contact')}
         />
 
         {/* Golden Thread Marquee Ticker */}
@@ -68,7 +69,7 @@ export const App: React.FC = () => {
         {/* 4 Steps of Bespoke Creation (The Couture Journey) */}
         <BespokeJourney />
 
-        {/* Complete Lookbook & Gallery (54 works) */}
+        {/* Complete Lookbook & Gallery (Only dresses, jackets, accessories, tailoring, textiles — NO paintings!) */}
         <LookbookCatalog
           items={PORTFOLIO_ITEMS}
           onItemSelect={setSelectedItem}
@@ -87,7 +88,10 @@ export const App: React.FC = () => {
       {/* Luxury Atelier Footer */}
       <AtelierFooter />
 
-      {/* Floating Concierge Action */}
+      {/* Accessibility Widget (Кнопка доступности для людей с инвалидностью / נגישות) */}
+      <AccessibilityWidget />
+
+      {/* Floating Concierge Action (WhatsApp) */}
       <FloatingConcierge />
 
       {/* Fullscreen Master Photo Lightbox */}

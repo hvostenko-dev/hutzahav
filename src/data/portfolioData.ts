@@ -1,4 +1,4 @@
-// Auto-generated portfolio data for HUTZAHAV STUDIO / Galina Khvostenko
+// Updated portfolio data for HUTZAHAV STUDIO / Galina Khvostenko (Without paintings, only atelier couture)
 export interface PortfolioImage {
   url: string;
   width: number;
@@ -11,7 +11,7 @@ export interface PortfolioItem {
   slug: string;
   nameEn: string;
   nameRu: string;
-  category: 'clothing' | 'atelier' | 'textiles' | 'paintings';
+  category: 'dresses' | 'jackets_felting' | 'accessories' | 'atelier_tailoring' | 'home_textiles';
   price?: string;
   descriptionRu: string;
   descriptionEn: string;
@@ -22,7 +22,7 @@ export interface PortfolioItem {
 }
 
 export interface CategoryInfo {
-  id: 'all' | 'clothing' | 'atelier' | 'textiles' | 'paintings';
+  id: 'all' | 'dresses' | 'jackets_felting' | 'accessories' | 'atelier_tailoring' | 'home_textiles';
   titleRu: string;
   titleEn: string;
   titleHe: string;
@@ -32,44 +32,52 @@ export interface CategoryInfo {
 
 export const CATEGORIES: CategoryInfo[] = [
   {
-    id: 'all',
-    titleRu: 'Все работы',
-    titleEn: 'All Works',
-    titleHe: 'כל העבודות',
-    subtitleRu: 'Полная коллекция авторских работ и услуг студии',
-    icon: 'Sparkles'
+    "id": "all",
+    "titleRu": "Все изделия",
+    "titleEn": "All Pieces",
+    "titleHe": "כל הפריטים",
+    "subtitleRu": "Полная коллекция авторских изделий и услуг ателье",
+    "icon": "Sparkles"
   },
   {
-    id: 'clothing',
-    titleRu: 'Эксклюзивная одежда',
-    titleEn: 'Exclusive Clothing',
-    titleHe: 'בגדים אקסקלוסיביים',
-    subtitleRu: 'Ручная роспись по шелку и льну, нуно-войлок, арт-жакеты',
-    icon: 'Shirt'
+    "id": "dresses",
+    "titleRu": "Платья & Наряды",
+    "titleEn": "Dresses & Couture",
+    "titleHe": "שמלות ואופנה",
+    "subtitleRu": "Вечерние платья, ручная роспись по 100% льну и натуральному шелку",
+    "icon": "Shirt"
   },
   {
-    id: 'atelier',
-    titleRu: 'Индивидуальный пошив',
-    titleEn: 'Atelier & Tailoring',
-    titleHe: 'תפירה אישית',
-    subtitleRu: 'Вечерние платья, костюмы, подгонка по фигуре, реставрация',
-    icon: 'Scissors'
+    "id": "jackets_felting",
+    "titleRu": "Арт-жакеты & Нуно-войлок",
+    "titleEn": "Jackets & Nuno-Felting",
+    "titleHe": "ז'קטים וצמר",
+    "subtitleRu": "Джинсовые жакеты и арт-пальто с шерстью австралийского мериноса",
+    "icon": "Scissors"
   },
   {
-    id: 'textiles',
-    titleRu: 'Домашний текстиль',
-    titleEn: 'Home Textiles',
-    titleHe: 'טקסטיל לבית',
-    subtitleRu: 'Шторы, авторское постельное белье, покрывала, ткани',
-    icon: 'Home'
+    "id": "accessories",
+    "titleRu": "Шарфы & Аксессуары",
+    "titleEn": "Scarves & Accessories",
+    "titleHe": "צעיפים ואביזרים",
+    "subtitleRu": "Шелково-шерстяные палантины, платки и дизайнерские аксессуары",
+    "icon": "Feather"
   },
   {
-    id: 'paintings',
-    titleRu: 'Картины и живопись',
-    titleEn: 'Paintings & Art',
-    titleHe: 'ציורים ואמנות',
-    subtitleRu: 'Оригинальная интерьерная живопись маслом и акрилом на холсте',
-    icon: 'Palette'
+    "id": "atelier_tailoring",
+    "titleRu": "Пошив & Реставрация",
+    "titleEn": "Atelier & Fitting",
+    "titleHe": "תפירה ותיקונים",
+    "subtitleRu": "Индивидуальный пошив вечерних платьев, костюмов и премиум-подгонка",
+    "icon": "Sparkles"
+  },
+  {
+    "id": "home_textiles",
+    "titleRu": "Домашний текстиль & Шторы",
+    "titleEn": "Home Textiles",
+    "titleHe": "טקסטיל לבית",
+    "subtitleRu": "Шторы на заказ, постельное белье из льна и сатина, покрывала",
+    "icon": "Home"
   }
 ];
 
@@ -105,7 +113,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "handmade-denim-jacket-denim-jacket-with-embroidery-felting-wool-details-knitt",
     "nameEn": "Handmade Denim jacket with embroidery felting, wool details, knit",
     "nameRu": "Джинсовый арт-жакет с авторской вышивкой и шерстяным валянием",
-    "category": "clothing",
+    "category": "jackets_felting",
     "price": "1,200.00 ₪",
     "descriptionRu": "Эксклюзивная ручная работа в технике арт-фелтинг (валяние шерсти), авторская вышивка и вязаные детали. Неповторимый авторский дизайн.",
     "descriptionEn": "",
@@ -156,7 +164,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "handmade-wool-scarf",
     "nameEn": "White silk/wool scarf nuno felting technique.",
     "nameRu": "Джинсовый арт-жакет с авторской вышивкой и шерстяным валянием",
-    "category": "clothing",
+    "category": "accessories",
     "price": "150.00 ₪",
     "descriptionRu": "Эксклюзивная ручная работа в технике арт-фелтинг (валяние шерсти), авторская вышивка и вязаные детали. Неповторимый авторский дизайн.",
     "descriptionEn": "",
@@ -201,7 +209,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "hand-painted-linen-a-line-dress-size-m",
     "nameEn": "Hand painted linen A-line dress. Size M",
     "nameRu": "Льняное платье А-силуэта с авторской ручной росписью",
-    "category": "clothing",
+    "category": "dresses",
     "price": "1,350.00 ₪",
     "descriptionRu": "100% натуральный умягченный лен высшего качества. Уникальная авторская роспись специальными стойкими красками по ткани. Свободный элегантный крой.",
     "descriptionEn": "",
@@ -227,7 +235,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "hand-painted-dress-3",
     "nameEn": "Hand-painted dress",
     "nameRu": "Дизайнерское платье с художественной росписью",
-    "category": "clothing",
+    "category": "dresses",
     "price": "1,350.00 ₪",
     "descriptionRu": "Индивидуальный пошив и ручная живопись по ткани. Каждое платье создается в единственном экземпляре, подчеркивая индивидуальность и изысканность.",
     "descriptionEn": "",
@@ -259,7 +267,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "dresses-with-original-prints-1",
     "nameEn": "Dresses with original prints",
     "nameRu": "Платье с авторским принтом",
-    "category": "clothing",
+    "category": "dresses",
     "price": "450.00 ₪",
     "descriptionRu": "Комфортный крой, дышащие натуральные ткани и яркие авторские принты, созданные по оригинальным картинам Галины Хвостенко.",
     "descriptionEn": "",
@@ -290,7 +298,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "dresses-with-original-prints",
     "nameEn": "Dresses with original prints (Vol. 2)",
     "nameRu": "Платье с авторским принтом — Вариант 2",
-    "category": "clothing",
+    "category": "dresses",
     "price": "450.00 ₪",
     "descriptionRu": "Комфортный крой, дышащие натуральные ткани и яркие авторские принты, созданные по оригинальным картинам Галины Хвостенко.",
     "descriptionEn": "",
@@ -315,7 +323,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "hand-painted-t-shirt-1",
     "nameEn": "Hand-painted T-shirt",
     "nameRu": "Футболка с авторской росписью ручной работы",
-    "category": "clothing",
+    "category": "dresses",
     "price": "250.00 ₪",
     "descriptionRu": "Премиальный 100% хлопок. Ручная роспись стойкими текстильными пигментами. Не смывается при стирке, сохраняет яркость.",
     "descriptionEn": "",
@@ -341,7 +349,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "t-shirts-with-original-prints-1",
     "nameEn": "T-shirts with original prints",
     "nameRu": "Футболка с авторским художественным принтом",
-    "category": "clothing",
+    "category": "dresses",
     "price": "250.00 ₪",
     "descriptionRu": "Высококачественный хлопковый трикотаж с оригинальной графикой и картинами студии Hutzahav.",
     "descriptionEn": "",
@@ -366,7 +374,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "t-shirts-with-original-prints",
     "nameEn": "T-shirts with original prints (Vol. 2)",
     "nameRu": "Футболка с авторским художественным принтом — Вариант 2",
-    "category": "clothing",
+    "category": "dresses",
     "price": "100.00 ₪",
     "descriptionRu": "Высококачественный хлопковый трикотаж с оригинальной графикой и картинами студии Hutzahav.",
     "descriptionEn": "",
@@ -391,7 +399,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "hand-painted-dress-2",
     "nameEn": "Hand-painted dress (Vol. 2)",
     "nameRu": "Дизайнерское платье с художественной росписью — Вариант 2",
-    "category": "clothing",
+    "category": "dresses",
     "price": "1,350.00 ₪",
     "descriptionRu": "Индивидуальный пошив и ручная живопись по ткани. Каждое платье создается в единственном экземпляре, подчеркивая индивидуальность и изысканность.",
     "descriptionEn": "",
@@ -435,7 +443,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "handpainted-linen-dress",
     "nameEn": "Handpainted linen dress",
     "nameRu": "Льняное платье А-силуэта с авторской ручной росписью",
-    "category": "clothing",
+    "category": "dresses",
     "price": "1,350.00 ₪",
     "descriptionRu": "100% натуральный умягченный лен высшего качества. Уникальная авторская роспись специальными стойкими красками по ткани. Свободный элегантный крой.",
     "descriptionEn": "",
@@ -473,7 +481,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "hand-painted-dress-1",
     "nameEn": "Hand-painted dress (Vol. 3)",
     "nameRu": "Дизайнерское платье с художественной росписью — Вариант 3",
-    "category": "clothing",
+    "category": "dresses",
     "price": "1,650.00 ₪",
     "descriptionRu": "Индивидуальный пошив и ручная живопись по ткани. Каждое платье создается в единственном экземпляре, подчеркивая индивидуальность и изысканность.",
     "descriptionEn": "",
@@ -505,7 +513,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "hand-painted-dresses",
     "nameEn": "Hand-painted dresses",
     "nameRu": "Дизайнерское платье с художественной росписью",
-    "category": "clothing",
+    "category": "dresses",
     "price": "1,350.00 ₪",
     "descriptionRu": "Индивидуальный пошив и ручная живопись по ткани. Каждое платье создается в единственном экземпляре, подчеркивая индивидуальность и изысканность.",
     "descriptionEn": "",
@@ -549,7 +557,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "hand-painted-dress",
     "nameEn": "Hand-painted dress (Vol. 4)",
     "nameRu": "Дизайнерское платье с художественной росписью — Вариант 4",
-    "category": "clothing",
+    "category": "dresses",
     "price": "1,350.00 ₪",
     "descriptionRu": "Индивидуальный пошив и ручная живопись по ткани. Каждое платье создается в единственном экземпляре, подчеркивая индивидуальность и изысканность.",
     "descriptionEn": "",
@@ -587,7 +595,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "hand-painted-t-shirt",
     "nameEn": "Hand-painted T-shirt (Vol. 2)",
     "nameRu": "Футболка с авторской росписью ручной работы — Вариант 2",
-    "category": "clothing",
+    "category": "dresses",
     "price": "280.00 ₪",
     "descriptionRu": "Премиальный 100% хлопок. Ручная роспись стойкими текстильными пигментами. Не смывается при стирке, сохраняет яркость.",
     "descriptionEn": "",
@@ -619,7 +627,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "dresses",
     "nameEn": "Dresses",
     "nameRu": "Dresses",
-    "category": "clothing",
+    "category": "dresses",
     "price": "800.00 ₪",
     "descriptionRu": "",
     "descriptionEn": "",
@@ -640,7 +648,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "bags-1",
     "nameEn": "Felt clothing",
     "nameRu": "Авторская одежда из валяной шерсти (нуно-фелтинг)",
-    "category": "clothing",
+    "category": "dresses",
     "price": "2,300.00 ₪",
     "descriptionRu": "Теплая, дышащая, уникальная вещь ручного валяния из тончайшей шерсти австралийского мериноса и шелковых волокон.",
     "descriptionEn": "",
@@ -672,7 +680,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "bags",
     "nameEn": "Bags",
     "nameRu": "Авторская эко-сумка с принтом",
-    "category": "clothing",
+    "category": "accessories",
     "price": "50.00 ₪",
     "descriptionRu": "Прочная и стильная текстильная сумка для прогулок и покупок с оригинальным рисунком.",
     "descriptionEn": "",
@@ -697,7 +705,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "scarves",
     "nameEn": "Scarves",
     "nameRu": "Дизайнерский шарф / платок",
-    "category": "clothing",
+    "category": "accessories",
     "price": "50.00 ₪",
     "descriptionRu": "Легкий струящийся платок с авторским принтом для дополнения любого образа.",
     "descriptionEn": "",
@@ -722,7 +730,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "tailoring-of-evening-dresses-3",
     "nameEn": "Tailoring of evening dresses",
     "nameRu": "Пошив вечернего платья премиум-класса",
-    "category": "atelier",
+    "category": "atelier_tailoring",
     "price": "800.00 ₪",
     "descriptionRu": "Безупречная посадка по индивидуальным меркам, моделирование корсетов, работа с деликатными тканями (шелк, тафта, шифон, французское кружево).",
     "descriptionEn": "",
@@ -748,7 +756,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "tailoring-of-evening-dresses-1",
     "nameEn": "Tailoring of evening dresses (Vol. 2)",
     "nameRu": "Пошив вечернего платья премиум-класса — Вариант 2",
-    "category": "atelier",
+    "category": "atelier_tailoring",
     "price": "800.00 ₪",
     "descriptionRu": "Безупречная посадка по индивидуальным меркам, моделирование корсетов, работа с деликатными тканями (шелк, тафта, шифон, французское кружево).",
     "descriptionEn": "",
@@ -774,7 +782,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "tailoring-of-evening-dresses",
     "nameEn": "Tailoring of evening dresses (Vol. 3)",
     "nameRu": "Пошив вечернего платья премиум-класса — Вариант 3",
-    "category": "atelier",
+    "category": "atelier_tailoring",
     "price": "800.00 ₪",
     "descriptionRu": "Безупречная посадка по индивидуальным меркам, моделирование корсетов, работа с деликатными тканями (шелк, тафта, шифон, французское кружево).",
     "descriptionEn": "",
@@ -806,7 +814,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "tailoring-of-evening-dresses-2",
     "nameEn": "Tailoring of evening dresses (Vol. 4)",
     "nameRu": "Пошив вечернего платья премиум-класса — Вариант 4",
-    "category": "atelier",
+    "category": "atelier_tailoring",
     "price": "800.00 ₪",
     "descriptionRu": "Безупречная посадка по индивидуальным меркам, моделирование корсетов, работа с деликатными тканями (шелк, тафта, шифон, французское кружево).",
     "descriptionEn": "",
@@ -832,7 +840,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "tailoring-of-carnival-costumes",
     "nameEn": "Tailoring of carnival costumes",
     "nameRu": "Пошив карнавальных и сценических костюмов",
-    "category": "atelier",
+    "category": "atelier_tailoring",
     "price": "200.00 ₪",
     "descriptionRu": "Создание ярких сценических образов, костюмов для Пурима, праздников, театральных постановок и фотосессий.",
     "descriptionEn": "",
@@ -858,7 +866,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "tailoring-of-children-s-clothing",
     "nameEn": "Tailoring of children's clothing",
     "nameRu": "Индивидуальный пошив детской нарядной одежды",
-    "category": "atelier",
+    "category": "atelier_tailoring",
     "price": "300.00 ₪",
     "descriptionRu": "Платья для девочек, костюмчики для торжеств и фотосессий из гипоаллергенных натуральных тканей с мягкой подкладкой.",
     "descriptionEn": "",
@@ -889,7 +897,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "tailoring-of-children-s-clothin",
     "nameEn": "Tailoring of children's clothin",
     "nameRu": "Индивидуальный пошив детской нарядной одежды",
-    "category": "atelier",
+    "category": "atelier_tailoring",
     "price": "300.00 ₪",
     "descriptionRu": "Платья для девочек, костюмчики для торжеств и фотосессий из гипоаллергенных натуральных тканей с мягкой подкладкой.",
     "descriptionEn": "",
@@ -914,7 +922,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "tailoring-of-children-s-clothin-1",
     "nameEn": "Tailoring of children's clothin (Vol. 2)",
     "nameRu": "Индивидуальный пошив детской нарядной одежды — Вариант 2",
-    "category": "atelier",
+    "category": "atelier_tailoring",
     "price": "300.00 ₪",
     "descriptionRu": "Платья для девочек, костюмчики для торжеств и фотосессий из гипоаллергенных натуральных тканей с мягкой подкладкой.",
     "descriptionEn": "",
@@ -939,7 +947,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "tailoring-of-corporate-clothing",
     "nameEn": "Tailoring of corporate clothing",
     "nameRu": "Пошив корпоративной и форменной одежды",
-    "category": "atelier",
+    "category": "atelier_tailoring",
     "price": "300.00 ₪",
     "descriptionRu": "Разработка и пошив стильной униформы, фартуков, жакетов для персонала бутиков, салонов красоты и ресторанов.",
     "descriptionEn": "",
@@ -964,7 +972,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "repair-and-fitting-of-clothing",
     "nameEn": "Repair and fitting of clothing",
     "nameRu": "Подгонка по фигуре, реставрация и ремонт одежды",
-    "category": "atelier",
+    "category": "atelier_tailoring",
     "price": "85.00 ₪",
     "descriptionRu": "Укорачивание, ушивание, замена молний, сложная реставрация трикотажа, кожи, дубленок, брендовой одежды, а также обуви и сумок.",
     "descriptionEn": "",
@@ -990,7 +998,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "repair-and-fitting-of-clothing-1",
     "nameEn": "Repair and fitting of clothing (Vol. 2)",
     "nameRu": "Подгонка по фигуре, реставрация и ремонт одежды — Вариант 2",
-    "category": "atelier",
+    "category": "atelier_tailoring",
     "price": "49.00 ₪",
     "descriptionRu": "Укорачивание, ушивание, замена молний, сложная реставрация трикотажа, кожи, дубленок, брендовой одежды, а также обуви и сумок.",
     "descriptionEn": "",
@@ -1016,7 +1024,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "home-decor-1",
     "nameEn": "Home decor",
     "nameRu": "Текстильный декор для дома и интерьера",
-    "category": "textiles",
+    "category": "home_textiles",
     "price": "59.00 ₪",
     "descriptionRu": "Подушки, дорожки на стол, декоративные панно и текстиль, преображающий атмосферу вашего дома.",
     "descriptionEn": "",
@@ -1047,7 +1055,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "bed-linen-and-bedspreads",
     "nameEn": "Bed linen and Bedspreads",
     "nameRu": "Пошив авторского постельного белья и покрывал",
-    "category": "textiles",
+    "category": "home_textiles",
     "price": "39.00 ₪",
     "descriptionRu": "Индивидуальный пошив комплектов постельного белья из сатина, льна и вареного хлопка нестандартных размеров, а также декоративных стеганых покрывал.",
     "descriptionEn": "",
@@ -1079,7 +1087,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "fabrics-1",
     "nameEn": "Fabrics",
     "nameRu": "Коллекционные ткани и подбор материалов",
-    "category": "textiles",
+    "category": "home_textiles",
     "price": "29.00 ₪",
     "descriptionRu": "Премиальные ткани из Италии и Франции: натуральный шелк, лен, кашемир, кружево. Консультация по расходу и свойствам тканей.",
     "descriptionEn": "",
@@ -1105,7 +1113,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     "slug": "fabrics",
     "nameEn": "*",
     "nameRu": "*",
-    "category": "textiles",
+    "category": "home_textiles",
     "price": "0.00 ₪",
     "descriptionRu": "",
     "descriptionEn": "",
@@ -1118,530 +1126,6 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
         "width": 1772,
         "height": 1181,
         "alt": "*"
-      }
-    ]
-  },
-  {
-    "id": "ffdd1fa6-c972-252b-2bb9-eac675f97d74",
-    "slug": "home-decor",
-    "nameEn": "Home decor (Vol. 2)",
-    "nameRu": "Текстильный декор для дома и интерьера — Вариант 2",
-    "category": "paintings",
-    "price": "100.00 ₪",
-    "descriptionRu": "Подушки, дорожки на стол, декоративные панно и текстиль, преображающий атмосферу вашего дома.",
-    "descriptionEn": "",
-    "tags": [
-      "Домашний текстиль",
-      "Декор",
-      "Интерьер"
-    ],
-    "featured": false,
-    "coverImage": "/images/portfolio/paintings/8f183f_a71a39002409489586b23007cb6097ea.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_a71a39002409489586b23007cb6097ea.jpg",
-        "width": 1050,
-        "height": 1772,
-        "alt": "Текстильный декор для дома и интерьера — Вариант 2"
-      }
-    ]
-  },
-  {
-    "id": "73582c41-c4d1-0b79-10c0-3229ab9d68cc",
-    "slug": "paintings-on-canvas1",
-    "nameEn": "Paintings on canvas1",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #1»",
-    "category": "paintings",
-    "price": "3,350.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_b12cc095cfe94426bf951e4d840364d1.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_b12cc095cfe94426bf951e4d840364d1.jpg",
-        "width": 1246,
-        "height": 1772,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #1»"
-      }
-    ]
-  },
-  {
-    "id": "fba3b495-1286-a58b-f727-c0eae325f8e7",
-    "slug": "paintings-on-canvas3",
-    "nameEn": "Paintings on canvas3",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #3»",
-    "category": "paintings",
-    "price": "3,350.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_aacdd15bfc4d46ba83ba23117e3edcec.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_aacdd15bfc4d46ba83ba23117e3edcec.jpg",
-        "width": 1772,
-        "height": 1775,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #3»"
-      }
-    ]
-  },
-  {
-    "id": "ff093021-fa58-af0d-0a75-ac6f7492322c",
-    "slug": "home-decor-1",
-    "nameEn": "Home decor (Vol. 3)",
-    "nameRu": "Текстильный декор для дома и интерьера — Вариант 3",
-    "category": "paintings",
-    "price": "59.00 ₪",
-    "descriptionRu": "Подушки, дорожки на стол, декоративные панно и текстиль, преображающий атмосферу вашего дома.",
-    "descriptionEn": "",
-    "tags": [
-      "Домашний текстиль",
-      "Декор",
-      "Интерьер"
-    ],
-    "featured": false,
-    "coverImage": "/images/portfolio/paintings/8f183f_ec1fe805d7f8403f98b1da0022dc85c7.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_ec1fe805d7f8403f98b1da0022dc85c7.jpg",
-        "width": 1042,
-        "height": 1772,
-        "alt": "Текстильный декор для дома и интерьера — Вариант 3"
-      },
-      {
-        "url": "/images/portfolio/paintings/8f183f_dadfefab37b840d1aa383fb838527b87.jpg",
-        "width": 1772,
-        "height": 1776,
-        "alt": "Текстильный декор для дома и интерьера — Вариант 3"
-      }
-    ]
-  },
-  {
-    "id": "9dc42e8d-f3b1-376a-d609-118a6f3ae576",
-    "slug": "paintings-on-canvas8",
-    "nameEn": "Paintings on canvas8",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #8»",
-    "category": "paintings",
-    "price": "3,200.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_8a58089222514dc49550fa4f50abf2f2.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_8a58089222514dc49550fa4f50abf2f2.jpg",
-        "width": 1811,
-        "height": 1772,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #8»"
-      }
-    ]
-  },
-  {
-    "id": "4417f751-938d-e236-b4e4-e14741575bd3",
-    "slug": "paintings-on-canvas9",
-    "nameEn": "Paintings on canvas9",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #9»",
-    "category": "paintings",
-    "price": "3,500.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_6cff8297815b4178b2e196d81aa98ee6.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_6cff8297815b4178b2e196d81aa98ee6.jpg",
-        "width": 1236,
-        "height": 1772,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #9»"
-      }
-    ]
-  },
-  {
-    "id": "56a0b71c-0338-b671-10ab-206adca2dfa5",
-    "slug": "paintings-on-canvas10",
-    "nameEn": "Paintings on canvas10",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #10»",
-    "category": "paintings",
-    "price": "3,200.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_a1b550d86f784660a2faa2a96e41f742.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_a1b550d86f784660a2faa2a96e41f742.jpg",
-        "width": 1772,
-        "height": 1766,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #10»"
-      }
-    ]
-  },
-  {
-    "id": "985f845c-f550-0686-c567-507d2fe3f8fe",
-    "slug": "paintings-on-canvas7",
-    "nameEn": "Paintings on canvas7",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #7»",
-    "category": "paintings",
-    "price": "3,000.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_74b1be17cbdc41c4927ea7f7a80f261c.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_74b1be17cbdc41c4927ea7f7a80f261c.jpg",
-        "width": 1784,
-        "height": 1772,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #7»"
-      }
-    ]
-  },
-  {
-    "id": "cfdcff88-0372-09bb-22a2-b3be90084292",
-    "slug": "paintings-on-canvas6",
-    "nameEn": "Paintings on canvas6",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #6»",
-    "category": "paintings",
-    "price": "3,200.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_bd6be058f3e7474d90a650a91df744b8.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_bd6be058f3e7474d90a650a91df744b8.jpg",
-        "width": 1761,
-        "height": 1772,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #6»"
-      }
-    ]
-  },
-  {
-    "id": "8436f99c-62e3-c031-c6fc-5876a0b25aed",
-    "slug": "paintings-on-canvas4",
-    "nameEn": "Paintings on canvas4",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #4»",
-    "category": "paintings",
-    "price": "3,300.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_bad1d0f213d84c168dc2d346ce00ef73.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_bad1d0f213d84c168dc2d346ce00ef73.jpg",
-        "width": 1772,
-        "height": 1758,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #4»"
-      }
-    ]
-  },
-  {
-    "id": "f4f274cb-5a88-84cb-1840-4b80c7c9cdee",
-    "slug": "paintings-on-canvas",
-    "nameEn": "Paintings on canvas",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония»",
-    "category": "paintings",
-    "price": "3,500.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_4630df4599e14b69bf89cecee03ce3e8.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_4630df4599e14b69bf89cecee03ce3e8.jpg",
-        "width": 2380,
-        "height": 1785,
-        "alt": "Картина маслом на холсте «Интерьерная гармония»"
-      }
-    ]
-  },
-  {
-    "id": "c0844354-9894-0f8a-6a36-46fb6de35398",
-    "slug": "paintings-on-canvas5",
-    "nameEn": "Paintings on canvas5",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #5»",
-    "category": "paintings",
-    "price": "3,350.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_86896e38276040c48a59c6d37c56e88f.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_86896e38276040c48a59c6d37c56e88f.jpg",
-        "width": 1772,
-        "height": 1769,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #5»"
-      }
-    ]
-  },
-  {
-    "id": "da68874b-e050-6798-5106-9114e4e24d05",
-    "slug": "paintings-on-canvas-2",
-    "nameEn": "Paintings on canvas (Vol. 2)",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония» — Вариант 2",
-    "category": "paintings",
-    "price": "3,200.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_46f98db0a6a243e58407a829ef76579b.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_46f98db0a6a243e58407a829ef76579b.jpg",
-        "width": 1772,
-        "height": 1756,
-        "alt": "Картина маслом на холсте «Интерьерная гармония» — Вариант 2"
-      }
-    ]
-  },
-  {
-    "id": "24883f1f-0540-333c-947a-a68003762650",
-    "slug": "paintings-on-canvas12",
-    "nameEn": "Paintings on canvas12",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #12»",
-    "category": "paintings",
-    "price": "3,500.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_662f5b3c19ae4ae6a403ace337e67219.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_662f5b3c19ae4ae6a403ace337e67219.jpg",
-        "width": 1772,
-        "height": 1761,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #12»"
-      }
-    ]
-  },
-  {
-    "id": "06a4da97-38b5-17e9-0bb8-5fa4f3b1365d",
-    "slug": "painting-on-canvas",
-    "nameEn": "Painting  on canvas",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония»",
-    "category": "paintings",
-    "price": "45.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_96ac6aced56145dea22046b734b9fa1d.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_96ac6aced56145dea22046b734b9fa1d.jpg",
-        "width": 1785,
-        "height": 1772,
-        "alt": "Картина маслом на холсте «Интерьерная гармония»"
-      }
-    ]
-  },
-  {
-    "id": "4f0c530b-27a6-0bf9-9908-12b7e9fcec45",
-    "slug": "paintings-on-canvas11",
-    "nameEn": "Paintings on canvas11",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #11»",
-    "category": "paintings",
-    "price": "3,500.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_8cf62f0e17614dd8971c44e04bad43ff.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_8cf62f0e17614dd8971c44e04bad43ff.jpg",
-        "width": 2358,
-        "height": 1772,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #11»"
-      }
-    ]
-  },
-  {
-    "id": "5fec60bd-dd5d-ed94-bdc3-7a886aadda4f",
-    "slug": "paintings-on-canvas-1",
-    "nameEn": "Paintings on canvas (Vol. 3)",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония» — Вариант 3",
-    "category": "paintings",
-    "price": "3,500.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_571a720742714aff9ead197de0a90d77.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_571a720742714aff9ead197de0a90d77.jpg",
-        "width": 1772,
-        "height": 1772,
-        "alt": "Картина маслом на холсте «Интерьерная гармония» — Вариант 3"
-      }
-    ]
-  },
-  {
-    "id": "2ef78761-3cda-f46e-defd-69bd857a7cfe",
-    "slug": "paintings-on-canvas13",
-    "nameEn": "Paintings on canvas13",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #13»",
-    "category": "paintings",
-    "price": "3,500.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_4ac89dfbfd404938b6d4dd9ecfce2ce6.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_4ac89dfbfd404938b6d4dd9ecfce2ce6.jpg",
-        "width": 1772,
-        "height": 1773,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #13»"
-      }
-    ]
-  },
-  {
-    "id": "db1a0a6f-c0d4-0910-af28-98a4f152748c",
-    "slug": "paintings-on-canvas16",
-    "nameEn": "Paintings on canvas16",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #16»",
-    "category": "paintings",
-    "price": "3,500.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_fb79493c99844555aa8860b0634efd17.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_fb79493c99844555aa8860b0634efd17.jpg",
-        "width": 1772,
-        "height": 1749,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #16»"
-      }
-    ]
-  },
-  {
-    "id": "c7896667-d86f-54b8-f3b9-f3195c1c5333",
-    "slug": "paintings-on-canvas15",
-    "nameEn": "Paintings on canvas15",
-    "nameRu": "Картина маслом на холсте «Интерьерная гармония #15»",
-    "category": "paintings",
-    "price": "3,500.00 ₪",
-    "descriptionRu": "Оригинальная живопись на качественном холсте на подрамнике. Живые фактурные мазки, глубокие цвета. Идеально для современного интерьера.",
-    "descriptionEn": "",
-    "tags": [
-      "Живопись",
-      "Холст",
-      "Масло / Акрил",
-      "Интерьерная картина"
-    ],
-    "featured": true,
-    "coverImage": "/images/portfolio/paintings/8f183f_ea34f3ee58a44d3da62e8c5b49e69118.jpg",
-    "images": [
-      {
-        "url": "/images/portfolio/paintings/8f183f_ea34f3ee58a44d3da62e8c5b49e69118.jpg",
-        "width": 1758,
-        "height": 1772,
-        "alt": "Картина маслом на холсте «Интерьерная гармония #15»"
       }
     ]
   }

@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { CATEGORIES, PortfolioItem, STUDIO_INFO } from '../data/portfolioData';
-import { Search, Sparkles, Scissors, Shirt, Home, Palette, MessageCircle, Maximize2, Grid, LayoutList } from 'lucide-react';
+import { Search, Sparkles, Scissors, Shirt, Home, Feather, MessageCircle, Maximize2, Grid, LayoutList } from 'lucide-react';
 
 interface LookbookCatalogProps {
   items: PortfolioItem[];
@@ -38,28 +38,47 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
 
   const getIcon = (id: string) => {
     switch (id) {
-      case 'clothing':
+      case 'dresses':
         return <Shirt size={14} />;
-      case 'atelier':
+      case 'jackets_felting':
         return <Scissors size={14} />;
-      case 'textiles':
+      case 'accessories':
+        return <Feather size={14} />;
+      case 'atelier_tailoring':
+        return <Scissors size={14} />;
+      case 'home_textiles':
         return <Home size={14} />;
-      case 'paintings':
-        return <Palette size={14} />;
       default:
         return <Sparkles size={14} />;
     }
   };
 
+  const getCategoryLabel = (cat: string) => {
+    switch (cat) {
+      case 'dresses':
+        return 'Платья & Наряды';
+      case 'jackets_felting':
+        return 'Арт-жакеты';
+      case 'accessories':
+        return 'Аксессуары';
+      case 'atelier_tailoring':
+        return 'Пошив & Ремонт';
+      case 'home_textiles':
+        return 'Текстиль';
+      default:
+        return 'Ателье';
+    }
+  };
+
   return (
-    <section id="gallery" className="py-24 relative bg-noir-950 border-t border-gold-400/20">
+    <section id="gallery" className="py-20 sm:py-24 relative bg-noir-950 border-t border-gold-400/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-noir-850 border border-gold-400/30 text-gold-300 text-xs tracking-[0.2em] font-cinzel uppercase">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3 sm:space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-noir-850 border border-gold-400/30 text-gold-300 text-[11px] sm:text-xs tracking-[0.2em] font-cinzel uppercase">
             <Sparkles size={13} className="text-gold-400" />
-            <span>Lookbook Коллекций & Ателье</span>
+            <span>Lookbook Коллекций Ателье</span>
           </div>
 
           <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
@@ -67,15 +86,15 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
           </h2>
 
           <p className="text-slate-400 text-sm sm:text-base font-light">
-            Каждое изделие — результат кропотливого труда, ручной росписи и авторского кроя. Нажмите на любое изделие для детального просмотра и заказа.
+            Эксклюзивные платья, жакеты в технике нуно-войлока, вечерний пошив и домашний текстиль. Нажмите на любое изделие для просмотра ракурсов и заказа.
           </p>
         </div>
 
         {/* Filter Navigation Bar */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-5 mb-12 pb-6 border-b border-white/10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-5 mb-8 sm:mb-12 pb-6 border-b border-white/10">
           
-          {/* Category Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2">
+          {/* Category Pills (Touch friendly, horizontally scrollable on mobile) */}
+          <div className="w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0 scrollbar-none flex items-center gap-2 justify-start lg:justify-center">
             {CATEGORIES.map((cat) => {
               const active = category === cat.id;
               const count = counts[cat.id] || 0;
@@ -83,9 +102,9 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
                 <button
                   key={cat.id}
                   onClick={() => setCategory(cat.id)}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full font-cinzel text-xs uppercase tracking-wider transition-all duration-300 ${
+                  className={`inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full font-cinzel text-xs uppercase tracking-wider transition-all duration-300 shrink-0 ${
                     active
-                      ? 'gold-gradient-bg text-black font-bold shadow-lg shadow-gold-500/20 scale-105'
+                      ? 'gold-gradient-bg text-black font-bold shadow-lg shadow-gold-500/25 scale-105'
                       : 'bg-noir-850 text-slate-300 hover:text-white hover:bg-noir-800 border border-white/10'
                   }`}
                 >
@@ -104,7 +123,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
           </div>
 
           {/* Search & Layout toggle */}
-          <div className="flex items-center gap-3 w-full lg:w-auto justify-end">
+          <div className="flex items-center gap-3 w-full lg:w-auto justify-between lg:justify-end">
             {/* Search */}
             <div className="relative flex-1 lg:w-64">
               <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -126,7 +145,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
             </div>
 
             {/* View Mode Toggle */}
-            <div className="flex items-center bg-noir-850 border border-white/10 rounded-full p-1 text-slate-400">
+            <div className="flex items-center bg-noir-850 border border-white/10 rounded-full p-1 text-slate-400 shrink-0">
               <button
                 onClick={() => setViewMode('grid')}
                 className={`p-1.5 rounded-full transition-colors ${
@@ -167,8 +186,8 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
             </button>
           </div>
         ) : viewMode === 'grid' ? (
-          /* Grid View (3-4 cols) */
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          /* Grid View (1 col on mobile, 2 on tablet, 3-4 on desktop) */
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
             {filtered.map((item) => (
               <div
                 key={item.id}
@@ -198,10 +217,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
                     {/* Category pill */}
                     <div className="absolute top-3 left-3">
                       <span className="font-cinzel text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-gold-300 border border-gold-400/30">
-                        {item.category === 'clothing' && 'Одежда'}
-                        {item.category === 'atelier' && 'Ателье'}
-                        {item.category === 'textiles' && 'Текстиль'}
-                        {item.category === 'paintings' && 'Живопись'}
+                        {getCategoryLabel(item.category)}
                       </span>
                     </div>
 
@@ -214,7 +230,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
                   </div>
 
                   {/* Body Details */}
-                  <div className="p-5 space-y-2">
+                  <div className="p-4 sm:p-5 space-y-1.5 sm:space-y-2">
                     {item.price && (
                       <div className="font-cormorant text-xl font-bold text-gold-400">
                         {item.price}
@@ -230,7 +246,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
                 </div>
 
                 {/* Footer action bar */}
-                <div className="p-5 pt-0">
+                <div className="p-4 sm:p-5 pt-0">
                   <div className="pt-3 border-t border-white/5 flex items-center justify-between">
                     <div className="flex flex-wrap gap-1 max-w-[70%]">
                       {item.tags.slice(0, 2).map((tg, idx) => (
@@ -259,8 +275,8 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
             ))}
           </div>
         ) : (
-          /* Editorial Lookbook View (Large 2-col cards) */
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          /* Editorial Lookbook View (Large cards) */
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {filtered.map((item) => (
               <div
                 key={item.id}
@@ -283,11 +299,11 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({ items, onItemS
                 </div>
 
                 {/* Details (7 cols) */}
-                <div className="sm:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-4">
+                <div className="sm:col-span-7 p-5 sm:p-7 flex flex-col justify-between space-y-4">
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="font-cinzel text-[10px] uppercase tracking-widest text-gold-400">
-                        {item.category}
+                        {getCategoryLabel(item.category)}
                       </span>
                       {item.price && (
                         <span className="font-cormorant text-2xl font-bold text-gold-300">

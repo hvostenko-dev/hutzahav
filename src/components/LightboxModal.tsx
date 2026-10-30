@@ -148,10 +148,11 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
             {/* Header category badge & price */}
             <div className="flex items-center justify-between">
               <span className="font-cinzel text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-gold-400/10 text-gold-300 border border-gold-400/30">
-                {item.category === 'clothing' && 'Эксклюзивная одежда'}
-                {item.category === 'atelier' && 'Индивидуальный пошив'}
-                {item.category === 'textiles' && 'Домашний текстиль'}
-                {item.category === 'paintings' && 'Интерьерная живопись'}
+                {item.category === 'dresses' && 'Платья & Наряды'}
+                {item.category === 'jackets_felting' && 'Арт-жакеты & Нуно-войлок'}
+                {item.category === 'accessories' && 'Шарфы & Аксессуары'}
+                {item.category === 'atelier_tailoring' && 'Индивидуальный пошив & Ремонт'}
+                {item.category === 'home_textiles' && 'Домашний текстиль'}
               </span>
 
               {item.price && (
