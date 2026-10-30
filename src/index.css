@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #08080A;
+    color: #E8E6DF;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, .font-cormorant {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+}
+
+/* Haute Couture Golden Gradients */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFF9EB 0%, #E8D2A0 25%, #C9A04B 50%, #EBD5A8 75%, #A37C2D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #D5B46D 0%, #C59E47 50%, #8A6732 100%);
+}
+
+.gold-gradient-subtle {
+  background: linear-gradient(180deg, rgba(213, 180, 109, 0.12) 0%, rgba(213, 180, 109, 0.02) 100%);
+}
+
+.gold-border {
+  border: 1px solid rgba(213, 180, 109, 0.22);
+}
+
+.gold-border-glow:hover {
+  border-color: rgba(213, 180, 109, 0.5);
+  box-shadow: 0 0 30px rgba(213, 180, 109, 0.18);
+}
+
+/* Golden Thread Motif (חוט זהב) */
+.golden-thread {
+  position: relative;
+}
+
+.golden-thread::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(213, 180, 109, 0.6) 50%, transparent 100%);
+}
+
+/* Glassmorphism */
+.luxury-card {
+  background: rgba(19, 19, 26, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(213, 180, 109, 0.16);
+}
+
+.luxury-card-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card-hover:hover {
+  background: rgba(25, 25, 34, 0.85);
+  border-color: rgba(213, 180, 109, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(213, 180, 109, 0.12);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #08080A;
+}
+::-webkit-scrollbar-thumb {
+  background: #262633;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C59E47;
+}
