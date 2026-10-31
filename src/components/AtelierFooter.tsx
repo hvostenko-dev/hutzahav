@@ -1,10 +1,13 @@
 import React from 'react';
 import { STUDIO_INFO } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 import { Phone, Mail, ArrowUp, MapPin, Navigation, ExternalLink, MessageCircle } from 'lucide-react';
 import { Instagram, Facebook, Telegram } from './Icons';
 import { Logo } from './Logo';
 
 export const AtelierFooter: React.FC = () => {
+  const { lang, t, dir } = useLanguage();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -21,48 +24,52 @@ export const AtelierFooter: React.FC = () => {
             <Logo size={48} showText={true} />
 
             <p className="text-xs text-slate-400 font-light leading-relaxed pt-1">
-              Авторское ателье высокого пошива Галины Хвостенко. Вечерние платья, ручная художественная роспись по ткани, нуно-войлок, премиум-подгонка брендовой одежды и интерьерный текстиль.
+              {lang === 'he'
+                ? 'אטלייה תפירה עילית של המעצבת גלינה חבוסטנקו. שמלות ערב וכלה, ציור ידני מקורי על משי ופשתן טהור, נונו-לבד וחידוש בגדי יוקרה באשדוד.'
+                : lang === 'en'
+                ? 'Haute couture bespoke atelier by Galina Khvostenko. Gala gowns, hand-painted natural silks and linens, nuno-felting art, and luxury label alterations in Ashdod, Israel.'
+                : 'Авторское ателье высокого пошива Галины Хвостенко. Вечерние платья, ручная художественная роспись по ткани, нуно-войлок, премиум-подгонка брендовой одежды и интерьерный текстиль.'}
             </p>
 
             <div className="font-cinzel text-xs text-gold-400/80 tracking-widest pt-1">
-              חוט זהב • АТЕЛЬЕ «ЗОЛОТАЯ НИТЬ» • АШДОД
+              חוט זהב • HUTZAHAV ATELIER • ASHDOD
             </div>
           </div>
 
           {/* Col 2: Services */}
           <div className="space-y-3">
             <div className="font-cinzel text-xs font-bold text-white uppercase tracking-[0.2em]">
-              Услуги ателье
+              {t.navServices}
             </div>
             <ul className="space-y-2.5 text-xs">
               <li>
                 <a href="#services" className="hover:text-gold-300 transition-colors">
-                  Пошив вечерних платьев
+                  {lang === 'he' ? 'תפירת שמלות ערב וכלה' : lang === 'en' ? 'Bespoke Evening & Bridal Gowns' : 'Пошив вечерних платьев'}
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-gold-300 transition-colors">
-                  Платья с ручной росписью
+                  {lang === 'he' ? 'בגדים עם ציור ידני על משי' : lang === 'en' ? 'Hand-Painted Silks & Linens' : 'Платья с ручной росписью'}
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-gold-300 transition-colors">
-                  Арт-жакеты & Нуно-войлок
+                  {lang === 'he' ? 'ז׳קטים אמנותיים בצמר ומשי' : lang === 'en' ? 'Nuno-Felting & Art Denim' : 'Арт-жакеты & Нуно-войлок'}
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-gold-300 transition-colors">
-                  Подгонка и ремонт брендов
+                  {lang === 'he' ? 'התאמת בגדי מותגים ותיקונים' : lang === 'en' ? 'Designer Label Alterations' : 'Подгонка и ремонт брендов'}
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-gold-300 transition-colors">
-                  Пошив штор и текстиля
+                  {lang === 'he' ? 'וילונות וטקסטיל לבית' : lang === 'en' ? 'Curtains & Bedding Couture' : 'Пошив штор и текстиля'}
                 </a>
               </li>
               <li>
                 <a href="#calculator" className="text-gold-400 hover:text-gold-200 transition-colors font-medium">
-                  Калькулятор пошива →
+                  {t.navCalculator} →
                 </a>
               </li>
             </ul>
@@ -71,7 +78,7 @@ export const AtelierFooter: React.FC = () => {
           {/* Col 3: Direct Contacts */}
           <div className="space-y-3">
             <div className="font-cinzel text-xs font-bold text-white uppercase tracking-[0.2em]">
-              Прямая связь
+              {lang === 'he' ? 'יצירת קשר' : lang === 'en' ? 'Direct Contact' : 'Прямая связь'}
             </div>
             <ul className="space-y-3 text-xs">
               <li className="flex items-center gap-2.5">
@@ -89,8 +96,8 @@ export const AtelierFooter: React.FC = () => {
               <li className="flex items-start gap-2.5">
                 <MapPin size={15} className="text-gold-400 shrink-0 mt-0.5" />
                 <div className="text-slate-300 leading-relaxed">
-                  <strong>{STUDIO_INFO.addressRu}</strong><br />
-                  <span className="text-[11px] text-slate-400">{STUDIO_INFO.addressHe}</span>
+                  <strong>{lang === 'he' ? STUDIO_INFO.addressHe : STUDIO_INFO.addressRu}</strong><br />
+                  <span className="text-[11px] text-slate-400">Shavei Tzion 2, Ashdod</span>
                 </div>
               </li>
               <li className="flex items-center gap-2 pt-1 text-[11px]">
@@ -127,10 +134,14 @@ export const AtelierFooter: React.FC = () => {
           {/* Col 4: Socials & Messengers */}
           <div className="space-y-3">
             <div className="font-cinzel text-xs font-bold text-white uppercase tracking-[0.2em]">
-              Мессенджеры & Соцсети
+              {lang === 'he' ? 'רשתות חברתיות' : lang === 'en' ? 'Socials & Chat' : 'Мессенджеры & Соцсети'}
             </div>
             <p className="text-xs text-slate-400 font-light leading-relaxed">
-              Напишите нам для мгновенной консультации или следите за закулисьем ателье:
+              {lang === 'he'
+                ? 'מוזמנות לכתוב לנו לכל שאלה או לעקוב אחרי היצירות החדשות:'
+                : lang === 'en'
+                ? 'Message us for immediate assistance or follow our atelier backstage:'
+                : 'Напишите нам для мгновенной консультации или следите за закулисьем ателье:'}
             </p>
             <div className="flex flex-wrap items-center gap-2.5 pt-2">
               <a
@@ -184,14 +195,14 @@ export const AtelierFooter: React.FC = () => {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-light text-center sm:text-left">
           <div>
-            © {new Date().getFullYear()} HUTZAHAV ATELIER by Galina Khvostenko • Shavei Tzion 2, Ashdod. Все права защищены.
+            © {new Date().getFullYear()} HUTZAHAV ATELIER • חוט זהב by Galina Khvostenko • Shavei Tzion 2, Ashdod. All rights reserved.
           </div>
 
           <button
             onClick={scrollToTop}
             className="flex items-center gap-2 font-cinzel text-xs text-slate-400 hover:text-gold-300 transition-colors uppercase tracking-widest"
           >
-            <span>В начало</span>
+            <span>{lang === 'he' ? 'לראש העמוד' : lang === 'en' ? 'Back to Top' : 'В начало'}</span>
             <ArrowUp size={14} />
           </button>
         </div>

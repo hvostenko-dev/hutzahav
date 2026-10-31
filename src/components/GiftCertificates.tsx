@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { STUDIO_INFO } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 import { Gift, Sparkles, Check, ArrowRight, Heart, Crown } from 'lucide-react';
 import { WhatsApp, Telegram } from './Icons';
 import { Logo } from './Logo';
 
 export const GiftCertificates: React.FC = () => {
+  const { lang, t } = useLanguage();
   const [selectedAmount, setSelectedAmount] = useState<number>(1000);
   const [customAmount, setCustomAmount] = useState<string>('');
   const [recipientName, setRecipientName] = useState<string>('');
@@ -16,12 +18,24 @@ export const GiftCertificates: React.FC = () => {
   const finalAmount = customAmount ? parseInt(customAmount, 10) || selectedAmount : selectedAmount;
 
   const handleOrderWhatsApp = () => {
-    let text = `Здравствуйте, Галина! Хочу оформить подарочный сертификат ателье Hutzahav:\n\n`;
-    text += `🎁 Номинал: ${finalAmount} ₪\n`;
-    if (recipientName) text += `👤 Кому: ${recipientName}\n`;
-    if (senderName) text += `💌 От кого: ${senderName}\n`;
-    if (message) text += `💬 Пожелание: «${message}»\n`;
-    text += `\nХочу получить красивый именной сертификат (электронный или в подарочном конверте в ателье в Ашдоде)!`;
+    let text =
+      lang === 'he'
+        ? `שלום גלינה! ברצוני להזמין שובר מתנה של חוט זהב:\n\n`
+        : lang === 'en'
+        ? `Hello Galina! I would like to order a Hutzahav gift certificate:\n\n`
+        : `Здравствуйте, Галина! Хочу оформить подарочный сертификат ателье Hutzahav:\n\n`;
+
+    text += `🎁 ${t.giftValueLabel} ${finalAmount} ₪\n`;
+    if (recipientName) text += `👤 ${recipientName}\n`;
+    if (senderName) text += `💌 ${senderName}\n`;
+    if (message) text += `💬 «${message}»\n`;
+    text +=
+      lang === 'he'
+        ? `\nאשמח לקבל שובר מעוצב ואישי (אלקטרוני או במעטפה חגיגית באטלייה באשדוד).`
+        : lang === 'en'
+        ? `\nI would love to receive the personalized gift card (digital PDF or in a gift package at the Ashdod atelier).`
+        : `\nХочу получить красивый именной сертификат (электронный или в подарочном конверте в ателье в Ашдоде)!`;
+
     window.open(`https://wa.me/${STUDIO_INFO.phoneRaw}?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -36,15 +50,15 @@ export const GiftCertificates: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3 sm:space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-noir-850 border border-gold-400/30 text-gold-300 text-[11px] sm:text-xs tracking-[0.2em] font-cinzel uppercase">
             <Gift size={13} className="text-gold-400" />
-            <span>Эксклюзивный Подарок</span>
+            <span>{t.giftCertificateLabel}</span>
           </div>
 
           <h2 className="font-cormorant text-4xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-            Подарочные Сертификаты Ателье
+            {t.giftTitle}
           </h2>
 
           <p className="text-slate-400 text-sm sm:text-base font-light">
-            Подарите незабываемые эмоции создания идеального наряда. Сертификат на индивидуальный пошив или авторские изделия у мастера Галины Хвостенко.
+            {t.giftSubtitle}
           </p>
         </div>
 
@@ -63,7 +77,7 @@ export const GiftCertificates: React.FC = () => {
                 <Logo size={42} showText={true} />
                 <div className="flex flex-col items-end">
                   <span className="font-cinzel text-[9px] uppercase tracking-widest text-gold-400">
-                    GIFT CERTIFICATE
+                    {t.giftCertificateLabel}
                   </span>
                   <span className="font-mono text-[10px] text-slate-500">
                     № HZ-{finalAmount}-ASH
@@ -74,21 +88,21 @@ export const GiftCertificates: React.FC = () => {
               {/* Card Center: Recipient & Value */}
               <div className="relative z-10 py-3">
                 <div className="font-cinzel text-[10px] uppercase tracking-wider text-slate-400 mb-0.5">
-                  Сертификат на сумму:
+                  {t.giftValueLabel}
                 </div>
                 <div className="font-cormorant text-4xl sm:text-5xl font-bold gold-gradient-text">
                   {finalAmount.toLocaleString()} ₪
                 </div>
                 <div className="text-xs text-slate-300 font-cormorant italic mt-1 line-clamp-1">
-                  {recipientName ? `Для: ${recipientName}` : 'На индивидуальный пошив и авторские изделия'}
+                  {recipientName ? `Для: ${recipientName}` : 'Hutzahav Haute Couture Tailoring'}
                 </div>
               </div>
 
               {/* Card Bottom */}
               <div className="flex items-end justify-between relative z-10 pt-2 border-t border-gold-400/20">
                 <div className="text-[10px] text-slate-400 font-cinzel">
-                  <div>Ателье «HUTZAHAV»</div>
-                  <div className="text-gold-400/80">Ашдод, Шавей Цион 2</div>
+                  <div>Ателье «HUTZAHAV» • חוט זהב</div>
+                  <div className="text-gold-400/80">{STUDIO_INFO.addressRu}</div>
                 </div>
                 <div className="w-8 h-8 rounded-full gold-gradient-bg text-black flex items-center justify-center font-bold text-xs shadow-md">
                   <Crown size={14} />
@@ -97,7 +111,7 @@ export const GiftCertificates: React.FC = () => {
             </div>
 
             <div className="mt-4 text-center text-xs text-slate-400">
-              * Доступен в электронном виде (PDF) или в подарочной бархатной упаковке с доставкой.
+              * {lang === 'he' ? 'זמין בקובץ דיגיטלי או במעטפה חגיגית עם שליח' : lang === 'en' ? 'Available digitally or in a luxury envelope with delivery' : 'Доступен в электронном виде (PDF) или в подарочной бархатной упаковке с доставкой.'}
             </div>
           </div>
 
@@ -107,7 +121,7 @@ export const GiftCertificates: React.FC = () => {
             {/* Amount Selection */}
             <div>
               <label className="block font-cinzel text-xs uppercase tracking-wider text-gold-300 mb-3">
-                1. Выберите номинал сертификата (₪):
+                1. {t.giftValueLabel} (₪):
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {amounts.map((amt) => {
@@ -135,7 +149,7 @@ export const GiftCertificates: React.FC = () => {
               <div className="mt-3">
                 <input
                   type="number"
-                  placeholder="Или введите свою сумму (₪)..."
+                  placeholder="₪..."
                   value={customAmount}
                   onChange={(e) => setCustomAmount(e.target.value)}
                   className="w-full bg-noir-900 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors"
@@ -147,11 +161,11 @@ export const GiftCertificates: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block font-cinzel text-xs uppercase tracking-wider text-slate-300 mb-2">
-                  Имя получателя:
+                  {lang === 'he' ? 'שם מקבלת המתנה:' : lang === 'en' ? 'Recipient Name:' : 'Имя получателя:'}
                 </label>
                 <input
                   type="text"
-                  placeholder="Например: Любимая мама, Анна..."
+                  placeholder={t.giftRecipientPlaceholder}
                   value={recipientName}
                   onChange={(e) => setRecipientName(e.target.value)}
                   className="w-full bg-noir-900 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors"
@@ -160,11 +174,11 @@ export const GiftCertificates: React.FC = () => {
 
               <div>
                 <label className="block font-cinzel text-xs uppercase tracking-wider text-slate-300 mb-2">
-                  Ваше имя (от кого):
+                  {lang === 'he' ? 'השם שלך (מאת):' : lang === 'en' ? 'Your Name (From):' : 'Ваше имя (от кого):'}
                 </label>
                 <input
                   type="text"
-                  placeholder="Ваше имя..."
+                  placeholder={t.giftSenderPlaceholder}
                   value={senderName}
                   onChange={(e) => setSenderName(e.target.value)}
                   className="w-full bg-noir-900 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors"
@@ -175,11 +189,11 @@ export const GiftCertificates: React.FC = () => {
             {/* Wishing Message */}
             <div>
               <label className="block font-cinzel text-xs uppercase tracking-wider text-slate-300 mb-2">
-                Теплые пожелания (будут напечатаны на открытке):
+                {lang === 'he' ? 'ברכה אישית לכרטיס המתנה:' : lang === 'en' ? 'Heartfelt Greeting Message:' : 'Теплые пожелания для открытки:'}
               </label>
               <textarea
                 rows={2}
-                placeholder="С любовью в день рождения! Пусть это платье подчеркнет твою красоту..."
+                placeholder={t.giftMsgPlaceholder}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 className="w-full bg-noir-900 border border-white/10 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors resize-none"
@@ -194,7 +208,7 @@ export const GiftCertificates: React.FC = () => {
                 className="flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase tracking-wider hover:scale-[1.02] transition-transform shadow-xl"
               >
                 <WhatsApp size={16} />
-                <span>Заказать сертификат в WhatsApp</span>
+                <span>{t.giftOrderBtn}</span>
               </button>
 
               <a

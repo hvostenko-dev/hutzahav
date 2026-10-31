@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PORTFOLIO_ITEMS, PortfolioItem } from './data/portfolioData';
 import { CartProvider, useCart } from './context/CartContext';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { DeliveryNoticeBar } from './components/DeliveryNoticeBar';
 import { Navbar } from './components/Navbar';
 import { HeroAtelier } from './components/HeroAtelier';
@@ -26,7 +27,7 @@ import { CheckCircle2, Sparkles } from 'lucide-react';
 
 const AppContent: React.FC = () => {
   const { toast } = useCart();
-  const [activeLang, setActiveLang] = useState<'ru' | 'en' | 'he'>('ru');
+  const { lang } = useLanguage();
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
   const [isFabricGuideOpen, setIsFabricGuideOpen] = useState(false);
 
@@ -56,15 +57,11 @@ const AppContent: React.FC = () => {
       {/* Top Delivery & Atelier Notice Bar */}
       <DeliveryNoticeBar />
 
-      {/* Haute Couture Navbar with Mobile Burger Menu, Cart, Wishlist & Vector Logo */}
-      <Navbar
-        activeLang={activeLang}
-        onLangChange={setActiveLang}
-        onBookClick={() => scrollToSection('contact')}
-      />
+      {/* Haute Couture Navbar with Multi-Language Switcher (RU | ENG | עברית) */}
+      <Navbar />
 
       <main>
-        {/* Editorial Hero with the specified single Model Photo */}
+        {/* Editorial Hero with the specified single Model Photo & Luxury Framing */}
         <HeroAtelier
           onExploreClick={() => scrollToSection('gallery')}
           onCalculatorClick={() => scrollToSection('calculator')}
@@ -74,7 +71,7 @@ const AppContent: React.FC = () => {
         {/* Golden Thread Marquee Ticker */}
         <LuxuryMarquee />
 
-        {/* 6 Core Atelier Services */}
+        {/* 6 Core Atelier Services (with full multi-language translations & fixed textile image) */}
         <AtelierServices />
 
         {/* Interactive Bespoke Cost & Turnaround Calculator */}
@@ -118,7 +115,7 @@ const AppContent: React.FC = () => {
       {/* Fullscreen Master Photo Lightbox with Size Selector & Cart action */}
       <LightboxModal
         item={selectedItem}
-        activeLang={activeLang}
+        activeLang={lang}
         onClose={() => setSelectedItem(null)}
         onNextItem={handleNextItem}
         onPrevItem={handlePrevItem}
@@ -154,9 +151,11 @@ const AppContent: React.FC = () => {
 
 export const App: React.FC = () => {
   return (
-    <CartProvider>
-      <AppContent />
-    </CartProvider>
+    <LanguageProvider>
+      <CartProvider>
+        <AppContent />
+      </CartProvider>
+    </LanguageProvider>
   );
 };
 

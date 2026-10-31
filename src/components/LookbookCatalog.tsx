@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { CATEGORIES, PortfolioItem, STUDIO_INFO } from '../data/portfolioData';
 import { useCart } from '../context/CartContext';
+import { useLanguage } from '../context/LanguageContext';
 import {
   Search,
   Sparkles,
@@ -32,6 +33,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
   onOpenFabricGuide,
 }) => {
   const { addToCart, toggleWishlist, isInWishlist, setIsSizeGuideOpen } = useCart();
+  const { lang, t } = useLanguage();
   const [category, setCategory] = useState<string>('all');
   const [search, setSearch] = useState<string>('');
   const [sortBy, setSortBy] = useState<'featured' | 'price_asc' | 'price_desc' | 'name'>('featured');
@@ -64,11 +66,12 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
       return [...list].sort((a, b) => getPriceNumber(b.price) - getPriceNumber(a.price));
     }
     if (sortBy === 'name') {
-      return [...list].sort((a, b) => a.nameRu.localeCompare(b.nameRu));
+      const field = lang === 'en' ? 'nameEn' : 'nameRu';
+      return [...list].sort((a, b) => a[field].localeCompare(b[field]));
     }
 
     return list;
-  }, [items, category, search, sortBy]);
+  }, [items, category, search, sortBy, lang]);
 
   const counts = useMemo(() => {
     const res: Record<string, number> = { all: items.length };
@@ -98,17 +101,17 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
   const getCategoryLabel = (cat: string) => {
     switch (cat) {
       case 'dresses':
-        return 'Платья & Наряды';
+        return t.catDresses;
       case 'jackets_felting':
-        return 'Арт-жакеты';
+        return t.catJackets;
       case 'accessories':
-        return 'Аксессуары';
+        return t.catAccessories;
       case 'atelier_tailoring':
-        return 'Пошив & Ремонт';
+        return t.catTailoring;
       case 'home_textiles':
-        return 'Текстиль';
+        return t.catHomeTextiles;
       default:
-        return 'Ателье';
+        return t.catAll;
     }
   };
 
@@ -120,15 +123,15 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3 sm:space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-noir-850 border border-gold-400/30 text-gold-300 text-[11px] sm:text-xs tracking-[0.2em] font-cinzel uppercase">
             <Sparkles size={13} className="text-gold-400" />
-            <span>Lookbook Коллекций Ателье</span>
+            <span>Lookbook & Atelier Boutique</span>
           </div>
 
           <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-            Каталог Авторских Работ
+            {t.catalogTitle}
           </h2>
 
           <p className="text-slate-400 text-sm sm:text-base font-light">
-            Эксклюзивные платья, жакеты в технике нуно-войлока, вечерний пошив и домашний текстиль. Заказывайте примерку в ателье или онлайн с доставкой.
+            {t.catalogSubtitle}
           </p>
 
           {/* Assistant Quick Links */}
@@ -138,7 +141,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-noir-900 hover:bg-noir-850 border border-gold-400/25 text-gold-300 text-xs font-cinzel tracking-wider transition-colors"
             >
               <Ruler size={13} />
-              <span>Таблица размеров</span>
+              <span>{t.catalogSizeGuideBtn}</span>
             </button>
 
             {onOpenFabricGuide && (
@@ -147,7 +150,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                 className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-noir-900 hover:bg-noir-850 border border-gold-400/25 text-gold-300 text-xs font-cinzel tracking-wider transition-colors"
               >
                 <Droplets size={13} />
-                <span>Гид по тканям & уходу</span>
+                <span>{t.catalogFabricGuideBtn}</span>
               </button>
             )}
           </div>
@@ -161,6 +164,15 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
             {CATEGORIES.map((cat) => {
               const active = category === cat.id;
               const count = counts[cat.id] || 0;
+              const title =
+                cat.id === 'all'
+                  ? t.catAll
+                  : lang === 'he'
+                  ? cat.titleHe
+                  : lang === 'en'
+                  ? cat.titleEn
+                  : cat.titleRu;
+
               return (
                 <button
                   key={cat.id}
@@ -172,7 +184,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                   }`}
                 >
                   {getIcon(cat.id)}
-                  <span>{cat.titleRu}</span>
+                  <span>{title}</span>
                   <span
                     className={`ml-1 text-[11px] px-1.5 py-0.2 rounded-full ${
                       active ? 'bg-black/20 text-black' : 'bg-white/10 text-slate-400'
@@ -195,7 +207,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Поиск: шелк, лен, платье..."
+                placeholder={t.catalogSearchPlaceholder}
                 className="w-full bg-noir-850 border border-white/10 rounded-full pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors"
               />
               {search && (
@@ -215,10 +227,10 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                 onChange={(e) => setSortBy(e.target.value as any)}
                 className="bg-noir-850 border border-white/10 rounded-full px-3.5 py-2 text-xs text-slate-300 focus:outline-none focus:border-gold-400 transition-colors cursor-pointer font-cinzel"
               >
-                <option value="featured">Сортировка: По умолчанию</option>
-                <option value="price_asc">Цена: Сначала доступнее</option>
-                <option value="price_desc">Цена: Сначала эксклюзив</option>
-                <option value="name">По алфавиту</option>
+                <option value="featured">{t.catalogSortDefault}</option>
+                <option value="price_asc">{t.catalogSortPriceAsc}</option>
+                <option value="price_desc">{t.catalogSortPriceDesc}</option>
+                <option value="name">{t.catalogSortName}</option>
               </select>
             </div>
 
@@ -229,7 +241,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                 className={`p-1.5 rounded-full transition-colors ${
                   viewMode === 'grid' ? 'bg-gold-500 text-black' : 'hover:text-white'
                 }`}
-                title="Сетка"
+                title="Grid"
               >
                 <Grid size={15} />
               </button>
@@ -252,7 +264,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
         {filteredAndSorted.length === 0 ? (
           <div className="text-center py-20 rounded-3xl luxury-card bg-noir-900 border border-white/10">
             <p className="text-slate-400 text-base font-light">
-              Ничего не найдено по данному запросу.
+              {t.catalogEmpty}
             </p>
             <button
               onClick={() => {
@@ -261,7 +273,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
               }}
               className="mt-4 px-6 py-2.5 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase"
             >
-              Сбросить фильтры
+              {t.catalogResetFilters}
             </button>
           </div>
         ) : viewMode === 'grid' ? (
@@ -269,6 +281,9 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
             {filteredAndSorted.map((item) => {
               const favorite = isInWishlist(item.id);
+              const name = lang === 'en' ? item.nameEn || item.nameRu : item.nameRu;
+              const desc = lang === 'en' ? item.descriptionEn || item.descriptionRu : item.descriptionRu;
+
               return (
                 <div
                   key={item.id}
@@ -280,7 +295,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                     <div className="relative aspect-[3/4] overflow-hidden bg-black">
                       <img
                         src={item.coverImage}
-                        alt={item.nameRu}
+                        alt={name}
                         loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
                       />
@@ -311,7 +326,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                                 ? 'bg-gold-500 text-black shadow-lg shadow-gold-500/30 scale-105'
                                 : 'bg-black/70 text-white hover:text-gold-300 hover:bg-black/90 border border-white/15'
                             }`}
-                            title={favorite ? 'Удалить из списка желаний' : 'Сохранить в список желаний'}
+                            title="Wishlist"
                           >
                             <Heart size={14} className={favorite ? 'fill-black' : ''} />
                           </button>
@@ -335,15 +350,15 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                           </div>
                         )}
                         <span className="text-[10px] text-slate-400 font-cinzel uppercase tracking-wider">
-                          В наличии / Пошив
+                          {t.catalogInStock}
                         </span>
                       </div>
 
                       <h3 className="font-cormorant text-xl font-bold text-white group-hover:text-gold-200 transition-colors line-clamp-2 leading-snug">
-                        {item.nameRu}
+                        {name}
                       </h3>
                       <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed font-light">
-                        {item.descriptionRu}
+                        {desc}
                       </p>
                     </div>
                   </div>
@@ -360,17 +375,21 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                         className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-full bg-gold-400/10 hover:bg-gold-400 text-gold-300 hover:text-black border border-gold-400/30 transition-all font-cinzel text-[11px] font-bold uppercase tracking-wider"
                       >
                         <ShoppingBag size={13} />
-                        <span>В заказ</span>
+                        <span>{t.catalogAddToBag}</span>
                       </button>
 
                       <a
                         href={`https://wa.me/${STUDIO_INFO.phoneRaw}?text=${encodeURIComponent(
-                          `Здравствуйте, Галина! Меня заинтересовала работа из каталога: "${item.nameRu}". Хочу примерить или заказать похожее.`
+                          lang === 'he'
+                            ? `שלום גלינה! אני מעוניינת בפריט: "${item.nameRu}". אשמח לפרטים ומדידה.`
+                            : lang === 'en'
+                            ? `Hello Galina! I am interested in the lookbook piece: "${item.nameEn || item.nameRu}".`
+                            : `Здравствуйте, Галина! Меня заинтересовала работа из каталога: "${item.nameRu}". Хочу примерить или заказать похожее.`
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        title="Заказать в WhatsApp"
+                        title="WhatsApp"
                         className="p-2 rounded-full bg-noir-800 hover:bg-gold-500 hover:text-black text-gold-400 border border-gold-400/20 transition-colors shrink-0"
                       >
                         <MessageCircle size={15} />
@@ -387,6 +406,9 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {filteredAndSorted.map((item) => {
               const favorite = isInWishlist(item.id);
+              const name = lang === 'en' ? item.nameEn || item.nameRu : item.nameRu;
+              const desc = lang === 'en' ? item.descriptionEn || item.descriptionRu : item.descriptionRu;
+
               return (
                 <div
                   key={item.id}
@@ -397,7 +419,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                   <div className="sm:col-span-5 relative aspect-[3/4] sm:aspect-auto overflow-hidden bg-black">
                     <img
                       src={item.coverImage}
-                      alt={item.nameRu}
+                      alt={name}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
                     />
@@ -419,7 +441,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                           ? 'bg-gold-500 text-black shadow-lg shadow-gold-500/30'
                           : 'bg-black/70 text-white hover:text-gold-300 border border-white/15'
                       }`}
-                      title={favorite ? 'В избранном' : 'В список желаний'}
+                      title="Wishlist"
                     >
                       <Heart size={14} className={favorite ? 'fill-black' : ''} />
                     </button>
@@ -430,7 +452,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
                         <span className="text-[10px] text-slate-400 font-cinzel uppercase tracking-wider">
-                          Ручная работа мастерской
+                          {t.catalogInStock}
                         </span>
                         {item.price && (
                           <span className="font-cormorant text-2xl font-bold text-gold-300">
@@ -440,11 +462,11 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                       </div>
 
                       <h3 className="font-cormorant text-2xl font-bold text-white group-hover:text-gold-200 transition-colors leading-snug">
-                        {item.nameRu}
+                        {name}
                       </h3>
 
                       <p className="text-xs text-slate-300 font-light leading-relaxed">
-                        {item.descriptionRu}
+                        {desc}
                       </p>
 
                       <div className="flex flex-wrap gap-1.5 pt-1">
@@ -466,7 +488,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                         className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase tracking-wider shadow-md hover:scale-105 transition-transform"
                       >
                         <ShoppingBag size={14} />
-                        <span>В заказ</span>
+                        <span>{t.catalogAddToBag}</span>
                       </button>
 
                       <a
@@ -479,7 +501,7 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                         className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-noir-800 hover:bg-noir-750 text-gold-300 border border-gold-400/20 font-cinzel text-xs uppercase tracking-wider"
                       >
                         <MessageCircle size={14} />
-                        <span>Консультация</span>
+                        <span>WhatsApp</span>
                       </a>
                     </div>
                   </div>

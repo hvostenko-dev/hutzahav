@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { STUDIO_INFO } from '../data/portfolioData';
 import { useCart } from '../context/CartContext';
+import { useLanguage } from '../context/LanguageContext';
+import { Language } from '../i18n/translations';
 import {
   Menu,
   X,
@@ -12,18 +14,14 @@ import {
   Heart,
   Gift,
   Ruler,
+  Globe,
 } from 'lucide-react';
 import { Instagram, Facebook, Telegram, WhatsApp } from './Icons';
 import { Logo } from './Logo';
 
-interface NavbarProps {
-  activeLang: 'ru' | 'en' | 'he';
-  onLangChange: (lang: 'ru' | 'en' | 'he') => void;
-  onBookClick: () => void;
-}
-
-export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBookClick }) => {
+export const Navbar: React.FC = () => {
   const { cartCount, wishlist, setIsCartOpen, setIsWishlistOpen, setIsSizeGuideOpen } = useCart();
+  const { lang, setLang, t, dir } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -48,13 +46,19 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
   }, [mobileOpen]);
 
   const navLinks = [
-    { label: 'Услуги ателье', href: '#services', sub: 'Индивидуальный пошив' },
-    { label: 'Калькулятор', href: '#calculator', sub: 'Онлайн-расчет' },
-    { label: 'Процесс пошива', href: '#journey', sub: 'Кутюрный путь' },
-    { label: 'Коллекция', href: '#gallery', sub: 'Lookbook & Заказ' },
-    { label: 'Сертификаты', href: '#gift-certificates', sub: 'Подарок' },
-    { label: 'FAQ', href: '#faq', sub: 'Вопросы & Ответы' },
-    { label: 'Контакты', href: '#contact', sub: 'Ашдод, Shavei Tzion 2' },
+    { label: t.navServices, href: '#services' },
+    { label: t.navCalculator, href: '#calculator' },
+    { label: t.navJourney, href: '#journey' },
+    { label: t.navCatalog, href: '#gallery' },
+    { label: t.navCertificates, href: '#gift-certificates' },
+    { label: t.navFaq, href: '#faq' },
+    { label: t.navContact, href: '#contact' },
+  ];
+
+  const languages: { id: Language; label: string; flag: string }[] = [
+    { id: 'ru', label: 'РУС', flag: '🇷🇺' },
+    { id: 'en', label: 'ENG', flag: '🇬🇧' },
+    { id: 'he', label: 'עברית', flag: '🇮🇱' },
   ];
 
   return (
@@ -91,33 +95,26 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
             {/* Desktop Actions */}
             <div className="hidden sm:flex items-center gap-3">
               
-              {/* Socials & Messengers */}
-              <div className="flex items-center gap-0.5 text-slate-400">
-                <a
-                  href={STUDIO_INFO.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="WhatsApp"
-                  className="p-2 rounded-full hover:text-[#25D366] hover:bg-white/5 transition-colors"
-                >
-                  <WhatsApp size={16} />
-                </a>
-                <a
-                  href={STUDIO_INFO.telegramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Telegram"
-                  className="p-2 rounded-full hover:text-[#229ED9] hover:bg-white/5 transition-colors"
-                >
-                  <Telegram size={16} />
-                </a>
-                <a
-                  href={`mailto:${STUDIO_INFO.email}`}
-                  title={`Написать на почту: ${STUDIO_INFO.email}`}
-                  className="p-2 rounded-full hover:text-gold-300 hover:bg-white/5 transition-colors"
-                >
-                  <Mail size={16} />
-                </a>
+              {/* Language Switcher (RU | EN | HE) */}
+              <div className="flex items-center bg-noir-850 border border-gold-400/30 rounded-full p-0.5">
+                {languages.map((item) => {
+                  const active = lang === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => setLang(item.id)}
+                      className={`px-2.5 py-1 rounded-full text-[11px] font-cinzel font-bold tracking-wider transition-all ${
+                        active
+                          ? 'gold-gradient-bg text-black shadow-md'
+                          : 'text-slate-400 hover:text-white'
+                      }`}
+                      title={item.label}
+                    >
+                      {item.label}
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Wishlist Button */}
@@ -125,8 +122,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
                 type="button"
                 onClick={() => setIsWishlistOpen(true)}
                 className="relative p-2.5 rounded-full bg-noir-850 hover:bg-noir-800 text-slate-300 hover:text-gold-300 border border-white/10 transition-colors"
-                title="Список желаний"
-                aria-label="Открыть список желаний"
+                title={t.navWishlist}
+                aria-label={t.navWishlist}
               >
                 <Heart size={18} className={wishlist.length > 0 ? 'text-gold-400 fill-gold-400' : ''} />
                 {wishlist.length > 0 && (
@@ -141,8 +138,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
                 type="button"
                 onClick={() => setIsCartOpen(true)}
                 className="relative p-2.5 rounded-full bg-noir-850 hover:bg-noir-800 text-slate-300 hover:text-gold-300 border border-gold-400/30 transition-colors group"
-                title="Корзина заказа"
-                aria-label="Открыть корзину заказа"
+                title={t.navCart}
+                aria-label={t.navCart}
               >
                 <ShoppingBag size={18} className="text-gold-400 group-hover:scale-110 transition-transform" />
                 {cartCount > 0 && (
@@ -160,19 +157,32 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
                 className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase tracking-[0.14em] transition-transform hover:scale-105 shadow-lg shadow-gold-500/10 active:scale-95"
               >
                 <Scissors size={14} />
-                <span>Примерка в ателье</span>
+                <span>{t.navBookFitting}</span>
               </a>
             </div>
 
-            {/* Mobile Actions: Wishlist + Bag + Burger */}
-            <div className="flex items-center gap-2 sm:hidden">
+            {/* Mobile Actions: Language + Wishlist + Bag + Burger */}
+            <div className="flex items-center gap-1.5 sm:hidden">
+              {/* Quick Lang Switcher Mobile */}
+              <button
+                type="button"
+                onClick={() => {
+                  const nextLang: Record<Language, Language> = { ru: 'he', he: 'en', en: 'ru' };
+                  setLang(nextLang[lang]);
+                }}
+                className="px-2 py-1.5 rounded-lg bg-noir-850 border border-gold-400/30 text-gold-300 text-[10px] font-cinzel font-bold"
+                title="Сменить язык"
+              >
+                {lang.toUpperCase()}
+              </button>
+
               <button
                 type="button"
                 onClick={() => setIsWishlistOpen(true)}
                 className="relative p-2 rounded-full bg-noir-850 text-slate-300 border border-white/10"
-                aria-label="Список желаний"
+                aria-label={t.navWishlist}
               >
-                <Heart size={17} className={wishlist.length > 0 ? 'text-gold-400 fill-gold-400' : ''} />
+                <Heart size={16} className={wishlist.length > 0 ? 'text-gold-400 fill-gold-400' : ''} />
                 {wishlist.length > 0 && (
                   <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full gold-gradient-bg text-black text-[9px] font-bold flex items-center justify-center">
                     {wishlist.length}
@@ -184,9 +194,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
                 type="button"
                 onClick={() => setIsCartOpen(true)}
                 className="relative p-2 rounded-full bg-noir-850 text-gold-300 border border-gold-400/30"
-                aria-label="Корзина заказа"
+                aria-label={t.navCart}
               >
-                <ShoppingBag size={17} />
+                <ShoppingBag size={16} />
                 {cartCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full gold-gradient-bg text-black text-[9px] font-bold flex items-center justify-center">
                     {cartCount}
@@ -196,7 +206,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
 
               <button
                 onClick={() => setMobileOpen(true)}
-                className="p-2.5 rounded-xl bg-noir-850 border border-gold-400/30 text-gold-300 hover:text-white transition-colors"
+                className="p-2 rounded-xl bg-noir-850 border border-gold-400/30 text-gold-300 hover:text-white transition-colors"
                 aria-label="Открыть мобильное меню"
               >
                 <Menu size={20} />
@@ -223,6 +233,29 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
             </button>
           </div>
 
+          {/* Language Switcher in Mobile Drawer */}
+          <div className="p-4 border-b border-white/10 bg-noir-900/40 flex items-center justify-between">
+            <span className="text-xs font-cinzel text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+              <Globe size={14} className="text-gold-400" />
+              <span>Язык / Language / שפה:</span>
+            </span>
+            <div className="flex items-center gap-1 bg-noir-950 border border-gold-400/30 rounded-xl p-1">
+              {languages.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setLang(item.id)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-cinzel font-bold transition-all ${
+                    lang === item.id
+                      ? 'gold-gradient-bg text-black shadow-md'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Quick Cart & Wishlist Banner in Mobile Menu */}
           <div className="p-4 grid grid-cols-2 gap-3 border-b border-white/10 bg-noir-900/50">
             <button
@@ -233,7 +266,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
               className="flex items-center justify-center gap-2 py-3 px-3 rounded-2xl bg-gold-400/10 border border-gold-400/30 text-gold-300 text-xs font-cinzel font-bold uppercase tracking-wider"
             >
               <ShoppingBag size={15} />
-              <span>Корзина ({cartCount})</span>
+              <span>{t.navCart} ({cartCount})</span>
             </button>
 
             <button
@@ -244,7 +277,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
               className="flex items-center justify-center gap-2 py-3 px-3 rounded-2xl bg-noir-850 border border-white/10 text-slate-300 text-xs font-cinzel font-bold uppercase tracking-wider"
             >
               <Heart size={15} className={wishlist.length > 0 ? 'text-gold-400 fill-gold-400' : ''} />
-              <span>Избранное ({wishlist.length})</span>
+              <span>{t.navWishlist} ({wishlist.length})</span>
             </button>
           </div>
 
@@ -257,14 +290,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
                 onClick={() => setMobileOpen(false)}
                 className="group flex items-center justify-between p-3 rounded-2xl bg-noir-900/40 hover:bg-noir-850 border border-white/5 hover:border-gold-400/30 transition-all active:scale-[0.98]"
               >
-                <div className="flex flex-col">
-                  <span className="font-cormorant text-xl font-bold text-white group-hover:text-gold-200 transition-colors">
-                    {link.label}
-                  </span>
-                  <span className="font-cinzel text-[10px] uppercase tracking-wider text-gold-400/80">
-                    {link.sub}
-                  </span>
-                </div>
+                <span className="font-cormorant text-xl font-bold text-white group-hover:text-gold-200 transition-colors">
+                  {link.label}
+                </span>
                 <span className="font-cormorant text-base text-gold-400/40 group-hover:text-gold-400 transition-colors">
                   0{idx + 1} →
                 </span>
@@ -279,14 +307,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
               }}
               className="w-full flex items-center justify-between p-3 rounded-2xl bg-noir-900/40 border border-white/5 text-left"
             >
-              <div className="flex flex-col">
-                <span className="font-cormorant text-xl font-bold text-white">
-                  Таблица размеров
-                </span>
-                <span className="font-cinzel text-[10px] uppercase tracking-wider text-gold-400/80">
-                  Снятие мерок & посадка
-                </span>
-              </div>
+              <span className="font-cormorant text-xl font-bold text-white">
+                {t.navSizeGuide}
+              </span>
               <Ruler size={16} className="text-gold-400" />
             </button>
           </div>
@@ -331,12 +354,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activeLang, onLangChange, onBook
               className="w-full flex items-center justify-center gap-2.5 py-3.5 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase tracking-[0.18em] shadow-xl"
             >
               <Scissors size={16} />
-              <span>Записаться на примерку в Ашдоде</span>
+              <span>{t.navBookFitting}</span>
             </a>
 
             {/* Address */}
             <div className="text-center text-[11px] text-slate-400 pt-1">
-              {STUDIO_INFO.addressRu}
+              {lang === 'he' ? STUDIO_INFO.addressHe : STUDIO_INFO.addressRu}
             </div>
 
           </div>

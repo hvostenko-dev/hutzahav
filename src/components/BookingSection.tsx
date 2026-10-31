@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { STUDIO_INFO } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 import { Calendar, Clock, Scissors, MessageCircle, Phone, CheckCircle, Sparkles, Send, Mail, MapPin, Navigation, ExternalLink } from 'lucide-react';
 import { Telegram, WhatsApp, Instagram, Facebook } from './Icons';
 
 export const BookingSection: React.FC = () => {
+  const { lang, t, dir } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -19,16 +21,13 @@ export const BookingSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const subject = encodeURIComponent(`Заявка в ателье Hutzahav: ${formData.service} — ${formData.name}`);
-    const messageBody = 
-      `Здравствуйте, Галина!\n\n` +
-      `Заявка на индивидуальный пошив / примерку:\n` +
-      `• Имя: ${formData.name}\n` +
-      `• Телефон: ${formData.phone}\n` +
-      `• Услуга: ${formData.service}\n` +
-      `• Формат: ${formData.type}\n` +
-      `• Дата и время: ${formData.date || 'В ближайшие дни'} в ${formData.time}\n` +
-      `• Пожелания: ${formData.notes || 'Обсудим лично'}`;
+    const subject = encodeURIComponent(`Запрос в ателье Hutzahav: ${formData.service} — ${formData.name}`);
+    const messageBody =
+      lang === 'he'
+        ? `שלום גלינה!\n\nפנייה לתיאום מדידה / תפירה אישית:\n• שם: ${formData.name}\n• טלפון: ${formData.phone}\n• שירות מבוקש: ${formData.service}\n• פורמט: ${formData.type}\n• מועד רצוי: ${formData.date || 'בימים הקרובים'} בשעה ${formData.time}\n• הערות: ${formData.notes || 'נשוחח באופן אישי'}`
+        : lang === 'en'
+        ? `Hello Galina!\n\nBooking inquiry for Hutzahav Atelier:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Service: ${formData.service}\n• Format: ${formData.type}\n• Preferred Date: ${formData.date || 'Upcoming days'} at ${formData.time}\n• Notes: ${formData.notes || 'Discuss in person'}`
+        : `Здравствуйте, Галина!\n\nЗаявка на индивидуальный пошив / примерку:\n• Имя: ${formData.name}\n• Телефон: ${formData.phone}\n• Услуга: ${formData.service}\n• Формат: ${formData.type}\n• Дата и время: ${formData.date || 'В ближайшие дни'} в ${formData.time}\n• Пожелания: ${formData.notes || 'Обсудим лично'}`;
 
     if (sendMethod === 'whatsapp') {
       window.open(`https://wa.me/${STUDIO_INFO.phoneRaw}?text=${encodeURIComponent(messageBody)}`, '_blank');
@@ -52,15 +51,15 @@ export const BookingSection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16 space-y-3 sm:space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-noir-850 border border-gold-400/30 text-gold-300 text-[11px] sm:text-xs tracking-[0.2em] font-cinzel uppercase">
             <MapPin size={13} className="text-gold-400" />
-            <span>Ателье в Ашдоде • Shavei Tzion 2</span>
+            <span>{t.bookingLocationHeading}</span>
           </div>
 
           <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-            Контакты & Запись на Примерку
+            {t.bookingTitle}
           </h2>
 
           <p className="text-slate-400 text-sm sm:text-base font-light">
-            Приглашаем вас в нашу мастерскую в Ашдоде на чашку кофе, подбор премиальных тканей и снятие анатомических мерок.
+            {t.bookingSubtitle}
           </p>
         </div>
 
@@ -82,7 +81,7 @@ export const BookingSection: React.FC = () => {
             </div>
             <div>
               <div className="font-cinzel text-xs font-bold text-white uppercase tracking-wider">WhatsApp</div>
-              <div className="text-[11px] text-slate-400 mt-0.5">Быстрый чат с мастером</div>
+              <div className="text-[11px] text-slate-400 mt-0.5">{lang === 'he' ? 'צ׳אט מהיר עם המעצבת' : lang === 'en' ? 'Quick chat with Galina' : 'Быстрый чат с мастером'}</div>
             </div>
           </a>
 
@@ -97,7 +96,7 @@ export const BookingSection: React.FC = () => {
               <div className="w-10 h-10 rounded-xl bg-[#229ED9]/15 text-[#229ED9] flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Telegram size={20} />
               </div>
-              <span className="text-[10px] uppercase font-cinzel tracking-wider text-[#229ED9] font-semibold">Чат</span>
+              <span className="text-[10px] uppercase font-cinzel tracking-wider text-[#229ED9] font-semibold">Chat</span>
             </div>
             <div>
               <div className="font-cinzel text-xs font-bold text-white uppercase tracking-wider">Telegram</div>
@@ -114,10 +113,10 @@ export const BookingSection: React.FC = () => {
               <div className="w-10 h-10 rounded-xl bg-gold-400/15 text-gold-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Mail size={20} />
               </div>
-              <span className="text-[10px] uppercase font-cinzel tracking-wider text-gold-400 font-semibold">Почта</span>
+              <span className="text-[10px] uppercase font-cinzel tracking-wider text-gold-400 font-semibold">Email</span>
             </div>
             <div>
-              <div className="font-cinzel text-xs font-bold text-white uppercase tracking-wider">Написать Email</div>
+              <div className="font-cinzel text-xs font-bold text-white uppercase tracking-wider">{lang === 'he' ? 'דואר אלקטרוני' : lang === 'en' ? 'Send Email' : 'Написать Email'}</div>
               <div className="text-[11px] text-slate-400 mt-0.5 truncate" title={STUDIO_INFO.email}>
                 {STUDIO_INFO.email}
               </div>
@@ -133,10 +132,10 @@ export const BookingSection: React.FC = () => {
               <div className="w-10 h-10 rounded-xl bg-gold-400/15 text-gold-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Phone size={19} />
               </div>
-              <span className="text-[10px] uppercase font-cinzel tracking-wider text-gold-400 font-semibold">Звонок</span>
+              <span className="text-[10px] uppercase font-cinzel tracking-wider text-gold-400 font-semibold">Direct</span>
             </div>
             <div>
-              <div className="font-cinzel text-xs font-bold text-white uppercase tracking-wider">Телефон ателье</div>
+              <div className="font-cinzel text-xs font-bold text-white uppercase tracking-wider">{lang === 'he' ? 'טלפון ישיר' : lang === 'en' ? 'Studio Phone' : 'Телефон ателье'}</div>
               <div className="text-[11px] text-slate-400 mt-0.5">{STUDIO_INFO.phone}</div>
             </div>
           </a>
@@ -146,16 +145,16 @@ export const BookingSection: React.FC = () => {
         {/* Main Content Grid: Interactive Form & Google Maps */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Left Column: Interactive Booking Form with WhatsApp / Telegram / Email options */}
+          {/* Left Column: Form */}
           <div className="lg:col-span-6">
             <div className="p-6 sm:p-8 rounded-3xl luxury-card bg-noir-850 border border-gold-400/30 shadow-2xl space-y-6">
               
               <div>
                 <h3 className="font-cormorant text-2xl sm:text-3xl font-bold text-white">
-                  Запись на индивидуальную примерку
+                  {lang === 'he' ? 'תיאום מדידה אישית באטלייה' : lang === 'en' ? 'Schedule a Private Fitting' : 'Запись на индивидуальную примерку'}
                 </h3>
                 <p className="text-xs text-slate-400 mt-1">
-                  Выберите способ связи — заявка моментально откроется в WhatsApp, Telegram или почтовом клиенте
+                  {lang === 'he' ? 'ההודעה תיפתח מיידית בווטסאפ, טלגרם או בדוא״ל' : lang === 'en' ? 'Select your channel — the request will open in WhatsApp, Telegram or Email' : 'Выберите способ связи — заявка моментально откроется в WhatsApp, Telegram или почтовом клиенте'}
                 </p>
               </div>
 
@@ -163,10 +162,10 @@ export const BookingSection: React.FC = () => {
                 <div className="p-8 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 text-center space-y-4">
                   <CheckCircle size={44} className="text-emerald-400 mx-auto" />
                   <h4 className="font-cormorant text-2xl font-bold text-white">
-                    Заявка сформирована!
+                    {lang === 'he' ? 'הפנייה מוכנה לשליחה!' : lang === 'en' ? 'Request Prepared!' : 'Заявка сформирована!'}
                   </h4>
                   <p className="text-xs text-slate-300">
-                    Окно отправки было открыто. Вы также можете напрямую связаться с Галиной:
+                    {lang === 'he' ? 'תוכלי גם לפנות לגלינה ישירות בכל עת:' : lang === 'en' ? 'You can also reach Galina directly:' : 'Вы также можете напрямую связаться с Галиной:'}
                   </p>
                   <div className="flex flex-wrap gap-3 justify-center pt-2">
                     <a
@@ -181,7 +180,7 @@ export const BookingSection: React.FC = () => {
                       href={`mailto:${STUDIO_INFO.email}`}
                       className="px-5 py-2.5 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase"
                     >
-                      Написать на Email
+                      Email
                     </a>
                   </div>
                 </div>
@@ -192,28 +191,28 @@ export const BookingSection: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block font-cinzel text-[11px] font-semibold text-gold-300 tracking-wider uppercase mb-1.5">
-                        Ваше имя *
+                        {lang === 'he' ? 'שם מלא *' : lang === 'en' ? 'Your Name *' : 'Ваше имя *'}
                       </label>
                       <input
                         type="text"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="Например: Анна"
+                        placeholder={t.bookingNamePlaceholder}
                         className="w-full bg-noir-800 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors"
                       />
                     </div>
 
                     <div>
                       <label className="block font-cinzel text-[11px] font-semibold text-gold-300 tracking-wider uppercase mb-1.5">
-                        Телефон / WhatsApp *
+                        {lang === 'he' ? 'טלפון / ווטסאפ *' : lang === 'en' ? 'Phone / WhatsApp *' : 'Телефон / WhatsApp *'}
                       </label>
                       <input
                         type="tel"
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+972..."
+                        placeholder={t.bookingPhonePlaceholder}
                         className="w-full bg-noir-800 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors"
                       />
                     </div>
@@ -223,22 +222,25 @@ export const BookingSection: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block font-cinzel text-[11px] font-semibold text-gold-300 tracking-wider uppercase mb-1.5">
-                        Формат встречи:
+                        {lang === 'he' ? 'אופי הפגישה:' : lang === 'en' ? 'Meeting Format:' : 'Формат встречи:'}
                       </label>
                       <select
                         value={formData.type}
                         onChange={(e) => setFormData({ ...formData, type: e.target.value })}
                         className="w-full bg-noir-800 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-400"
                       >
-                        <option value="Визит в ателье (Ашдод, Shavei Tzion 2)">Визит в ателье (Ашдод)</option>
-                        <option value="Онлайн-консультация (видеосвязь)">Онлайн-консультация</option>
-                        <option value="Выезд мастера">Выезд мастера</option>
+                        <option value="Визит в ателье (Ашдод, Shavei Tzion 2)">
+                          {lang === 'he' ? 'הגעה לאטלייה (אשדוד, שבי ציון 2)' : lang === 'en' ? 'Studio Visit (Ashdod)' : 'Визит в ателье (Ашдод)'}
+                        </option>
+                        <option value="Онлайн-консультация (видеосвязь)">
+                          {lang === 'he' ? 'ייעוץ וידאו אונליין' : lang === 'en' ? 'Remote Video Consultation' : 'Онлайн-консультация'}
+                        </option>
                       </select>
                     </div>
 
                     <div>
                       <label className="block font-cinzel text-[11px] font-semibold text-gold-300 tracking-wider uppercase mb-1.5">
-                        Желаемая дата:
+                        {lang === 'he' ? 'תאריך רצוי:' : lang === 'en' ? 'Preferred Date:' : 'Желаемая дата:'}
                       </label>
                       <input
                         type="date"
@@ -249,35 +251,16 @@ export const BookingSection: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Service selection */}
-                  <div>
-                    <label className="block font-cinzel text-[11px] font-semibold text-gold-300 tracking-wider uppercase mb-1.5">
-                      Интересующая услуга:
-                    </label>
-                    <select
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full bg-noir-800 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-400"
-                    >
-                      <option value="Пошив вечернего / праздничного платья">Пошив вечернего / праздничного платья</option>
-                      <option value="Платье из льна с авторской ручной росписью">Платье из льна с авторской ручной росписью</option>
-                      <option value="Арт-жакет / пальто в технике нуно-войлока">Арт-жакет / пальто в технике нуно-войлока</option>
-                      <option value="Подгонка по фигуре / Ремонт брендовой одежды">Подгонка по фигуре / Ремонт брендовой одежды</option>
-                      <option value="Пошив штор и домашнего текстиля">Пошив штор и домашнего текстиля</option>
-                      <option value="Сценические и карнавальные костюмы">Сценические и карнавальные костюмы</option>
-                    </select>
-                  </div>
-
                   {/* Notes */}
                   <div>
                     <label className="block font-cinzel text-[11px] font-semibold text-gold-300 tracking-wider uppercase mb-1.5">
-                      Пожелания к наряду:
+                      {lang === 'he' ? 'פרטים או הערות לבגד:' : lang === 'en' ? 'Vision, Fabric, or Event Notes:' : 'Пожелания к наряду:'}
                     </label>
                     <textarea
                       rows={3}
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                      placeholder="Опишите фасон, повод, предпочтения по ткани..."
+                      placeholder={t.bookingNotesPlaceholder}
                       className="w-full bg-noir-800 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-gold-400"
                     />
                   </div>
@@ -285,7 +268,7 @@ export const BookingSection: React.FC = () => {
                   {/* Sending Channel Choice */}
                   <div>
                     <label className="block font-cinzel text-[11px] font-semibold text-gold-300 tracking-wider uppercase mb-2">
-                      Куда отправить заявку:
+                      {lang === 'he' ? 'ערוץ שליחה מועדף:' : lang === 'en' ? 'Send Request Via:' : 'Куда отправить заявку:'}
                     </label>
                     <div className="grid grid-cols-3 gap-2">
                       <button
@@ -331,7 +314,7 @@ export const BookingSection: React.FC = () => {
                     className="w-full flex items-center justify-center gap-2.5 py-4 px-8 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] transition-transform active:scale-95"
                   >
                     <Send size={16} />
-                    <span>Отправить запрос ({sendMethod.toUpperCase()})</span>
+                    <span>{t.bookingSubmitBtn}</span>
                   </button>
                 </form>
               )}
@@ -363,7 +346,7 @@ export const BookingSection: React.FC = () => {
                     <MapPin size={16} />
                   </div>
                   <div>
-                    <div className="font-cinzel text-xs font-bold text-white">HUTZAHAV АТЕЛЬЕ</div>
+                    <div className="font-cinzel text-xs font-bold text-white">HUTZAHAV • חוט זהב</div>
                     <div className="text-[10px] text-gold-300 font-mono">Shavei Tzion 2, Ashdod</div>
                   </div>
                 </div>
@@ -378,7 +361,7 @@ export const BookingSection: React.FC = () => {
                   className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-noir-800 hover:bg-gold-500 hover:text-black border border-white/10 text-slate-200 text-xs font-cinzel font-medium transition-all"
                 >
                   <MapPin size={14} className="text-gold-400" />
-                  <span>Google Maps</span>
+                  <span>{t.bookingOpenGoogleMaps}</span>
                   <ExternalLink size={12} className="opacity-60" />
                 </a>
 
@@ -389,7 +372,7 @@ export const BookingSection: React.FC = () => {
                   className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-noir-800 hover:bg-[#33ccff] hover:text-black border border-white/10 text-slate-200 text-xs font-cinzel font-medium transition-all"
                 >
                   <Navigation size={14} className="text-[#33ccff]" />
-                  <span>Поехать в Waze</span>
+                  <span>{t.bookingOpenWaze}</span>
                 </a>
 
                 <a
@@ -398,7 +381,7 @@ export const BookingSection: React.FC = () => {
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-noir-800 hover:bg-gold-500 hover:text-black border border-white/10 text-slate-200 text-xs font-cinzel font-medium transition-all"
                 >
-                  <span>Easy.co.il</span>
+                  <span>{t.bookingOpenEasy}</span>
                   <ExternalLink size={12} className="opacity-60" />
                 </a>
               </div>
@@ -413,13 +396,13 @@ export const BookingSection: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-cinzel text-xs text-gold-400 tracking-wider uppercase font-semibold">
-                    Точный адрес студии:
+                    {lang === 'he' ? 'כתובת האטלייה:' : lang === 'en' ? 'Studio Address:' : 'Точный адрес студии:'}
                   </div>
                   <div className="font-cormorant text-xl font-bold text-white mt-1">
-                    {STUDIO_INFO.addressRu}
+                    {lang === 'he' ? STUDIO_INFO.addressHe : STUDIO_INFO.addressRu}
                   </div>
                   <div className="text-xs text-slate-400 mt-0.5 font-mono">
-                    {STUDIO_INFO.addressHe} • Shavei Tzion 2, Ashdod
+                    Shavei Tzion 2, Ashdod, Israel
                   </div>
                 </div>
               </div>
@@ -430,11 +413,10 @@ export const BookingSection: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-cinzel text-xs text-gold-400 tracking-wider uppercase font-semibold">
-                    Часы работы:
+                    {lang === 'he' ? 'שעות פעילות:' : lang === 'en' ? 'Working Hours:' : 'Часы работы:'}
                   </div>
                   <div className="text-xs text-slate-300 mt-1 leading-relaxed">
-                    Воскресенье — Четверг: <strong className="text-white">09:00 — 19:00</strong><br />
-                    Пятница: <strong className="text-white">09:00 — 14:00</strong> (по предварительной записи)
+                    {lang === 'he' ? 'ראשון — חמישי: 09:00 — 19:00 | שישי: 09:00 — 14:00 (בתיאום מראש)' : lang === 'en' ? 'Sunday — Thursday: 09:00 — 19:00 | Friday: 09:00 — 14:00 (by appointment)' : 'Воскресенье — Четверг: 09:00 — 19:00 | Пятница: 09:00 — 14:00 (по предварительной записи)'}
                   </div>
                 </div>
               </div>
@@ -445,7 +427,7 @@ export const BookingSection: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-cinzel text-xs text-gold-400 tracking-wider uppercase font-semibold">
-                    Официальная почта:
+                    {lang === 'he' ? 'דוא״ל רשמי:' : lang === 'en' ? 'Official Email:' : 'Официальная почта:'}
                   </div>
                   <a
                     href={`mailto:${STUDIO_INFO.email}`}
