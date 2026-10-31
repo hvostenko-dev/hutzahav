@@ -11,6 +11,10 @@
   </p>
 
   <p align="center">
+    <a href="https://hutzahav.vercel.app/"><img src="https://img.shields.io/badge/Live_Website-hutzahav.vercel.app-D5B46D?style=for-the-badge&logo=vercel&logoColor=black" alt="Live Demo" /></a>
+  </p>
+
+  <p align="center">
     <a href="https://wa.me/972585877708"><img src="https://img.shields.io/badge/WhatsApp-Запись_на_примерку-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="WhatsApp" /></a>
     <a href="https://t.me/+972585877708"><img src="https://img.shields.io/badge/Telegram-Чат_с_мастером-229ED9?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram" /></a>
     <a href="mailto:galahvost74@gmail.com"><img src="https://img.shields.io/badge/Email-galahvost74@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.hutzahav.com/sitemap.xml
+Sitemap: https://hutzahav.vercel.app/sitemap.xml
