@@ -196,7 +196,7 @@ export const BespokeCalculator: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Controls Column (7 cols) */}
-          <div className="lg:col-span-7 space-y-8 p-6 sm:p-8 rounded-3xl luxury-card bg-noir-850">
+          <div className="lg:col-span-7 space-y-6 sm:space-y-8 p-4 sm:p-8 rounded-3xl luxury-card bg-noir-850">
             
             {/* Step 1: Service */}
             <div>
@@ -304,7 +304,7 @@ export const BespokeCalculator: React.FC = () => {
           </div>
 
           {/* Result Column (5 cols) */}
-          <div className="lg:col-span-5 p-6 sm:p-8 rounded-3xl luxury-card bg-gradient-to-b from-noir-850 to-noir-900 border-2 border-gold-400/40 shadow-2xl space-y-6">
+          <div className="lg:col-span-5 p-4 sm:p-8 rounded-3xl luxury-card bg-gradient-to-b from-noir-850 to-noir-900 border-2 border-gold-400/40 shadow-2xl space-y-5 sm:space-y-6">
             
             <div className="flex items-center justify-between pb-4 border-b border-white/10">
               <span className="font-cinzel text-xs uppercase tracking-widest text-slate-400">
@@ -316,7 +316,7 @@ export const BespokeCalculator: React.FC = () => {
             </div>
 
             <div>
-              <div className="font-cormorant text-5xl sm:text-6xl font-bold gold-gradient-text tracking-tight">
+              <div className="font-cormorant text-3xl sm:text-5xl lg:text-6xl font-bold gold-gradient-text tracking-tight break-words">
                 ~{calculation.min} – {calculation.max} ₪
               </div>
               <div className="text-xs text-slate-400 mt-2">

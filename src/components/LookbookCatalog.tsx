@@ -157,10 +157,10 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
         </div>
 
         {/* Filter Navigation Bar */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-5 mb-8 sm:mb-10 pb-6 border-b border-white/10">
+        <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 sm:gap-5 mb-8 sm:mb-10 pb-6 border-b border-white/10">
           
           {/* Category Pills */}
-          <div className="w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0 scrollbar-none flex items-center gap-2 justify-start lg:justify-center">
+          <div className="w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0 scrollbar-none flex items-center gap-2 justify-start lg:justify-center -mx-4 px-4 sm:mx-0 sm:px-0">
             {CATEGORIES.map((cat) => {
               const active = category === cat.id;
               const count = counts[cat.id] || 0;
@@ -177,16 +177,16 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                 <button
                   key={cat.id}
                   onClick={() => setCategory(cat.id)}
-                  className={`inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full font-cinzel text-xs uppercase tracking-wider transition-all duration-300 shrink-0 ${
+                  className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full font-cinzel text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-300 shrink-0 ${
                     active
-                      ? 'gold-gradient-bg text-black font-bold shadow-lg shadow-gold-500/25 scale-105'
+                      ? 'gold-gradient-bg text-black font-bold shadow-lg shadow-gold-500/25 scale-102'
                       : 'bg-noir-850 text-slate-300 hover:text-white hover:bg-noir-800 border border-white/10'
                   }`}
                 >
                   {getIcon(cat.id)}
                   <span>{title}</span>
                   <span
-                    className={`ml-1 text-[11px] px-1.5 py-0.2 rounded-full ${
+                    className={`ml-1 text-[10px] sm:text-[11px] px-1.5 py-0.2 rounded-full ${
                       active ? 'bg-black/20 text-black' : 'bg-white/10 text-slate-400'
                     }`}
                   >
@@ -198,17 +198,17 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
           </div>
 
           {/* Search, Sort & Layout toggle */}
-          <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto justify-between lg:justify-end">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full lg:w-auto justify-end">
             
             {/* Search */}
-            <div className="relative flex-1 sm:w-56">
+            <div className="relative w-full sm:w-52 md:w-56">
               <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={t.catalogSearchPlaceholder}
-                className="w-full bg-noir-850 border border-white/10 rounded-full pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors"
+                className="w-full bg-noir-850 border border-white/10 rounded-full pl-9 pr-8 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors"
               />
               {search && (
                 <button
@@ -220,40 +220,42 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
               )}
             </div>
 
-            {/* Sorting Dropdown */}
-            <div className="relative shrink-0">
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as any)}
-                className="bg-noir-850 border border-white/10 rounded-full px-3.5 py-2 text-xs text-slate-300 focus:outline-none focus:border-gold-400 transition-colors cursor-pointer font-cinzel"
-              >
-                <option value="featured">{t.catalogSortDefault}</option>
-                <option value="price_asc">{t.catalogSortPriceAsc}</option>
-                <option value="price_desc">{t.catalogSortPriceDesc}</option>
-                <option value="name">{t.catalogSortName}</option>
-              </select>
-            </div>
+            <div className="flex items-center justify-between sm:justify-start gap-2">
+              {/* Sorting Dropdown */}
+              <div className="relative flex-1 sm:flex-initial">
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as any)}
+                  className="w-full sm:w-auto bg-noir-850 border border-white/10 rounded-full px-3 py-2 text-xs text-slate-300 focus:outline-none focus:border-gold-400 transition-colors cursor-pointer font-cinzel truncate"
+                >
+                  <option value="featured">{t.catalogSortDefault}</option>
+                  <option value="price_asc">{t.catalogSortPriceAsc}</option>
+                  <option value="price_desc">{t.catalogSortPriceDesc}</option>
+                  <option value="name">{t.catalogSortName}</option>
+                </select>
+              </div>
 
-            {/* View Mode Toggle */}
-            <div className="flex items-center bg-noir-850 border border-white/10 rounded-full p-1 text-slate-400 shrink-0">
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`p-1.5 rounded-full transition-colors ${
-                  viewMode === 'grid' ? 'bg-gold-500 text-black' : 'hover:text-white'
-                }`}
-                title="Grid"
-              >
-                <Grid size={15} />
-              </button>
-              <button
-                onClick={() => setViewMode('editorial')}
-                className={`p-1.5 rounded-full transition-colors ${
-                  viewMode === 'editorial' ? 'bg-gold-500 text-black' : 'hover:text-white'
-                }`}
-                title="Editorial"
-              >
-                <LayoutList size={15} />
-              </button>
+              {/* View Mode Toggle */}
+              <div className="flex items-center bg-noir-850 border border-white/10 rounded-full p-1 text-slate-400 shrink-0">
+                <button
+                  onClick={() => setViewMode('grid')}
+                  className={`p-1.5 rounded-full transition-colors ${
+                    viewMode === 'grid' ? 'bg-gold-500 text-black' : 'hover:text-white'
+                  }`}
+                  title="Grid"
+                >
+                  <Grid size={15} />
+                </button>
+                <button
+                  onClick={() => setViewMode('editorial')}
+                  className={`p-1.5 rounded-full transition-colors ${
+                    viewMode === 'editorial' ? 'bg-gold-500 text-black' : 'hover:text-white'
+                  }`}
+                  title="Editorial"
+                >
+                  <LayoutList size={15} />
+                </button>
+              </div>
             </div>
 
           </div>
@@ -478,16 +480,16 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-3">
+                    <div className="pt-4 border-t border-white/10 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2.5">
                       <button
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
                           addToCart(item, 'Индивидуальный пошив');
                         }}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase tracking-wider shadow-md hover:scale-105 transition-transform"
+                        className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-[11px] sm:text-xs uppercase tracking-wider shadow-md hover:scale-105 transition-transform"
                       >
-                        <ShoppingBag size={14} />
+                        <ShoppingBag size={13} />
                         <span>{t.catalogAddToBag}</span>
                       </button>
 
@@ -498,9 +500,9 @@ export const LookbookCatalog: React.FC<LookbookCatalogProps> = ({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-noir-800 hover:bg-noir-750 text-gold-300 border border-gold-400/20 font-cinzel text-xs uppercase tracking-wider"
+                        className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-full bg-noir-800 hover:bg-noir-750 text-gold-300 border border-gold-400/20 font-cinzel text-[11px] sm:text-xs uppercase tracking-wider"
                       >
-                        <MessageCircle size={14} />
+                        <MessageCircle size={13} />
                         <span>WhatsApp</span>
                       </a>
                     </div>

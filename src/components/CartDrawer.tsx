@@ -61,11 +61,11 @@ export const CartDrawer: React.FC = () => {
       onClick={() => setIsCartOpen(false)}
     >
       <div
-        className="w-full max-w-lg h-full bg-noir-900 border-l border-gold-400/30 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-300"
+        className="w-full max-w-full sm:max-w-lg h-full bg-noir-900 border-l border-gold-400/30 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-5 sm:p-6 border-b border-white/10 flex items-center justify-between bg-noir-950">
+        <div className="p-4 sm:p-6 border-b border-white/10 flex items-center justify-between bg-noir-950">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl gold-gradient-bg text-black flex items-center justify-center font-bold">
               <ShoppingBag size={20} />
@@ -101,7 +101,7 @@ export const CartDrawer: React.FC = () => {
         </div>
 
         {/* Body Items List */}
-        <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3.5 sm:space-y-4">
           {cart.length === 0 ? (
             <div className="text-center py-20 space-y-4">
               <div className="w-16 h-16 rounded-full bg-noir-800 border border-white/10 flex items-center justify-center mx-auto text-slate-600">
@@ -257,7 +257,7 @@ export const CartDrawer: React.FC = () => {
 
         {/* Footer Checkout Area */}
         {cart.length > 0 && (
-          <div className="p-5 sm:p-6 bg-noir-950 border-t border-gold-400/20 space-y-4">
+          <div className="p-4 sm:p-6 bg-noir-950 border-t border-gold-400/20 space-y-4">
             
             {/* Total */}
             <div className="flex items-baseline justify-between">

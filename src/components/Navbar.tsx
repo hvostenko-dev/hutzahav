@@ -185,7 +185,7 @@ export const Navbar: React.FC = () => {
             </div>
 
             {/* 4. TABLET & MOBILE ACTIONS CLUSTER (Balanced & Symmetrical) */}
-            <div className="flex items-center gap-2 lg:hidden shrink-0">
+            <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden shrink-0">
               
               {/* Quick Language Toggle Pill */}
               <button
@@ -194,7 +194,7 @@ export const Navbar: React.FC = () => {
                   const nextLang: Record<Language, Language> = { ru: 'he', he: 'en', en: 'ru' };
                   setLang(nextLang[lang]);
                 }}
-                className="px-2.5 py-1.5 rounded-xl bg-noir-900 border border-gold-400/30 text-gold-300 text-[11px] font-cinzel font-bold tracking-wider hover:bg-noir-850 active:scale-95 transition-all"
+                className="px-2 sm:px-2.5 py-1.5 rounded-xl bg-noir-900 border border-gold-400/30 text-gold-300 text-[11px] font-cinzel font-bold tracking-wider hover:bg-noir-850 active:scale-95 transition-all"
                 title="Сменить язык"
               >
                 {lang === 'he' ? 'עב' : lang.toUpperCase()}
@@ -204,7 +204,7 @@ export const Navbar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsWishlistOpen(true)}
-                className="relative p-2 rounded-xl bg-noir-900 border border-white/10 text-slate-300 active:scale-95 transition-all"
+                className="relative p-1.5 sm:p-2 rounded-xl bg-noir-900 border border-white/10 text-slate-300 active:scale-95 transition-all"
                 aria-label={t.navWishlist}
               >
                 <Heart size={17} className={wishlist.length > 0 ? 'text-gold-400 fill-gold-400' : ''} />
@@ -219,7 +219,7 @@ export const Navbar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsCartOpen(true)}
-                className="relative p-2 rounded-xl bg-noir-900 border border-gold-400/30 text-gold-300 active:scale-95 transition-all"
+                className="relative p-1.5 sm:p-2 rounded-xl bg-noir-900 border border-gold-400/30 text-gold-300 active:scale-95 transition-all"
                 aria-label={t.navCart}
               >
                 <ShoppingBag size={17} />
@@ -233,7 +233,7 @@ export const Navbar: React.FC = () => {
               {/* Burger Menu Button (Mobile & Tablet) */}
               <button
                 onClick={() => setMobileOpen(true)}
-                className="p-2 rounded-xl bg-noir-900 border border-gold-400/40 text-gold-300 hover:text-white hover:bg-noir-850 transition-all active:scale-95 ml-0.5"
+                className="p-1.5 sm:p-2 rounded-xl bg-noir-900 border border-gold-400/40 text-gold-300 hover:text-white hover:bg-noir-850 transition-all active:scale-95"
                 aria-label="Открыть мобильное меню"
               >
                 <Menu size={20} />
@@ -336,7 +336,7 @@ export const Navbar: React.FC = () => {
                 setMobileOpen(false);
                 setIsSizeGuideOpen(true);
               }}
-              className="w-full flex items-center justify-between p-3.5 rounded-2xl bg-noir-900/50 hover:bg-noir-850 border border-white/5 hover:border-gold-400/30 transition-all text-left"
+              className="w-full flex items-center justify-between p-3.5 rounded-2xl bg-noir-900/50 hover:bg-noir-850 border border-white/5 hover:border-gold-400/30 transition-all text-start"
             >
               <span className="font-cormorant text-xl sm:text-2xl font-bold text-white">
                 {t.navSizeGuide}

@@ -19,29 +19,29 @@ export const SizeGuideModal: React.FC = () => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
       onClick={() => setIsSizeGuideOpen(false)}
     >
       <div
-        className="relative w-full max-w-3xl max-h-[90vh] bg-noir-900 border border-gold-400/30 rounded-3xl shadow-2xl overflow-y-auto p-6 sm:p-8 space-y-6"
+        className="relative w-full max-w-3xl max-h-[92vh] bg-noir-900 border border-gold-400/30 rounded-3xl shadow-2xl overflow-y-auto p-4 sm:p-6 sm:p-8 space-y-5 sm:space-y-6"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={() => setIsSizeGuideOpen(false)}
-          className="absolute top-5 right-5 p-2 rounded-full bg-noir-800 text-slate-400 hover:text-white border border-white/10 transition-colors"
+          className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 p-2 rounded-full bg-noir-800 text-slate-400 hover:text-white border border-white/10 transition-colors z-10"
           aria-label="Закрыть таблицу размеров"
         >
           <X size={18} />
         </button>
 
         {/* Header */}
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-400/10 text-gold-300 font-cinzel text-xs uppercase tracking-widest border border-gold-400/20">
+        <div className="space-y-2 pr-8 sm:pr-0">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-400/10 text-gold-300 font-cinzel text-[11px] sm:text-xs uppercase tracking-widest border border-gold-400/20">
             <Ruler size={13} className="text-gold-400" />
             <span>Гид по размерам & Посадка Hutzahav</span>
           </div>
-          <h2 className="font-cormorant text-3xl sm:text-4xl font-bold text-white">
+          <h2 className="font-cormorant text-2xl sm:text-4xl font-bold text-white leading-snug break-words">
             Таблица Размеров и Снятие Мерок
           </h2>
           <p className="text-slate-400 text-xs sm:text-sm font-light">
@@ -50,7 +50,7 @@ export const SizeGuideModal: React.FC = () => {
         </div>
 
         {/* Size Table */}
-        <div className="overflow-x-auto rounded-2xl border border-white/10 bg-noir-950">
+        <div className="overflow-x-auto rounded-2xl border border-white/10 bg-noir-950 -mx-1 sm:mx-0">
           <table className="w-full text-left text-xs sm:text-sm">
             <thead>
               <tr className="border-b border-gold-400/20 bg-noir-850 font-cinzel text-gold-300 uppercase tracking-wider text-[11px]">

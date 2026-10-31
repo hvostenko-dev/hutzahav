@@ -66,9 +66,9 @@ export const AtelierAtmosphere: React.FC = () => {
                 <span>Основательница Ателье</span>
               </div>
 
-              <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+              <h2 className="font-cormorant text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight break-words">
                 Галина Хвостенко
-                <span className="block gold-gradient-text text-2xl sm:text-3xl lg:text-4xl mt-1 font-normal font-cinzel">
+                <span className="block gold-gradient-text text-xl sm:text-3xl lg:text-4xl mt-1 font-normal font-cinzel break-words">
                   HUTZAHAV ATELIER • חוט זהב
                 </span>
               </h2>

@@ -259,8 +259,8 @@ export const AtelierServices: React.FC = () => {
                 </div>
 
                 {/* Details */}
-                <div className="p-6 sm:p-7 space-y-4">
-                  <h3 className="font-cormorant text-2xl font-bold text-white group-hover:text-gold-200 transition-colors leading-snug">
+                <div className="p-4 sm:p-7 space-y-3 sm:space-y-4">
+                  <h3 className="font-cormorant text-xl sm:text-2xl font-bold text-white group-hover:text-gold-200 transition-colors leading-snug">
                     {item.title}
                   </h3>
 
@@ -281,7 +281,7 @@ export const AtelierServices: React.FC = () => {
               </div>
 
               {/* Action Bar */}
-              <div className="p-6 sm:p-7 pt-0">
+              <div className="p-4 sm:p-7 pt-0">
                 <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs">
                   <div className="flex items-center gap-1.5 text-slate-400 font-cinzel">
                     <Clock size={13} className="text-gold-400" />

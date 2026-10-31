@@ -51,7 +51,7 @@ export const TestimonialsSection: React.FC = () => {
           {reviews.map((rev, idx) => (
             <div
               key={idx}
-              className="p-8 rounded-3xl luxury-card bg-noir-800/70 border border-gold-400/20 flex flex-col justify-between space-y-6 relative group hover:border-gold-400/50 transition-all duration-300"
+              className="p-5 sm:p-8 rounded-3xl luxury-card bg-noir-800/70 border border-gold-400/20 flex flex-col justify-between space-y-5 sm:space-y-6 relative group hover:border-gold-400/50 transition-all duration-300"
             >
               <div className="space-y-4">
                 {/* Stars and Quote */}

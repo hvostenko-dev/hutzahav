@@ -53,14 +53,14 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-noir-950 text-[#E8E6DF] selection:bg-gold-500 selection:text-black">
+    <div className="min-h-screen bg-noir-950 text-[#E8E6DF] selection:bg-gold-500 selection:text-black overflow-x-hidden w-full max-w-full relative">
       {/* Top Delivery & Atelier Notice Bar */}
       <DeliveryNoticeBar />
 
       {/* Haute Couture Navbar with Multi-Language Switcher (RU | ENG | עברית) */}
       <Navbar />
 
-      <main>
+      <main className="w-full max-w-full overflow-x-hidden">
         {/* Editorial Hero with the specified single Model Photo & Luxury Framing */}
         <HeroAtelier
           onExploreClick={() => scrollToSection('gallery')}

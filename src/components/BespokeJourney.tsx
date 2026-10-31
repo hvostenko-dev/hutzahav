@@ -55,19 +55,19 @@ export const BespokeJourney: React.FC = () => {
           {steps.map((st, idx) => (
             <div
               key={idx}
-              className="relative p-8 rounded-3xl luxury-card bg-noir-800/80 border border-gold-400/20 flex flex-col justify-between space-y-6 group hover:border-gold-400/50 transition-all duration-300"
+              className="relative p-5 sm:p-8 rounded-3xl luxury-card bg-noir-800/80 border border-gold-400/20 flex flex-col justify-between space-y-5 sm:space-y-6 group hover:border-gold-400/50 transition-all duration-300"
             >
               <div>
                 <div className="flex items-center justify-between">
                   <div className="w-12 h-12 rounded-2xl bg-noir-900 border border-gold-400/30 flex items-center justify-center group-hover:scale-110 transition-transform">
                     {st.icon}
                   </div>
-                  <span className="font-cormorant text-4xl font-bold text-gold-400/40 group-hover:text-gold-400 transition-colors">
+                  <span className="font-cormorant text-3xl sm:text-4xl font-bold text-gold-400/40 group-hover:text-gold-400 transition-colors">
                     {st.step}
                   </span>
                 </div>
 
-                <h3 className="font-cormorant text-2xl font-bold text-white mt-6 group-hover:text-gold-200 transition-colors">
+                <h3 className="font-cormorant text-xl sm:text-2xl font-bold text-white mt-5 sm:mt-6 group-hover:text-gold-200 transition-colors leading-snug">
                   {st.title}
                 </h3>
 

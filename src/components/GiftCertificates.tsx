@@ -66,16 +66,16 @@ export const GiftCertificates: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
           
           {/* LEFT: Live Certificate Visual Card (5 cols) */}
-          <div className="lg:col-span-5">
-            <div className="relative aspect-[1.6/1] sm:aspect-[1.58/1] rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-noir-950 via-noir-900 to-[#1c1813] border-2 border-gold-400/40 shadow-2xl shadow-gold-500/10 flex flex-col justify-between overflow-hidden group">
+          <div className="lg:col-span-5 w-full">
+            <div className="relative min-h-[230px] sm:aspect-[1.58/1] rounded-3xl p-4 sm:p-8 bg-gradient-to-br from-noir-950 via-noir-900 to-[#1c1813] border-2 border-gold-400/40 shadow-2xl shadow-gold-500/10 flex flex-col justify-between overflow-hidden group">
               {/* Gold luxury border pattern */}
               <div className="absolute inset-2 border border-gold-400/20 rounded-2xl pointer-events-none"></div>
               <div className="absolute top-0 right-0 w-32 h-32 bg-gold-400/10 rounded-full blur-2xl"></div>
 
               {/* Card Top */}
-              <div className="flex items-start justify-between relative z-10">
-                <Logo size={42} showText={true} />
-                <div className="flex flex-col items-end">
+              <div className="flex items-start justify-between relative z-10 gap-2">
+                <Logo size={36} showText={true} />
+                <div className="flex flex-col items-end shrink-0">
                   <span className="font-cinzel text-[9px] uppercase tracking-widest text-gold-400">
                     {t.giftCertificateLabel}
                   </span>
@@ -86,25 +86,25 @@ export const GiftCertificates: React.FC = () => {
               </div>
 
               {/* Card Center: Recipient & Value */}
-              <div className="relative z-10 py-3">
+              <div className="relative z-10 py-2 sm:py-3">
                 <div className="font-cinzel text-[10px] uppercase tracking-wider text-slate-400 mb-0.5">
                   {t.giftValueLabel}
                 </div>
-                <div className="font-cormorant text-4xl sm:text-5xl font-bold gold-gradient-text">
+                <div className="font-cormorant text-3xl sm:text-5xl font-bold gold-gradient-text">
                   {finalAmount.toLocaleString()} ₪
                 </div>
-                <div className="text-xs text-slate-300 font-cormorant italic mt-1 line-clamp-1">
+                <div className="text-xs text-slate-300 font-cormorant italic mt-0.5 sm:mt-1 line-clamp-1">
                   {recipientName ? `Для: ${recipientName}` : 'Hutzahav Haute Couture Tailoring'}
                 </div>
               </div>
 
               {/* Card Bottom */}
-              <div className="flex items-end justify-between relative z-10 pt-2 border-t border-gold-400/20">
-                <div className="text-[10px] text-slate-400 font-cinzel">
+              <div className="flex items-end justify-between relative z-10 pt-2 border-t border-gold-400/20 gap-2">
+                <div className="text-[10px] text-slate-400 font-cinzel truncate">
                   <div>Ателье «HUTZAHAV» • חוט זהב</div>
-                  <div className="text-gold-400/80">{STUDIO_INFO.addressRu}</div>
+                  <div className="text-gold-400/80 truncate">{STUDIO_INFO.addressRu}</div>
                 </div>
-                <div className="w-8 h-8 rounded-full gold-gradient-bg text-black flex items-center justify-center font-bold text-xs shadow-md">
+                <div className="w-8 h-8 rounded-full gold-gradient-bg text-black flex items-center justify-center font-bold text-xs shadow-md shrink-0">
                   <Crown size={14} />
                 </div>
               </div>
@@ -116,7 +116,7 @@ export const GiftCertificates: React.FC = () => {
           </div>
 
           {/* RIGHT: Customization Controls (7 cols) */}
-          <div className="lg:col-span-7 luxury-card bg-noir-850 p-6 sm:p-8 rounded-3xl border border-white/10 space-y-6">
+          <div className="lg:col-span-7 luxury-card bg-noir-850 p-4 sm:p-8 rounded-3xl border border-white/10 space-y-5 sm:space-y-6">
             
             {/* Amount Selection */}
             <div>

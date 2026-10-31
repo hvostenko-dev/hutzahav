@@ -194,7 +194,7 @@ export const AtelierFooter: React.FC = () => {
 
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-light text-center sm:text-left">
-          <div>
+          <div className="break-words max-w-full">
             © {new Date().getFullYear()} HUTZAHAV ATELIER • חוט זהב by Galina Khvostenko • Shavei Tzion 2, Ashdod. All rights reserved.
           </div>
 

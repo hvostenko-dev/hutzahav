@@ -65,12 +65,12 @@ export const AccessibilityWidget: React.FC = () => {
   return (
     <>
       {/* Floating Accessibility Trigger (Bottom Left, accessible via Tab and Touch) */}
-      <div className="fixed bottom-6 left-6 z-40">
+      <div className="fixed bottom-4 left-3 sm:bottom-6 sm:left-6 z-40">
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Открыть меню доступности / Меню для людей с ограниченными возможностями (נגישות)"
           title="Меню доступности (נגישות)"
-          className={`group w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 border-2 ${
+          className={`group w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 border-2 ${
             hasActiveSettings
               ? 'bg-blue-600 border-white text-white scale-105 ring-4 ring-blue-500/30'
               : 'bg-noir-850 hover:bg-gold-500 hover:text-black border-gold-400/50 text-gold-300'
@@ -79,7 +79,7 @@ export const AccessibilityWidget: React.FC = () => {
           {/* Universal Accessibility Person Icon */}
           <svg
             viewBox="0 0 24 24"
-            className="w-7 h-7 sm:w-8 sm:h-8 fill-current transition-transform group-hover:scale-110"
+            className="w-6 h-6 sm:w-8 sm:h-8 fill-current transition-transform group-hover:scale-110"
             xmlns="http://www.w3.org/2000/svg"
           >
             <circle cx="12" cy="4" r="2" />
@@ -95,7 +95,7 @@ export const AccessibilityWidget: React.FC = () => {
           onClick={() => setIsOpen(false)}
         >
           <div
-            className="w-full sm:w-[380px] max-h-[85vh] bg-noir-850 text-white rounded-t-3xl sm:rounded-3xl border border-gold-400/30 shadow-2xl p-6 overflow-y-auto space-y-5"
+            className="w-full sm:w-[380px] max-h-[85vh] bg-noir-850 text-white rounded-t-3xl sm:rounded-3xl border border-gold-400/30 shadow-2xl p-4 sm:p-6 overflow-y-auto space-y-4 sm:space-y-5"
             onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-label="Панель специальных возможностей"

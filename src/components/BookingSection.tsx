@@ -64,24 +64,24 @@ export const BookingSection: React.FC = () => {
         </div>
 
         {/* Top 4 Direct Communication Channels */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 mb-10 sm:mb-12">
           
           {/* WhatsApp */}
           <a
             href={STUDIO_INFO.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-4 sm:p-5 rounded-2xl luxury-card bg-noir-850 hover:bg-[#25D366]/10 border border-[#25D366]/30 hover:border-[#25D366] transition-all group flex flex-col justify-between"
+            className="p-3.5 sm:p-5 rounded-2xl luxury-card bg-noir-850 hover:bg-[#25D366]/10 border border-[#25D366]/30 hover:border-[#25D366] transition-all group flex flex-col justify-between"
           >
-            <div className="flex items-center justify-between mb-3">
-              <div className="w-10 h-10 rounded-xl bg-[#25D366]/15 text-[#25D366] flex items-center justify-center group-hover:scale-110 transition-transform">
-                <WhatsApp size={22} />
+            <div className="flex items-center justify-between mb-2.5 sm:mb-3">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#25D366]/15 text-[#25D366] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <WhatsApp size={20} />
               </div>
-              <span className="text-[10px] uppercase font-cinzel tracking-wider text-[#25D366] font-semibold">Online</span>
+              <span className="text-[9px] sm:text-[10px] uppercase font-cinzel tracking-wider text-[#25D366] font-semibold">Online</span>
             </div>
             <div>
               <div className="font-cinzel text-xs font-bold text-white uppercase tracking-wider">WhatsApp</div>
-              <div className="text-[11px] text-slate-400 mt-0.5">{lang === 'he' ? 'צ׳אט מהיר עם המעצבת' : lang === 'en' ? 'Quick chat with Galina' : 'Быстрый чат с мастером'}</div>
+              <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5">{lang === 'he' ? 'צ׳אט מהיר עם המעצבת' : lang === 'en' ? 'Quick chat with Galina' : 'Быстрый чат с мастером'}</div>
             </div>
           </a>
 
@@ -90,34 +90,34 @@ export const BookingSection: React.FC = () => {
             href={STUDIO_INFO.telegramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-4 sm:p-5 rounded-2xl luxury-card bg-noir-850 hover:bg-[#229ED9]/10 border border-[#229ED9]/30 hover:border-[#229ED9] transition-all group flex flex-col justify-between"
+            className="p-3.5 sm:p-5 rounded-2xl luxury-card bg-noir-850 hover:bg-[#229ED9]/10 border border-[#229ED9]/30 hover:border-[#229ED9] transition-all group flex flex-col justify-between"
           >
-            <div className="flex items-center justify-between mb-3">
-              <div className="w-10 h-10 rounded-xl bg-[#229ED9]/15 text-[#229ED9] flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Telegram size={20} />
+            <div className="flex items-center justify-between mb-2.5 sm:mb-3">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#229ED9]/15 text-[#229ED9] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Telegram size={19} />
               </div>
-              <span className="text-[10px] uppercase font-cinzel tracking-wider text-[#229ED9] font-semibold">Chat</span>
+              <span className="text-[9px] sm:text-[10px] uppercase font-cinzel tracking-wider text-[#229ED9] font-semibold">Chat</span>
             </div>
             <div>
               <div className="font-cinzel text-xs font-bold text-white uppercase tracking-wider">Telegram</div>
-              <div className="text-[11px] text-slate-400 mt-0.5">+972 58-587-7708</div>
+              <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5">+972 58-587-7708</div>
             </div>
           </a>
 
           {/* Email */}
           <a
             href={`mailto:${STUDIO_INFO.email}?subject=${encodeURIComponent('Запрос в ателье Hutzahav')}`}
-            className="p-4 sm:p-5 rounded-2xl luxury-card bg-noir-850 hover:bg-gold-500/10 border border-gold-400/30 hover:border-gold-400 transition-all group flex flex-col justify-between"
+            className="p-3.5 sm:p-5 rounded-2xl luxury-card bg-noir-850 hover:bg-gold-500/10 border border-gold-400/30 hover:border-gold-400 transition-all group flex flex-col justify-between"
           >
-            <div className="flex items-center justify-between mb-3">
-              <div className="w-10 h-10 rounded-xl bg-gold-400/15 text-gold-400 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Mail size={20} />
+            <div className="flex items-center justify-between mb-2.5 sm:mb-3">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gold-400/15 text-gold-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Mail size={19} />
               </div>
-              <span className="text-[10px] uppercase font-cinzel tracking-wider text-gold-400 font-semibold">Email</span>
+              <span className="text-[9px] sm:text-[10px] uppercase font-cinzel tracking-wider text-gold-400 font-semibold">Email</span>
             </div>
             <div>
               <div className="font-cinzel text-xs font-bold text-white uppercase tracking-wider">{lang === 'he' ? 'דואר אלקטרוני' : lang === 'en' ? 'Send Email' : 'Написать Email'}</div>
-              <div className="text-[11px] text-slate-400 mt-0.5 truncate" title={STUDIO_INFO.email}>
+              <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate" title={STUDIO_INFO.email}>
                 {STUDIO_INFO.email}
               </div>
             </div>
@@ -126,17 +126,17 @@ export const BookingSection: React.FC = () => {
           {/* Phone */}
           <a
             href={`tel:${STUDIO_INFO.phoneRaw}`}
-            className="p-4 sm:p-5 rounded-2xl luxury-card bg-noir-850 hover:bg-gold-500/10 border border-gold-400/30 hover:border-gold-400 transition-all group flex flex-col justify-between"
+            className="p-3.5 sm:p-5 rounded-2xl luxury-card bg-noir-850 hover:bg-gold-500/10 border border-gold-400/30 hover:border-gold-400 transition-all group flex flex-col justify-between"
           >
-            <div className="flex items-center justify-between mb-3">
-              <div className="w-10 h-10 rounded-xl bg-gold-400/15 text-gold-400 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Phone size={19} />
+            <div className="flex items-center justify-between mb-2.5 sm:mb-3">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gold-400/15 text-gold-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Phone size={18} />
               </div>
-              <span className="text-[10px] uppercase font-cinzel tracking-wider text-gold-400 font-semibold">Direct</span>
+              <span className="text-[9px] sm:text-[10px] uppercase font-cinzel tracking-wider text-gold-400 font-semibold">Direct</span>
             </div>
             <div>
               <div className="font-cinzel text-xs font-bold text-white uppercase tracking-wider">{lang === 'he' ? 'טלפון ישיר' : lang === 'en' ? 'Studio Phone' : 'Телефон ателье'}</div>
-              <div className="text-[11px] text-slate-400 mt-0.5">{STUDIO_INFO.phone}</div>
+              <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate">{STUDIO_INFO.phone}</div>
             </div>
           </a>
 
@@ -147,7 +147,7 @@ export const BookingSection: React.FC = () => {
           
           {/* Left Column: Form */}
           <div className="lg:col-span-6">
-            <div className="p-6 sm:p-8 rounded-3xl luxury-card bg-noir-850 border border-gold-400/30 shadow-2xl space-y-6">
+            <div className="p-4 sm:p-8 rounded-3xl luxury-card bg-noir-850 border border-gold-400/30 shadow-2xl space-y-5 sm:space-y-6">
               
               <div>
                 <h3 className="font-cormorant text-2xl sm:text-3xl font-bold text-white">
@@ -341,13 +341,13 @@ export const BookingSection: React.FC = () => {
                 ></iframe>
 
                 {/* Floating Map Pin Badge */}
-                <div className="absolute top-3 left-3 bg-noir-950/90 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-gold-400/30 flex items-center gap-2.5 shadow-xl">
-                  <div className="w-8 h-8 rounded-full gold-gradient-bg text-black flex items-center justify-center font-bold">
-                    <MapPin size={16} />
+                <div className="absolute top-3 left-3 bg-noir-950/90 backdrop-blur-md px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-2xl border border-gold-400/30 flex items-center gap-2 sm:gap-2.5 shadow-xl max-w-[calc(100%-24px)]">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full gold-gradient-bg text-black flex items-center justify-center font-bold shrink-0">
+                    <MapPin size={15} />
                   </div>
-                  <div>
-                    <div className="font-cinzel text-xs font-bold text-white">HUTZAHAV • חוט זהב</div>
-                    <div className="text-[10px] text-gold-300 font-mono">Shavei Tzion 2, Ashdod</div>
+                  <div className="truncate">
+                    <div className="font-cinzel text-xs font-bold text-white truncate">HUTZAHAV • חוט זהב</div>
+                    <div className="text-[10px] text-gold-300 font-mono truncate">Shavei Tzion 2, Ashdod</div>
                   </div>
                 </div>
               </div>
@@ -388,7 +388,7 @@ export const BookingSection: React.FC = () => {
             </div>
 
             {/* Address Details & Working Hours */}
-            <div className="p-6 sm:p-7 rounded-3xl luxury-card bg-noir-850 border border-white/5 space-y-4">
+            <div className="p-4 sm:p-7 rounded-3xl luxury-card bg-noir-850 border border-white/5 space-y-4">
               
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-2xl bg-noir-800 border border-white/5 text-gold-400 shrink-0">

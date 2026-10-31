@@ -37,11 +37,11 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({ onItemSelect }) 
       onClick={() => setIsWishlistOpen(false)}
     >
       <div
-        className="w-full max-w-lg h-full bg-noir-900 border-l border-gold-400/30 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-300"
+        className="w-full max-w-full sm:max-w-lg h-full bg-noir-900 border-l border-gold-400/30 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-5 sm:p-6 border-b border-white/10 flex items-center justify-between bg-noir-950">
+        <div className="p-4 sm:p-6 border-b border-white/10 flex items-center justify-between bg-noir-950">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gold-400/10 border border-gold-400/30 text-gold-400 flex items-center justify-center font-bold">
               <Heart size={20} className="fill-gold-400" />
@@ -66,7 +66,7 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({ onItemSelect }) 
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3.5 sm:space-y-4">
           {savedItems.length === 0 ? (
             <div className="text-center py-20 space-y-4">
               <div className="w-16 h-16 rounded-full bg-noir-850 border border-white/10 flex items-center justify-center mx-auto text-slate-600">
@@ -144,7 +144,7 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({ onItemSelect }) 
 
         {/* Footer Actions */}
         {savedItems.length > 0 && (
-          <div className="p-5 sm:p-6 border-t border-white/10 bg-noir-950 space-y-3">
+          <div className="p-4 sm:p-6 border-t border-white/10 bg-noir-950 space-y-3">
             <button
               onClick={handleMoveAllToCart}
               className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full gold-gradient-bg text-black font-cinzel font-bold text-xs uppercase tracking-wider hover:scale-[1.02] transition-transform shadow-xl"

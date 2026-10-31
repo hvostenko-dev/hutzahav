@@ -6,12 +6,12 @@ interface LogoProps {
   showText?: boolean;
 }
 
-export const Logo: React.FC<LogoProps> = ({ className = '', size = 48, showText = true }) => {
+export const Logo: React.FC<LogoProps> = ({ className = '', size = 42, showText = true }) => {
   return (
-    <div className={`flex items-center gap-3.5 group cursor-pointer ${className}`}>
+    <div className={`flex items-center gap-2 sm:gap-3.5 group cursor-pointer ${className}`}>
       {/* Golden Couture Monogram Emblem */}
       <div 
-        className="relative shrink-0 flex items-center justify-center rounded-full p-1"
+        className="relative shrink-0 flex items-center justify-center rounded-full p-0.5 sm:p-1"
         style={{ width: size, height: size }}
       >
         <svg
@@ -37,7 +37,7 @@ export const Logo: React.FC<LogoProps> = ({ className = '', size = 48, showText 
             className="animate-pulse"
           />
 
-          {/* Elegant Stylized "H" Monogram */}
+          {/* Stylized "H" Monogram */}
           <path
             d="M 37,30 L 37,70 M 63,30 L 63,70 M 37,50 L 63,50"
             stroke="url(#goldGrad)"
@@ -87,10 +87,15 @@ export const Logo: React.FC<LogoProps> = ({ className = '', size = 48, showText 
 
       {showText && (
         <div className="flex flex-col text-left">
-          <span className="font-cinzel text-xl sm:text-2xl tracking-[0.22em] font-bold text-white group-hover:text-gold-200 transition-colors leading-none">
-            HUTZAHAV
-          </span>
-          <span className="font-cinzel text-[9px] uppercase tracking-[0.35em] text-gold-400/90 mt-1 font-medium">
+          <div className="flex items-baseline gap-1.5 leading-none">
+            <span className="font-cinzel text-base sm:text-xl lg:text-2xl tracking-[0.16em] sm:tracking-[0.22em] font-bold text-white group-hover:text-gold-200 transition-colors">
+              HUTZAHAV
+            </span>
+            <span className="font-cinzel text-[10px] text-gold-400 font-bold block sm:hidden">
+              חוט זהב
+            </span>
+          </div>
+          <span className="hidden sm:block font-cinzel text-[9px] uppercase tracking-[0.3em] text-gold-400/90 mt-1 font-medium whitespace-nowrap">
             Atelier Haute Couture • חוט זהב
           </span>
         </div>

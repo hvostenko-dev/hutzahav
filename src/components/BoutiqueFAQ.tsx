@@ -116,9 +116,9 @@ export const BoutiqueFAQ: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className="w-full flex items-center justify-between p-5 sm:p-6 text-left transition-colors hover:bg-white/[0.02]"
+                  className="w-full flex items-center justify-between p-4 sm:p-6 text-start transition-colors hover:bg-white/[0.02]"
                 >
-                  <span className="font-cormorant text-xl sm:text-2xl font-bold text-white pr-4">
+                  <span className="font-cormorant text-lg sm:text-2xl font-bold text-white pr-3 rtl:pr-0 rtl:pl-3">
                     {item.q}
                   </span>
                   <div

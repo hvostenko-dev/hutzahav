@@ -32,27 +32,27 @@ export const FabricGuideModal: React.FC<FabricGuideModalProps> = ({ isOpen, onCl
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-3xl max-h-[90vh] bg-noir-900 border border-gold-400/30 rounded-3xl shadow-2xl overflow-y-auto p-6 sm:p-8 space-y-6"
+        className="relative w-full max-w-3xl max-h-[92vh] bg-noir-900 border border-gold-400/30 rounded-3xl shadow-2xl overflow-y-auto p-4 sm:p-6 sm:p-8 space-y-5 sm:space-y-6"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-noir-850 text-slate-400 hover:text-white border border-white/10 transition-colors"
+          className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 p-2 rounded-full bg-noir-850 text-slate-400 hover:text-white border border-white/10 transition-colors z-10"
           aria-label="Закрыть руководство по тканям"
         >
           <X size={18} />
         </button>
 
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-400/10 text-gold-300 font-cinzel text-xs uppercase tracking-widest border border-gold-400/20">
+        <div className="space-y-2 pr-8 sm:pr-0">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-400/10 text-gold-300 font-cinzel text-[11px] sm:text-xs uppercase tracking-widest border border-gold-400/20">
             <Sparkles size={13} className="text-gold-400" />
             <span>Материалы & Ручная Работа Hutzahav</span>
           </div>
-          <h2 className="font-cormorant text-3xl sm:text-4xl font-bold text-white">
+          <h2 className="font-cormorant text-2xl sm:text-4xl font-bold text-white leading-snug break-words">
             Ткани, Техника и Бережный Уход
           </h2>
           <p className="text-slate-400 text-xs sm:text-sm font-light">
