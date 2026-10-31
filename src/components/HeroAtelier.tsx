@@ -1,7 +1,7 @@
 import React from 'react';
 import { STUDIO_INFO } from '../data/portfolioData';
 import { useLanguage } from '../context/LanguageContext';
-import { Sparkles, ArrowRight, Scissors, Calculator, Crown, Award, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowRight, Scissors, Calculator, Crown, Award, MapPin } from 'lucide-react';
 import { Logo } from './Logo';
 
 interface HeroAtelierProps {
@@ -26,14 +26,14 @@ export const HeroAtelier: React.FC<HeroAtelierProps> = ({
       {/* Subtle background golden radial gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(213,180,109,0.14),rgba(0,0,0,0))] pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
           
-          {/* Left Column: Haute Couture Editorial Copy (7 cols) */}
-          <div className="lg:col-span-7 space-y-5 sm:space-y-7 text-center lg:text-left order-2 lg:order-1 max-w-full">
+          {/* Left Column: Haute Couture Editorial Copy (6-7 cols) */}
+          <div className="lg:col-span-7 xl:col-span-6 space-y-5 sm:space-y-7 text-center lg:text-left order-2 lg:order-1 max-w-full">
             
             {/* Top Brand Pill */}
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-noir-850/90 border border-gold-400/40 text-gold-300 text-[10px] sm:text-xs font-cinzel tracking-[0.16em] sm:tracking-[0.2em] uppercase backdrop-blur-md shadow-lg max-w-full truncate">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-noir-850/90 border border-gold-400/40 text-gold-300 text-[10px] sm:text-xs font-cinzel tracking-[0.16em] sm:tracking-[0.2em] uppercase backdrop-blur-md shadow-lg max-w-full truncate">
               <Sparkles size={12} className="text-gold-400 shrink-0" />
               <span className="truncate">{t.heroPill}</span>
             </div>
@@ -113,18 +113,18 @@ export const HeroAtelier: React.FC<HeroAtelierProps> = ({
 
           </div>
 
-          {/* Right Column: Editorial Photo Presentation (5 cols) */}
-          <div className="lg:col-span-5 relative order-1 lg:order-2 max-w-full overflow-visible">
-            <div className="relative mx-auto max-w-[280px] sm:max-w-sm md:max-w-md lg:max-w-none">
+          {/* Right Column: Editorial Photo Presentation (5-6 cols, larger & perfectly contained) */}
+          <div className="lg:col-span-5 xl:col-span-6 relative order-1 lg:order-2 max-w-full flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-[320px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[480px] xl:max-w-[530px]">
               
               {/* Outer Golden Glow Halo */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-gold-500/25 via-amber-500/10 to-gold-300/25 blur-xl pointer-events-none"></div>
+              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-gold-500/25 via-amber-500/10 to-gold-300/25 blur-2xl pointer-events-none"></div>
 
               {/* Card Container with Double Metallic Gold Border */}
-              <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden p-1.5 sm:p-2.5 bg-gradient-to-b from-[#2a241b] via-noir-900 to-black border-2 border-gold-400/50 shadow-2xl">
+              <div className="relative rounded-2xl sm:rounded-3xl p-2 sm:p-3 bg-gradient-to-b from-[#2a241b] via-noir-900 to-black border-2 border-gold-400/50 shadow-2xl space-y-2.5">
                 
-                {/* Photo Display */}
-                <div className="relative aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-black group">
+                {/* Photo Display Frame */}
+                <div className="relative aspect-[4/5] sm:aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-black group">
                   <img
                     src="/images/hero-model.jpg"
                     alt="Авторский образ Hutzahav Atelier — Галина Хвостенко"
@@ -136,23 +136,23 @@ export const HeroAtelier: React.FC<HeroAtelierProps> = ({
 
                   {/* Top Haute Couture Ribbon */}
                   <div className="absolute top-3 left-3 z-10">
-                    <span className="font-cinzel text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-black/80 text-gold-300 backdrop-blur-md border border-gold-400/40 shadow-lg flex items-center gap-1.5">
-                      <Crown size={11} className="text-gold-400 shrink-0" />
-                      <span className="truncate max-w-[170px] sm:max-w-none">{t.heroBadgeCollection}</span>
+                    <span className="font-cinzel text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full bg-black/85 text-gold-300 backdrop-blur-md border border-gold-400/40 shadow-lg flex items-center gap-1.5">
+                      <Crown size={12} className="text-gold-400 shrink-0" />
+                      <span className="truncate max-w-[180px] sm:max-w-none">{t.heroBadgeCollection}</span>
                     </span>
                   </div>
 
-                  {/* Floating Top-Right Seal */}
+                  {/* Top-Right Seal */}
                   <div className="absolute top-3 right-3 z-10 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/85 backdrop-blur-md border border-gold-400/40 flex items-center justify-center shadow-xl">
                     <Logo size={24} showText={false} />
                   </div>
 
                   {/* Bottom Vignette Caption */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-left space-y-1 z-10">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-left space-y-1 z-10 bg-gradient-to-t from-noir-950 via-noir-950/80 to-transparent">
                     <span className="font-cinzel text-[9px] sm:text-[10px] text-gold-400 uppercase tracking-[0.2em] font-bold block">
                       Haute Couture • Ashdod
                     </span>
-                    <h2 className="font-cormorant text-xl sm:text-3xl font-bold text-white leading-snug">
+                    <h2 className="font-cormorant text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-snug">
                       {t.heroPhotoTitle}
                     </h2>
                     <p className="text-[11px] sm:text-xs text-slate-300 font-light line-clamp-2">
@@ -161,27 +161,47 @@ export const HeroAtelier: React.FC<HeroAtelierProps> = ({
                   </div>
                 </div>
 
-              </div>
+                {/* Integrated Luxury Atelier Status Bar (Never overlaps the photo or extends outside) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-0.5">
+                  
+                  {/* Street / Location Pill Link */}
+                  <a
+                    href={STUDIO_INFO.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2.5 p-2 sm:p-2.5 rounded-xl bg-noir-850/90 hover:bg-gold-500/10 border border-gold-400/30 hover:border-gold-400/60 transition-all group/loc"
+                    title="Посмотреть ателье на карте (Shavei Tzion 2, Ashdod)"
+                  >
+                    <div className="w-8 h-8 rounded-lg gold-gradient-bg text-black flex items-center justify-center shrink-0 shadow-md group-hover/loc:scale-105 transition-transform">
+                      <MapPin size={15} />
+                    </div>
+                    <div className="text-left min-w-0">
+                      <div className="font-cinzel text-[9px] uppercase tracking-wider text-slate-400 truncate">
+                        {lang === 'he' ? 'כתובת האטלייה באשדוד' : lang === 'en' ? 'Ashdod Atelier Address' : 'Ателье в Ашдоде'}
+                      </div>
+                      <div className="text-[11px] font-semibold text-gold-300 group-hover/loc:text-white transition-colors truncate">
+                        {lang === 'he' ? STUDIO_INFO.addressHe : STUDIO_INFO.addressRu}
+                      </div>
+                    </div>
+                  </a>
 
-              {/* Floating Luxury Glassmorphism Badge 1 (Bottom Left - Hidden on smallest screens to prevent overflow) */}
-              <div className="absolute -bottom-4 -left-2 sm:-left-4 z-20 hidden md:flex items-center gap-2.5 p-2.5 sm:p-3 rounded-2xl bg-noir-900/95 border border-gold-400/40 backdrop-blur-xl shadow-2xl shadow-gold-500/10">
-                <div className="w-8 h-8 rounded-xl gold-gradient-bg text-black flex items-center justify-center shrink-0 shadow-md">
-                  <Award size={16} />
-                </div>
-                <div className="text-left">
-                  <div className="font-cinzel text-[10px] font-bold text-white uppercase tracking-wider">
-                    {t.heroFloatingFit}
+                  {/* Craftsmanship / Materials Pill */}
+                  <div className="flex items-center gap-2.5 p-2 sm:p-2.5 rounded-xl bg-noir-850/90 border border-white/10 text-slate-300">
+                    <div className="w-8 h-8 rounded-lg bg-gold-400/15 border border-gold-400/30 text-gold-400 flex items-center justify-center shrink-0">
+                      <Award size={16} />
+                    </div>
+                    <div className="text-left min-w-0">
+                      <div className="font-cinzel text-[9px] uppercase tracking-wider text-slate-400 truncate">
+                        {lang === 'he' ? 'תפירה אישית מושלמת' : lang === 'en' ? 'Bespoke Couture' : 'Идеальная посадка'}
+                      </div>
+                      <div className="text-[11px] font-semibold text-slate-200 truncate">
+                        {lang === 'he' ? '100% משי טבעי וצמר מרינו' : lang === 'en' ? 'Pure Silk & Merino Wool' : '100% Шёлк & Меринос'}
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-[9px] text-gold-400/90 font-light">
-                    {STUDIO_INFO.addressRu}
-                  </div>
-                </div>
-              </div>
 
-              {/* Floating Luxury Glassmorphism Badge 2 (Top Right - Hidden on small screens) */}
-              <div className="absolute -top-3 -right-2 sm:-right-4 z-20 hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-noir-900/95 border border-gold-400/40 backdrop-blur-xl shadow-xl text-gold-300 text-[9px] font-cinzel font-semibold tracking-wider">
-                <Sparkles size={11} className="text-gold-400" />
-                <span>{t.heroFloatingSilk}</span>
+                </div>
+
               </div>
 
             </div>
