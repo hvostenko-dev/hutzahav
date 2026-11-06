@@ -14,7 +14,6 @@ import { BoutiqueFAQ } from './components/BoutiqueFAQ';
 import { BookingSection } from './components/BookingSection';
 import { AtelierFooter } from './components/AtelierFooter';
 import { FloatingConcierge } from './components/FloatingConcierge';
-import { AccessibilityWidget } from './components/AccessibilityWidget';
 import { LightboxModal } from './components/LightboxModal';
 import { CartDrawer } from './components/CartDrawer';
 import { WishlistDrawer } from './components/WishlistDrawer';
@@ -93,10 +92,7 @@ const AppContent: React.FC = () => {
       {/* Luxury Atelier Footer */}
       <AtelierFooter />
 
-      {/* Accessibility Widget (נגישות) */}
-      <AccessibilityWidget />
-
-      {/* Floating Concierge Action (WhatsApp / Telegram / Email) */}
+      {/* Floating Concierge Action with Hutzahav Icon (WhatsApp / Telegram / Email) */}
       <FloatingConcierge />
 
       {/* Fullscreen Master Photo Lightbox with Size Selector & Cart action */}
