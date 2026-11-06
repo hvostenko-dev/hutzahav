@@ -70,16 +70,16 @@ export const AccessibilityWidget: React.FC = () => {
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Открыть меню доступности / Меню для людей с ограниченными возможностями (נגישות)"
           title="Меню доступности (נגישות)"
-          className={`group w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 border-2 ${
+          className={`group w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 border ${
             hasActiveSettings
               ? 'bg-blue-600 border-white text-white scale-105 ring-4 ring-blue-500/30'
-              : 'bg-noir-850 hover:bg-gold-500 hover:text-black border-gold-400/50 text-gold-300'
+              : 'bg-noir-900/90 backdrop-blur-md hover:bg-gold-500 hover:text-black border-gold-400/40 text-gold-300'
           }`}
         >
           {/* Universal Accessibility Person Icon */}
           <svg
             viewBox="0 0 24 24"
-            className="w-6 h-6 sm:w-8 sm:h-8 fill-current transition-transform group-hover:scale-110"
+            className="w-5 h-5 sm:w-6 sm:h-6 fill-current transition-transform group-hover:scale-110"
             xmlns="http://www.w3.org/2000/svg"
           >
             <circle cx="12" cy="4" r="2" />

@@ -59,7 +59,7 @@ export const FloatingConcierge: React.FC = () => {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 border ${
+          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 border ${
             isOpen
               ? 'bg-noir-800 border-white text-white rotate-90'
               : 'gold-gradient-bg border-gold-300/50 text-black hover:scale-110'
@@ -68,9 +68,9 @@ export const FloatingConcierge: React.FC = () => {
           aria-label="Связаться с ателье"
         >
           {isOpen ? (
-            <X size={22} />
+            <X size={18} />
           ) : (
-            <Scissors size={22} className="text-black fill-black sm:w-6 sm:h-6" />
+            <Scissors size={18} className="text-black fill-black sm:w-5 sm:h-5" />
           )}
         </button>
       </div>

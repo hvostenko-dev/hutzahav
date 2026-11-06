@@ -87,8 +87,18 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
     onClose();
   };
 
-  const name = lang === 'en' ? item.nameEn || item.nameRu : item.nameRu;
-  const desc = lang === 'en' ? item.descriptionEn || item.descriptionRu : item.descriptionRu;
+  const name =
+    lang === 'he'
+      ? item.nameHe || item.nameRu
+      : lang === 'en'
+      ? item.nameEn || item.nameRu
+      : item.nameRu;
+  const desc =
+    lang === 'he'
+      ? item.descriptionHe || item.descriptionRu
+      : lang === 'en'
+      ? item.descriptionEn || item.descriptionRu
+      : item.descriptionRu;
 
   const whatsappOrderText = encodeURIComponent(
     lang === 'he'
@@ -197,7 +207,6 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
                 {item.category === 'jackets_felting' && t.catJackets}
                 {item.category === 'accessories' && t.catAccessories}
                 {item.category === 'atelier_tailoring' && t.catTailoring}
-                {item.category === 'home_textiles' && t.catHomeTextiles}
               </span>
 
               {item.price && (

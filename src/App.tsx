@@ -7,10 +7,7 @@ import { Navbar } from './components/Navbar';
 import { HeroAtelier } from './components/HeroAtelier';
 import { LuxuryMarquee } from './components/LuxuryMarquee';
 import { AtelierServices } from './components/AtelierServices';
-import { BespokeCalculator } from './components/BespokeCalculator';
-import { BespokeJourney } from './components/BespokeJourney';
 import { LookbookCatalog } from './components/LookbookCatalog';
-import { GiftCertificates } from './components/GiftCertificates';
 import { AtelierAtmosphere } from './components/AtelierAtmosphere';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { BoutiqueFAQ } from './components/BoutiqueFAQ';
@@ -23,7 +20,7 @@ import { CartDrawer } from './components/CartDrawer';
 import { WishlistDrawer } from './components/WishlistDrawer';
 import { SizeGuideModal } from './components/SizeGuideModal';
 import { FabricGuideModal } from './components/FabricGuideModal';
-import { CheckCircle2, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 const AppContent: React.FC = () => {
   const { toast } = useCart();
@@ -57,38 +54,28 @@ const AppContent: React.FC = () => {
       {/* Top Delivery & Atelier Notice Bar */}
       <DeliveryNoticeBar />
 
-      {/* Haute Couture Navbar with Multi-Language Switcher (RU | ENG | עברית) */}
+      {/* Minimalist Haute Couture Navbar with Multi-Language Switcher (RU | ENG | עברית) */}
       <Navbar />
 
       <main className="w-full max-w-full overflow-x-hidden">
-        {/* Editorial Hero with the specified single Model Photo & Luxury Framing */}
+        {/* Editorial Hero */}
         <HeroAtelier
           onExploreClick={() => scrollToSection('gallery')}
-          onCalculatorClick={() => scrollToSection('calculator')}
           onBookClick={() => scrollToSection('contact')}
         />
 
         {/* Golden Thread Marquee Ticker */}
         <LuxuryMarquee />
 
-        {/* 6 Core Atelier Services (with full multi-language translations & fixed textile image) */}
+        {/* 4 Core Atelier Directions (Symmetrical Minimalist Grid) */}
         <AtelierServices />
 
-        {/* Interactive Bespoke Cost & Turnaround Calculator */}
-        <BespokeCalculator />
-
-        {/* 4 Steps of Bespoke Creation (The Couture Journey) */}
-        <BespokeJourney />
-
-        {/* Complete Lookbook & Gallery with online ordering without payment */}
+        {/* Complete Lookbook & Boutique Gallery */}
         <LookbookCatalog
           items={PORTFOLIO_ITEMS}
           onItemSelect={setSelectedItem}
           onOpenFabricGuide={() => setIsFabricGuideOpen(true)}
         />
-
-        {/* Boutique Gift Certificates */}
-        <GiftCertificates />
 
         {/* About the Master: Galina Khvostenko & Studio Atmosphere */}
         <AtelierAtmosphere />
@@ -96,7 +83,7 @@ const AppContent: React.FC = () => {
         {/* Client Stories & Testimonials */}
         <TestimonialsSection />
 
-        {/* Boutique FAQ & Ordering without payment */}
+        {/* Boutique FAQ */}
         <BoutiqueFAQ />
 
         {/* Booking Fitting & Contact Form with Google Maps */}
@@ -106,10 +93,10 @@ const AppContent: React.FC = () => {
       {/* Luxury Atelier Footer */}
       <AtelierFooter />
 
-      {/* Accessibility Widget (Кнопка доступности для людей с инвалидностью / נגישות) */}
+      {/* Accessibility Widget (נגישות) */}
       <AccessibilityWidget />
 
-      {/* Floating Concierge Action (WhatsApp) */}
+      {/* Floating Concierge Action (WhatsApp / Telegram / Email) */}
       <FloatingConcierge />
 
       {/* Fullscreen Master Photo Lightbox with Size Selector & Cart action */}

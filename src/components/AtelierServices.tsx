@@ -1,266 +1,232 @@
 import React from 'react';
 import { STUDIO_INFO } from '../data/portfolioData';
 import { useLanguage } from '../context/LanguageContext';
-import { Scissors, Shirt, Sparkles, Home, Clock, Check, ArrowRight, ShieldCheck, Heart } from 'lucide-react';
+import { Sparkles, Check, ArrowRight } from 'lucide-react';
 
 export const AtelierServices: React.FC = () => {
-  const { lang, t } = useLanguage();
+  const { lang, t, dir } = useLanguage();
 
   const services = [
     {
       id: 'evening-couture',
-      title: lang === 'he' ? 'תפירת שמלות ערב וכלה' : lang === 'en' ? 'Bespoke Evening & Bridal Couture' : 'Пошив вечерних и свадебных нарядов',
-      category: lang === 'he' ? 'תפירה עילית אישית' : 'Bespoke Evening & Bridal Couture',
-      desc: lang === 'he'
-        ? 'יצירת שמלות ערב, נשף וכלות ללא פשרות בהתאמה אנטומית מדויקת לפי 25 מידות גוף. מחוכים מחטבים, משי טבעי, שיפון ותחרה צרפתית.'
-        : lang === 'en'
-        ? 'Bespoke evening, prom, and bridal gowns crafted to your exact anatomical silhouette. Corsetry foundation, pure silk, French lace, chiffon, and velvet.'
-        : 'Создание безупречных вечерних, выпускных и свадебных платьев по индивидуальным анатомическим меркам. Корсетная основа, моделирование силуэта, работа с французским кружевом, шелковым шифоном, тафтой и бархатом.',
-      price: lang === 'he' ? 'החל מ-₪800' : lang === 'en' ? 'from 800 ₪' : 'от 800 ₪',
-      timeline: lang === 'he' ? '10–14 ימים' : lang === 'en' ? '10–14 days' : '10–14 дней',
+      num: '01',
+      title:
+        lang === 'he'
+          ? 'תפירת שמלות ערב, כלה ואירועים'
+          : lang === 'en'
+          ? 'Bespoke Evening, Bridal & Celebration Couture'
+          : 'Индивидуальный пошив вечерних и праздничных нарядов',
+      category:
+        lang === 'he'
+          ? 'תפירה עילית לפי מידה'
+          : lang === 'en'
+          ? 'Bespoke Tailoring'
+          : 'Индивидуальный пошив',
+      desc:
+        lang === 'he'
+          ? 'יצירת שמלות ערב, נשף, כלות ושמלות חגיגיות בהתאמה אנטומית מדויקת למבנה הגוף. בניית מחוכים מחטבים, עבודה עם משי טבעי, שיפון, קטיפה ותחרה צרפתית.'
+          : lang === 'en'
+          ? 'Custom evening, bridal, prom, and celebration gowns crafted to your exact anatomical silhouette. Sculpting corsetry, pure silk, chiffon, velvet, and French lace.'
+          : 'Создание вечерних, свадебных, выпускных и праздничных детских платьев по вашим индивидуальным меркам. Корсетная основа, моделирование силуэта, работа с шелком, шифоном и кружевом.',
       image: '/images/portfolio/atelier/8f183f_7a9306154f4b4e77a28481bdc58d81c4.jpg',
-      features: lang === 'he'
-        ? [
-            'מחוך פנימי מובנה לתמיכה מושלמת',
-            'תחרה צרפתית ומשי טבעי מובחר',
-            '1–2 מדידות ביניים לדיוק מקסימלי',
-            'דגם יחיד ומיוחד במינו בעולם',
-          ]
-        : lang === 'en'
-        ? [
-            'Sculpting inner corset structure',
-            'French lace & pure natural silk',
-            '1–2 intermediate fitting sessions',
-            'Exclusive 1-of-1 haute creation',
-          ]
-        : [
-            'Индивидуальный корсетный каркас',
-            'Французское кружево и натуральный шелк',
-            '1–2 промежуточные примерки для идеальной посадки',
-            'Эксклюзивный единичный экземпляр',
-          ],
+      features:
+        lang === 'he'
+          ? [
+              'התאמה אישית מדויקת ומחמיאה לגזרה',
+              'תחרה צרפתית, משי טבעי ובדים מובחרים',
+              'דגם ייחודי שנתפר במיוחד עבורך',
+            ]
+          : lang === 'en'
+          ? [
+              'Flawless anatomical silhouette & corsetry',
+              'French lace, pure natural silk & fine fabrics',
+              'Exclusive 1-of-1 bespoke creation',
+            ]
+          : [
+              'Безупречная посадка точно по вашей фигуре',
+              'Французское кружево, натуральный шелк и бархат',
+              'Эксклюзивный наряд в единственном экземпляре',
+            ],
     },
     {
       id: 'hand-painted',
-      title: lang === 'he' ? 'בגדי מעצבים & ציור ידני על בד' : lang === 'en' ? 'Designer Wear & Hand-Painted Silk/Linen' : 'Дизайнерская одежда & Ручная роспись',
-      category: lang === 'he' ? 'משי ופשתן טהור' : 'Hand-Painted Silks & Linens',
-      desc: lang === 'he'
-        ? 'שמלות ובגדים מ-100% פשתן איטלקי מרוכך ומשי טבעי עם ציור אמנותי מקורי בצבעים עמידים שאינם יורדים בכביסה.'
-        : lang === 'en'
-        ? 'Signature dresses crafted from 100% pre-washed Italian linen and pure silk featuring bespoke hand-painted artwork that withstands washing.'
-        : 'Авторские платья из 100% умягченного льна и натурального шелка с ручной художественной росписью специальными несмываемыми пигментами. Неповторимая живопись на ткани, в которой каждая линия уникальна.',
-      price: lang === 'he' ? 'החל מ-₪1,350' : lang === 'en' ? 'from 1,350 ₪' : 'от 1,350 ₪',
-      timeline: lang === 'he' ? '12–16 ימים' : lang === 'en' ? '12–16 days' : '12–16 дней',
+      num: '02',
+      title:
+        lang === 'he'
+          ? 'שמלות מעצבים & ציור ידני על משי ופשתן'
+          : lang === 'en'
+          ? 'Designer Dresses & Hand-Painted Silk / Linen'
+          : 'Дизайнерские платья & Ручная роспись ткани',
+      category:
+        lang === 'he'
+          ? '100% פשתן ומשי טבעי'
+          : lang === 'en'
+          ? 'Hand-Painted Couture'
+          : 'Живопись на ткани',
+      desc:
+        lang === 'he'
+          ? 'שמלות ובגדים מ-100% פשתן איטלקי מרוכך ומשי טבעי עם ציור אמנותי מקורי במכחול בצבעי טקסטיל עמידים שאינם דוהים בכביסה.'
+          : lang === 'en'
+          ? 'Signature dresses crafted from 100% softened linen and pure silk featuring bespoke hand-painted artwork with permanent washable pigments.'
+          : 'Авторские платья из 100% умягченного льна и натурального шелка с ручной художественной росписью стойкими пигментами. Живая живопись на ткани, которая не смывается при стирке.',
       image: '/images/portfolio/exclusive_clothing/8f183f_f0890a6485f349469fdb956bef48b976.jpg',
-      features: lang === 'he'
-        ? [
-            '100% פשתן ומשי טבעי מהאיכות הגבוהה ביותר',
-            'ציור ידני עמיד שאינו דוהה בכביסה',
-            'גזרה חופשית, נושמת ומחמיאה',
-            'סקיצות בלעדיות של גלינה חבוסטנקו',
-          ]
-        : lang === 'en'
-        ? [
-            '100% pure organic linen & silk',
-            'Permanent hand-painted artwork (washable)',
-            'Flattering, airy & elegant silhouettes',
-            'Original sketches by Galina Khvostenko',
-          ]
-        : [
-            '100% натуральный лен и шелк высшего сорта',
-            'Стойкая ручная роспись — не линяет при стирке',
-            'Свободный, элегантный, дышащий силуэт',
-            'Авторские эскизы Галины Хвостенко',
-          ],
+      features:
+        lang === 'he'
+          ? [
+              '100% פשתן מרוכך ומשי טבעי נושם',
+              'ציור ידני עמיד השומר על צבעיו בכביסה',
+              'גזרות אלגנטיות ומחמיאות לכל מידה',
+            ]
+          : lang === 'en'
+          ? [
+              '100% breathable softened linen & pure silk',
+              'Permanent hand-painted artwork (washable)',
+              'Airy, flattering silhouettes for every figure',
+            ]
+          : [
+              '100% натуральный дышащий лен и шелк',
+              'Стойкая ручная роспись — не тускнеет при стирке',
+              'Элегантный, комфортный и женственный крой',
+            ],
     },
     {
       id: 'felting-denim',
-      title: lang === 'he' ? 'ז׳קטים אמנותיים & נונו-לבד (צמר ומשי)' : lang === 'en' ? 'Art Denim & Merino Nuno-Felting' : 'Арт-жакеты & Нуно-войлок (Валяние)',
-      category: lang === 'he' ? 'שילוב צמר ומשי' : 'Wool Nuno-Felting & Denim Art',
-      desc: lang === 'he'
-        ? 'ז׳קטים ומעילי דנים ייחודיים המשלבים צמר מרינו אוסטרלי 18 מיקרון, משי ורקמה ידנית בטכניקת נונו-פלט שאין לאף אחד אחר.'
-        : lang === 'en'
-        ? 'Avant-garde denim jackets and art coats infused with 18-micron Australian merino wool and silk in artisanal nuno-felting technique.'
-        : 'Авангардные джинсовые жакеты и пальто, инкрустированные тонкорунной шерстью австралийского мериноса в технике нуно-фелтинг, вязаными деталями и авторской вышивкой. Теплые, фактурные, привлекающие восхищенные взгляды.',
-      price: lang === 'he' ? 'החל מ-₪1,200' : lang === 'en' ? 'from 1,200 ₪' : 'от 1,200 ₪',
-      timeline: lang === 'he' ? '10–14 ימים' : lang === 'en' ? '10–14 days' : '10–14 дней',
+      num: '03',
+      title:
+        lang === 'he'
+          ? 'ז׳קטים אמנותיים & נונו-לבד (צמר מרינו ומשי)'
+          : lang === 'en'
+          ? 'Art Denim & Merino Nuno-Felting'
+          : 'Арт-жакеты & Нуно-войлок (Меринос и Шелк)',
+      category:
+        lang === 'he'
+          ? 'עבודת יד ייחודית'
+          : lang === 'en'
+          ? 'Nuno-Felting Craft'
+          : 'Авторский арт-текстиль',
+      desc:
+        lang === 'he'
+          ? 'ז׳קטים, עליוניות וצעיפים המשלבים צמר מרינו אוסטרלי עדין (18 מיקרון), סיבי משי ורקמת יד תלת-ממדית בטכניקת נונו-לבד נדירה.'
+          : lang === 'en'
+          ? 'Avant-garde denim jackets, coats, and stoles infused with 18-micron Australian merino wool and silk fibers using artisanal nuno-felting.'
+          : 'Эксклюзивные джинсовые жакеты, наряды и невесомые палантины, созданные методом приваливания тончайшей шерсти австралийского мериноса (18 микрон) к натуральному шелку.',
       image: '/images/portfolio/exclusive_clothing/8f183f_dde2c9ed2a784fbea1ef5c407111b464.jpg',
-      features: lang === 'he'
-        ? [
-            'צמר מרינו אוסטרלי עדין 18 מיקרון',
-            'טכניקת שילוב צמר מיוחדת עם משי',
-            'טקסטורות עשירות ורקמת יד תלת-ממדית',
-            'צעיפים ופונצ׳ואים תואמים',
-          ]
-        : lang === 'en'
-        ? [
-            'Fine 18-micron Australian merino wool',
-            'Intricate wool-on-silk bonding craft',
-            'Rich tactile 3D texture & embroidery',
-            'Matching silk-wool stoles & accessories',
-          ]
-        : [
-            'Австралийский меринос 18 микрон',
-            'Сложная техника сваливания шерсти с тканью',
-            'Объемная тактильная фактура и вышивка',
-            'Шелково-шерстяные палантины и аксессуары',
-          ],
+      features:
+        lang === 'he'
+          ? [
+              'צמר מרינו אוסטרלי מובחר 18 מיקרון',
+              'שילוב אומנותי של משי, דנים ורקמת יד',
+              'צעיפים ועליוניות קלילות בעבודת יד',
+            ]
+          : lang === 'en'
+          ? [
+              'Ultra-fine 18-micron Australian merino wool',
+              '3D tactile wool-on-silk bonding & embroidery',
+              'Bespoke jackets, coats & silk-wool stoles',
+            ]
+          : [
+              'Тончайший австралийский меринос 18 микрон',
+              'Объемная фактура и ручная авторская вышивка',
+              'Невесомые шелково-шерстяные палантины и жакеты',
+            ],
     },
     {
       id: 'luxury-repairs',
-      title: lang === 'he' ? 'התאמת בגדי מותגים & תיקוני יוקרה' : lang === 'en' ? 'Haute Alterations & Leather Restoration' : 'Премиум подгонка & Реставрация брендов',
-      category: lang === 'he' ? 'התאמה מדויקת למבנה הגוף' : 'Haute Alterations & Leather Restoration',
-      desc: lang === 'he'
-        ? 'התאמת חליפות, מעילים ושמלות ערב בדיוק למידות גופך. קיצור תוך שמירה על תפר מקורי, החלפת בטנות וחידוש בגדי עור ותיקים.'
-        : lang === 'en'
-        ? 'Custom fit tailoring for designer suits, coats, and evening gowns. Original hem preservation, lining replacements, and leather restorations.'
-        : 'Подгонка костюмов, пальто и вечерних платьев точно по вашей фигуре. Укорачивание с сохранением фабричного края, перекрой, замена подклада, сложная реставрация трикотажа, кожи, дубленок, обуви и любимых сумок.',
-      price: lang === 'he' ? 'החל מ-₪85' : lang === 'en' ? 'from 85 ₪' : 'от 85 ₪',
-      timeline: lang === 'he' ? '2–5 ימים' : lang === 'en' ? '2–5 days' : '2–5 дней',
-      image: '/images/portfolio/atelier/8f183f_214cf4c6649b4474bef0c12d369a4c19.jpg',
-      features: lang === 'he'
-        ? [
-            'התאמת מותגי יוקרה בדיוק מושלם לגוף',
-            'חידוש ותיקון עור, זמש ופרווה',
-            'החלפת רוכסנים ורכיבי פרימיום',
-            'שחזור ותיקון תיקי יוקרה ונעליים',
-          ]
-        : lang === 'en'
-        ? [
-            'Exact silhouette fitting for luxury labels',
-            'Leather, shearling, and fur restoration',
-            'High-end hardware & zip replacement',
-            'Designer handbag & footwear touch-ups',
-          ]
-        : [
-            'Посадка готовой брендовой одежды по фигуре',
-            'Реставрация кожи, дубленок и меха',
-            'Замена сложной фурнитуры и молний',
-            'Ремонт и восстановление сумок и обуви',
-          ],
-    },
-    {
-      id: 'home-couture',
-      title: lang === 'he' ? 'וילונות בהתאמה אישית & טקסטיל לבית' : lang === 'en' ? 'Bespoke Curtains & Luxury Home Textiles' : 'Индивидуальный текстиль & Шторы',
-      category: lang === 'he' ? 'טקסטיל יוקרתי לבית' : 'Bespoke Curtains & Home Textiles',
-      desc: lang === 'he'
-        ? 'עיצוב ותפירת וילונות בכל מידה וסגנון, מצעי סאטן ופשתן טהור בהתאמה אישית, כיסויי מיטה וכריות נוי.'
-        : lang === 'en'
-        ? 'Custom curtain design and fabrication, tailored satin and linen bedding sets for non-standard mattresses, and decorative pillows.'
-        : 'Создание текстильного уюта для вашего дома. Пошив штор любой сложности, авторские комплекты постельного белья из премиального сатина и льна нестандартных размеров, покрывала, декоративные подушки.',
-      price: lang === 'he' ? 'החל מ-₪59' : lang === 'en' ? 'from 59 ₪' : 'от 59 ₪',
-      timeline: lang === 'he' ? '5–8 ימים' : lang === 'en' ? '5–8 days' : '5–8 дней',
-      image: '/images/portfolio/home_textiles/8f183f_1e31e527baa24398bfd063e3cd9a7a1c.jpg',
-      features: lang === 'he'
-        ? [
-            'תפירת וילונות לפי מידות חלון מדויקות',
-            'מצעים מ-100% סאטן ופשתן איטלקי',
-            'כיסויי מיטה יוקרתיים בתפירה ידנית',
-            'מבחר בדים איכותיים מאירופה',
-          ]
-        : lang === 'en'
-        ? [
-            'Custom window sizing & drape shaping',
-            'Premium Italian satin & pre-washed linen',
-            'Artisan quilted luxury bedspreads',
-            'Carefully curated European fabrics',
-          ]
-        : [
-            'Шторы по индивидуальным размерам окон',
-            'Постельное белье из сатина и умягченного льна',
-            'Стеганые авторские покрывала',
-            'Подбор интерьерных тканей из Европы',
-          ],
-    },
-    {
-      id: 'costumes-kids',
-      title: lang === 'he' ? 'תלבושות במה, תחפושות פורים & אופנת ילדים' : lang === 'en' ? 'Stage Costumes, Purim & Kids Couture' : 'Сценические костюмы & Детская мода',
-      category: lang === 'he' ? 'תלבושות במה ואירועים' : 'Stage Costumes & Children Couture',
-      desc: lang === 'he'
-        ? 'תפירת תלבושות במה למופעים, תחפושות פורים מרהיבות בהזמנה אישית, ושמלות אירועים חלומיות לילדות מבדים רכים והיפואלרגניים.'
-        : lang === 'en'
-        ? 'Show-stopping theatrical costumes, Purim outfits, photoshoot styling, and gentle luxury celebration dresses for children.'
-        : 'Пошив ярких сценических образов, костюмов для Пурима, театральных постановок и фотосессий. Индивидуальный пошив праздничных детских платьев из нежнейших гипоаллергенных тканей с комфортной мягкой подкладкой.',
-      price: lang === 'he' ? 'החל מ-₪200' : lang === 'en' ? 'from 200 ₪' : 'от 200 ₪',
-      timeline: lang === 'he' ? '5–10 ימים' : lang === 'en' ? '5–10 days' : '5–10 дней',
-      image: '/images/portfolio/atelier/8f183f_d2de953de21545eba90b2625f9b9221f.jpg',
-      features: lang === 'he'
-        ? [
-            'תחפושות פורים ותלבושות במה בכל מורכבות',
-            'שמלות חגיגיות לילדות לאירועים מיוחדים',
-            'בדים רכים ללא גירויים בעור הילד',
-            'בגדי עבודה וייצוג אלגנטיים לבוטיקים',
-          ]
-        : lang === 'en'
-        ? [
-            'Bespoke carnival & theater outfits',
-            'Fairytale celebration dresses for girls',
-            'Ultra-soft, skin-safe hypoallergenic touch',
-            'Corporate uniforms for boutique teams',
-          ]
-        : [
-            'Карнавальные образы любой сложности',
-            'Детские нарядные платья для торжеств',
-            'Комфортная посадка без раздражения кожи',
-            'Корпоративная форменная одежда для бутиков',
-          ],
+      num: '04',
+      title:
+        lang === 'he'
+          ? 'התאמת בגדי מותגים & תיקוני יוקרה'
+          : lang === 'en'
+          ? 'Haute Alterations & Luxury Garment Restoration'
+          : 'Премиум подгонка & Реставрация одежды',
+      category:
+        lang === 'he'
+          ? 'דיוק ללא פשרות'
+          : lang === 'en'
+          ? 'Precision Alterations'
+          : 'Идеальная посадка',
+      desc:
+        lang === 'he'
+          ? 'התאמת שמלות ערב, חליפות ומעילים בדיוק למבנה גופך. קיצור תוך שמירה על מכפלת מקורית, החלפת בטנות ורוכסנים, וחידוש בגדי עור וסריגים.'
+          : lang === 'en'
+          ? 'Precision custom fitting for designer suits, coats, and evening gowns. Original hem preservation, lining renewal, and delicate leather & knitwear restoration.'
+          : 'Деликатная посадка готовых вечерних платьев, костюмов и пальто по вашей фигуре. Укорачивание с сохранением фабричного края, перекрой, реставрация трикотажа, кожи и меха.',
+      image: '/images/portfolio/atelier/8f183f_642a3166de1749be9e9a9cb8e471642a.jpg',
+      features:
+        lang === 'he'
+          ? [
+              'התאמת שמלות ערב וחליפות בדיוק לגוף',
+              'תיקון וחידוש בגדי עור, זמש וסריגים עדינים',
+              'החלפת רוכסנים ובטנות ברמת גימור עילית',
+            ]
+          : lang === 'en'
+          ? [
+              'Exact silhouette fitting for luxury labels',
+              'Delicate leather, suede & knitwear restoration',
+              'Invisible hem adjustments & hardware renewal',
+            ]
+          : [
+              'Идеальная посадка брендовой одежды по фигуре',
+              'Бережная реставрация кожи, дубленок и трикотажа',
+              'Замена подклада, молний и сложный перекрой',
+            ],
     },
   ];
 
   return (
-    <section id="services" className="py-24 relative bg-noir-900 border-t border-gold-400/20">
+    <section id="services" className="py-20 sm:py-24 relative bg-noir-900 border-t border-gold-400/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-noir-850 border border-gold-400/30 text-gold-300 text-xs tracking-[0.2em] font-cinzel uppercase">
-            <Sparkles size={14} className="text-gold-400" />
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-noir-850 border border-gold-400/30 text-gold-300 text-[10px] sm:text-xs tracking-[0.2em] font-cinzel uppercase">
+            <Sparkles size={13} className="text-gold-400" />
             <span>{t.servicesCategoryBadge}</span>
           </div>
 
-          <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+          <h2 className="font-cormorant text-4xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
             {t.servicesTitle}
           </h2>
 
-          <p className="text-slate-400 text-base sm:text-lg font-light">
+          <p className="text-slate-400 text-sm sm:text-base font-light">
             {t.servicesSubtitle}
           </p>
         </div>
 
-        {/* 6 Cards Grid (1 col on mobile, 2 on tablet, 3 on desktop) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {/* Symmetrical 2x2 Minimalist Couture Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {services.map((item) => (
             <div
               key={item.id}
-              className="group rounded-3xl overflow-hidden luxury-card bg-noir-850 border border-white/5 hover:border-gold-400/40 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between shadow-2xl"
+              className="group rounded-3xl overflow-hidden luxury-card bg-noir-850/90 border border-white/5 hover:border-gold-400/40 transition-all duration-300 flex flex-col justify-between shadow-xl"
             >
               <div>
-                {/* Photo with zoom effect */}
+                {/* Photo with subtle zoom */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-black">
                   <img
                     src={item.image}
                     alt={item.title}
                     loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-noir-850 via-transparent to-black/30 opacity-80 group-hover:opacity-40 transition-opacity"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-noir-850 via-transparent to-black/25 opacity-80"></div>
                   
                   {/* Category Pill */}
-                  <div className="absolute top-3 left-3">
-                    <span className="font-cinzel text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-gold-300 border border-gold-400/30">
+                  <div className="absolute top-3.5 left-3.5">
+                    <span className="font-cinzel text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-gold-300 border border-gold-400/30">
                       {item.category}
                     </span>
                   </div>
 
-                  {/* Price Tag Badge */}
-                  <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-gold-300 text-xs font-cinzel font-bold px-3 py-1 rounded-full border border-gold-400/40 shadow-lg">
-                    {item.price}
+                  {/* Minimalist Number Badge */}
+                  <div className="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-black/80 backdrop-blur-md text-gold-400 text-xs font-cormorant font-bold flex items-center justify-center border border-gold-400/30">
+                    {item.num}
                   </div>
                 </div>
 
                 {/* Details */}
-                <div className="p-4 sm:p-7 space-y-3 sm:space-y-4">
-                  <h3 className="font-cormorant text-xl sm:text-2xl font-bold text-white group-hover:text-gold-200 transition-colors leading-snug">
+                <div className="p-5 sm:p-7 space-y-3.5">
+                  <h3 className="font-cormorant text-2xl sm:text-3xl font-bold text-white group-hover:text-gold-200 transition-colors leading-snug">
                     {item.title}
                   </h3>
 
@@ -281,29 +247,22 @@ export const AtelierServices: React.FC = () => {
               </div>
 
               {/* Action Bar */}
-              <div className="p-4 sm:p-7 pt-0">
-                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-1.5 text-slate-400 font-cinzel">
-                    <Clock size={13} className="text-gold-400" />
-                    <span>{item.timeline}</span>
-                  </div>
-
-                  <a
-                    href={`https://wa.me/${STUDIO_INFO.phoneRaw}?text=${encodeURIComponent(
-                      lang === 'he'
-                        ? `שלום גלינה! אני מעוניינת במידע ותיאום מדידה עבור: "${item.title}".`
-                        : lang === 'en'
-                        ? `Hello Galina! I would like to book a consultation for: "${item.title}".`
-                        : `Здравствуйте, Галина! Хочу записаться на примерку/консультацию по услуге: "${item.title}".`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 font-cinzel text-gold-300 hover:text-white uppercase font-bold tracking-wider group-hover:translate-x-1 transition-all"
-                  >
-                    <span>{t.servicesBtn}</span>
-                    <ArrowRight size={13} />
-                  </a>
-                </div>
+              <div className="px-5 pb-5 sm:px-7 sm:pb-7">
+                <a
+                  href={`https://wa.me/${STUDIO_INFO.phoneRaw}?text=${encodeURIComponent(
+                    lang === 'he'
+                      ? `שלום גלינה! אשמח לתיאום והתייעצות לגבי: "${item.title}".`
+                      : lang === 'en'
+                      ? `Hello Galina! I would like to inquire about: "${item.title}".`
+                      : `Здравствуйте, Галина! Хочу записаться на примерку / обсудить: «${item.title}».`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 px-4 rounded-2xl bg-noir-900 hover:bg-gold-500/15 border border-gold-400/25 hover:border-gold-400/50 flex items-center justify-between text-xs font-cinzel text-gold-300 hover:text-white uppercase font-bold tracking-wider transition-all"
+                >
+                  <span>{t.servicesBtn}</span>
+                  <ArrowRight size={14} className={dir === 'rtl' ? 'rotate-180' : ''} />
+                </a>
               </div>
 
             </div>

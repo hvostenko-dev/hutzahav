@@ -111,7 +111,7 @@ export const CartDrawer: React.FC = () => {
                 Ваша корзина пуста
               </h4>
               <p className="text-xs text-slate-400 max-w-xs mx-auto leading-relaxed">
-                Добавьте понравившиеся авторские платья, жакеты или текстиль из каталога ателье.
+                Добавьте понравившиеся авторские платья, жакеты или аксессуары из коллекции ателье.
               </p>
               <button
                 onClick={() => setIsCartOpen(false)}
