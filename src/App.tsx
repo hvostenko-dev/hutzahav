@@ -20,10 +20,13 @@ import { WishlistDrawer } from './components/WishlistDrawer';
 import { SizeGuideModal } from './components/SizeGuideModal';
 import { FabricGuideModal } from './components/FabricGuideModal';
 import { Sparkles } from 'lucide-react';
+import { ServiceLanding } from './components/ServiceLanding';
+import { RouteDef } from './seo/routes';
+import { ServicePageId } from './seo/servicePages';
 
 const AppContent: React.FC = () => {
   const { toast } = useCart();
-  const { lang } = useLanguage();
+  const { lang, page } = useLanguage();
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
   const [isFabricGuideOpen, setIsFabricGuideOpen] = useState(false);
 
@@ -57,6 +60,10 @@ const AppContent: React.FC = () => {
       <Navbar />
 
       <main className="w-full max-w-full overflow-x-hidden">
+        {page !== 'home' ? (
+          <ServiceLanding id={page as ServicePageId} />
+        ) : (
+        <>
         {/* Editorial Hero */}
         <HeroAtelier
           onExploreClick={() => scrollToSection('gallery')}
@@ -87,6 +94,8 @@ const AppContent: React.FC = () => {
 
         {/* Booking Fitting & Contact Form with Google Maps */}
         <BookingSection />
+        </>
+        )}
       </main>
 
       {/* Luxury Atelier Footer */}
@@ -132,9 +141,9 @@ const AppContent: React.FC = () => {
   );
 };
 
-export const App: React.FC = () => {
+export const App: React.FC<{ route: RouteDef }> = ({ route }) => {
   return (
-    <LanguageProvider>
+    <LanguageProvider route={route}>
       <CartProvider>
         <AppContent />
       </CartProvider>

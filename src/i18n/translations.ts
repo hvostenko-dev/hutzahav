@@ -18,6 +18,7 @@ export interface TranslationDictionary {
 
   // Hero
   heroPill: string;
+  heroSeoH1: string;
   heroTitleLine1: string;
   heroTitleHighlight: string;
   heroTitleLine2: string;
@@ -123,6 +124,7 @@ export const translations: Record<Language, TranslationDictionary> = {
     navWishlist: 'Избранное',
     navSizeGuide: 'Таблица размеров',
 
+    heroSeoH1: 'Ателье в Ашдоде • пошив на заказ и ремонт одежды',
     heroPill: 'HUTZAHAV • ATELIER HAUTE COUTURE • חוט זהב',
     heroTitleLine1: 'Искусство',
     heroTitleHighlight: 'кутюрного кроя',
@@ -229,6 +231,7 @@ export const translations: Record<Language, TranslationDictionary> = {
     navWishlist: 'Saved',
     navSizeGuide: 'Size Guide',
 
+    heroSeoH1: 'Tailor & atelier in Ashdod • bespoke dresses & alterations',
     heroPill: 'HUTZAHAV • ATELIER HAUTE COUTURE • חוט זהב',
     heroTitleLine1: 'The Fine Art of',
     heroTitleHighlight: 'Couture Tailoring',
@@ -335,6 +338,7 @@ export const translations: Record<Language, TranslationDictionary> = {
     navWishlist: 'מועדפים',
     navSizeGuide: 'מדריך מידות',
 
+    heroSeoH1: 'מתפרה ואטלייה באשדוד • תפירה אישית ותיקוני בגדים',
     heroPill: 'HUTZAHAV • ATELIER HAUTE COUTURE • חוט זהב',
     heroTitleLine1: 'אומנות',
     heroTitleHighlight: 'התפירה העילית',

@@ -1,3 +1,4 @@
+import { useLanguage } from '../context/LanguageContext';
 import React, { useState } from 'react';
 import { STUDIO_INFO } from '../data/portfolioData';
 import { X, Mail } from 'lucide-react';
@@ -5,6 +6,7 @@ import { Telegram, WhatsApp } from './Icons';
 import { Logo } from './Logo';
 
 export const FloatingConcierge: React.FC = () => {
+  const { lang } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -53,7 +55,7 @@ export const FloatingConcierge: React.FC = () => {
           <div className="hidden sm:flex items-center gap-2 py-2 px-3.5 rounded-full bg-noir-900/95 border border-gold-400/35 text-xs text-slate-200 shadow-xl backdrop-blur-xl">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span className="font-cinzel text-[11px] tracking-wider text-gold-300">
-              Hutzahav • Связь с мастером
+              Hutzahav • {lang === 'he' ? 'דברו איתנו' : lang === 'en' ? 'Chat with Galina' : 'Связь с мастером'}
             </span>
           </div>
         )}

@@ -18,7 +18,8 @@ import { Logo } from './Logo';
 
 export const Navbar: React.FC = () => {
   const { cartCount, wishlist, setIsCartOpen, setIsWishlistOpen, setIsSizeGuideOpen } = useCart();
-  const { lang, setLang, t } = useLanguage();
+  const { lang, setLang, t, page, homePath } = useLanguage();
+  const anchorBase = page === 'home' ? '' : homePath;
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -42,11 +43,11 @@ export const Navbar: React.FC = () => {
   }, [mobileOpen]);
 
   const navLinks = [
-    { label: t.navServices, href: '#services' },
-    { label: t.navCatalog, href: '#gallery' },
-    { label: t.navAbout, href: '#about' },
-    { label: t.navFaq, href: '#faq' },
-    { label: t.navContact, href: '#contact' },
+    { label: t.navServices, href: `${anchorBase}#services` },
+    { label: t.navCatalog, href: `${anchorBase}#gallery` },
+    { label: t.navAbout, href: `${anchorBase}#about` },
+    { label: t.navFaq, href: `${anchorBase}#faq` },
+    { label: t.navContact, href: `${anchorBase}#contact` },
   ];
 
   const languages: { id: Language; label: string; full: string }[] = [
@@ -69,7 +70,7 @@ export const Navbar: React.FC = () => {
             
             {/* 1. LEFT: Brand Atelier Logo */}
             <div className="flex items-center shrink-0">
-              <a href="#" className="flex items-center transition-opacity hover:opacity-90">
+              <a href={homePath} className="flex items-center transition-opacity hover:opacity-90" aria-label="Hutzahav">
                 <Logo size={40} showText={true} />
               </a>
             </div>

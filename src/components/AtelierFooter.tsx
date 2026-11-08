@@ -6,7 +6,8 @@ import { Instagram, Facebook, Telegram } from './Icons';
 import { Logo } from './Logo';
 
 export const AtelierFooter: React.FC = () => {
-  const { lang, t } = useLanguage();
+  const { lang, t, page, homePath, pathFor } = useLanguage();
+  const anchorBase = page === 'home' ? '' : homePath;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -43,27 +44,27 @@ export const AtelierFooter: React.FC = () => {
             </div>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <a href="#services" className="hover:text-gold-300 transition-colors">
-                  {lang === 'he' ? 'תפירת שמלות ערב וכלה' : lang === 'en' ? 'Bespoke Evening & Bridal Gowns' : 'Индивидуальный пошив платьев'}
+                <a href={pathFor('alterations')} className="hover:text-gold-300 transition-colors">
+                  {lang === 'he' ? 'תיקוני בגדים והתאמה באשדוד' : lang === 'en' ? 'Clothing Alterations in Ashdod' : 'Подгонка и ремонт одежды в Ашдоде'}
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-gold-300 transition-colors">
-                  {lang === 'he' ? 'שמלות עם ציור ידני על משי ופשתן' : lang === 'en' ? 'Hand-Painted Silks & Linens' : 'Платья с ручной росписью'}
+                <a href={pathFor('evening')} className="hover:text-gold-300 transition-colors">
+                  {lang === 'he' ? 'תפירת שמלות ערב לפי מידה' : lang === 'en' ? 'Bespoke Evening Dresses' : 'Пошив вечерних платьев на заказ'}
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-gold-300 transition-colors">
-                  {lang === 'he' ? 'ז׳קטים אמנותיים בצמר מרינו ומשי' : lang === 'en' ? 'Nuno-Felting & Art Denim' : 'Арт-жакеты & Нуно-войлок'}
+                <a href={pathFor('bridal')} className="hover:text-gold-300 transition-colors">
+                  {lang === 'he' ? 'שמלות כלה בתפירה אישית' : lang === 'en' ? 'Custom Bridal Dresses' : 'Свадебные платья на заказ'}
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-gold-300 transition-colors">
-                  {lang === 'he' ? 'התאמת בגדי מותגים ותיקוני יוקרה' : lang === 'en' ? 'Designer Label Alterations' : 'Премиум подгонка и реставрация'}
+                <a href={`${anchorBase}#services`} className="hover:text-gold-300 transition-colors">
+                  {lang === 'he' ? 'ציור ידני על משי ופשתן ונונו-לבד' : lang === 'en' ? 'Hand-Painted Silks & Nuno-Felting' : 'Ручная роспись и нуно-войлок'}
                 </a>
               </li>
               <li>
-                <a href="#gallery" className="text-gold-400 hover:text-gold-200 transition-colors font-medium">
+                <a href={`${anchorBase}#gallery`} className="text-gold-400 hover:text-gold-200 transition-colors font-medium">
                   {t.navCatalog} →
                 </a>
               </li>

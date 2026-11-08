@@ -27,19 +27,19 @@ export const HeroAtelier: React.FC<HeroAtelierProps> = ({
           <div className="lg:col-span-7 xl:col-span-6 space-y-5 sm:space-y-7 text-center lg:text-start order-2 lg:order-1 max-w-full">
             
             {/* Top Brand Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-noir-900/90 border border-gold-400/35 text-gold-300 text-[10px] sm:text-xs font-cinzel tracking-[0.18em] uppercase backdrop-blur-md">
+            <h1 className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-noir-900/90 border border-gold-400/35 text-gold-300 text-[10px] sm:text-xs font-cinzel tracking-[0.12em] uppercase backdrop-blur-md max-w-full">
               <Sparkles size={12} className="text-gold-400 shrink-0" />
-              <span className="truncate">{t.heroPill}</span>
-            </div>
+              <span>{t.heroSeoH1}</span>
+            </h1>
 
             {/* Editorial Title */}
-            <h1 className="font-cormorant text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white">
+            <h2 className="font-cormorant text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white">
               {t.heroTitleLine1}{' '}
               <span className="italic font-light text-gold-200">{t.heroTitleHighlight}</span>
               <span className="block gold-gradient-text mt-1 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
                 {t.heroTitleLine2}
               </span>
-            </h1>
+            </h2>
 
             {/* Subtitle */}
             <p className="text-xs sm:text-base text-slate-300 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">

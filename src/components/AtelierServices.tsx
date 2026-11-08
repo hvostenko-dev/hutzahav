@@ -1,10 +1,12 @@
 import React from 'react';
 import { STUDIO_INFO } from '../data/portfolioData';
 import { useLanguage } from '../context/LanguageContext';
+import { UI_LABELS } from '../seo/servicePages';
 import { Sparkles, Check, ArrowRight } from 'lucide-react';
 
 export const AtelierServices: React.FC = () => {
-  const { lang, t, dir } = useLanguage();
+  const { lang, t, dir, pathFor } = useLanguage();
+  const ui = UI_LABELS[lang];
 
   const services = [
     {
@@ -268,6 +270,20 @@ export const AtelierServices: React.FC = () => {
             </div>
           ))}
         </div>
+
+        {/* Links to the dedicated local service pages */}
+        <nav aria-label={ui.otherServices} className="mt-10 sm:mt-12 flex flex-wrap items-center justify-center gap-2.5">
+          {(['alterations', 'evening', 'bridal'] as const).map((id) => (
+            <a
+              key={id}
+              href={pathFor(id)}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 text-sm text-gold-200 hover:bg-gold-400/10 transition-colors"
+            >
+              {ui.serviceNames[id]}
+              <ArrowRight size={13} className={dir === 'rtl' ? 'rotate-180' : ''} />
+            </a>
+          ))}
+        </nav>
 
       </div>
     </section>
